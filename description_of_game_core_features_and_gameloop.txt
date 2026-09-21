@@ -1,0 +1,31 @@
+I want to make a prototype of a similar game.
+
+You play in a medival fantasy rpg setting as an adventurer, similar to dungeons and dragons. You handle requests from nobles, clergy, soldiers, citizens, and other characters while trying to preserve. You can enter taverns, caves or forests to interact with characters, the environment or to pursue a quest.
+
+Its core features:
+- Card decisions: Each NPC, enemy, animal or event presents a proposal or problem with four possible responses. Swipe left, right, up or down to choose.
+- Character creation: At the beginning of the game you can choose between four character types (wizard, rogue, knight, ranger), races (human, elven, dwarf, orc) and pick a name:
+- Four statistics: 1.money, 2. status/charisma, 3. magic, 4. health. If one of them is too low or strong the game ends either by death or an ending screen.
+- Branching consequences: Decisions can influence later encounters, relationships, story events, and possible endings.
+- Large event system: The game contains many recurring and scripted encounters, with choices sometimes producing delayed effects.
+- Inventory of mystical items: You can collect and upgrade special objects. Using one on a character card can bypass the normal four-choice decision or open an alternative path.
+- Story-driven narrative: The game gradually reveals a larger medival-fantasy quest rather than presenting its full story immediately.
+- Objectives and unlocks: Challenges and goals unlock new cards, items, and story directions.
+- Multiple endings: You can reach an ending at different points, depending on your choices and circumstances; there is no requirement to survive until a particular year.
+- Leaderboard listing how long you survived and how you died
+- Replayability: After dying, you replay with the unlocked cards and characters from before, you can trying different responses and routes.
+- Political and personal drama: In addition to balancing your own stats, you manage relationships, rivalries, religion, romance, and the fate of the world.
+
+Its gameplay loop:
+1. A character or event appears as a card.
+2. You read the situation and the four possible responses/options.
+3. You swipe left, right, up or down. You might use an item when it is useful. Not owning an item can block certain decisions (for example not owning a flower might block swiping right to give a flower to a partner)
+4. The gauges change.
+5. The choice may trigger a delayed consequence or unlock a future event. It might also create a threat, start a fight or give an item.
+6. You continue until you die or reach the ending of a story.
+7. You replay to discover more story branches and improve your survival.
+
+The main tension is deciding whether a choice is worth the immediate statistical cost because it may produce a valuable consequence later. The game primarily is about role playing a character in a fantasy setting.
+
+The prototype will be very small.
+The game will be coded using plain html css and js.
