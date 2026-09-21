@@ -199,7 +199,11 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
   position:relative; width:215px; height:215px; flex-shrink:0; touch-action:none; cursor:grab;
 }
 .card-img-wrap:active{cursor:grabbing;}
-.card-img{width:100%; height:100%; object-fit:contain; display:block; filter:drop-shadow(0 16px 26px rgba(0,0,0,.7));}
+.card-img{
+  width:100%; height:100%; object-fit:contain; display:block; filter:drop-shadow(0 16px 26px rgba(0,0,0,.7));
+  -webkit-user-drag:none; user-drag:none; -webkit-touch-callout:none;
+  -moz-user-select:none; user-select:none; pointer-events:none;
+}
 .card-flash{
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   font-family:var(--display); font-size:24px; letter-spacing:.08em; text-transform:uppercase;
@@ -351,7 +355,7 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
       <div class="card-row">
         <div class="resp-label resp-left" id="resp-left" onclick="handleSwipe('left')">—</div>
         <div class="card-img-wrap" id="the-card">
-          <img class="card-img" src="./assets/goblin_card.png" alt="Card illustration">
+          <img class="card-img" src="./assets/goblin_card.png" alt="Card illustration" draggable="false">
           <div class="card-flash" id="card-flash"></div>
         </div>
         <div class="resp-label resp-right" id="resp-right" onclick="handleSwipe('right')">—</div>
@@ -1061,6 +1065,7 @@ const cardStage = () => document.getElementById('the-card');
 function initDrag(){
   const el = document.getElementById('the-card');
   el.addEventListener('pointerdown', e=>{
+    e.preventDefault();
     dragging = true; dragStartX = e.clientX; dragStartY = e.clientY; dragDX=0; dragDY=0;
     el.setPointerCapture(e.pointerId);
     el.style.transition='none';
