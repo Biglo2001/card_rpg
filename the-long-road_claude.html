@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Long Road: A Curse Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#181310;
+  --ink-2:#231b14;
+  --parchment:#e9ddc0;
+  --parchment-dim:#cbb888;
+  --parchment-2:#d8c79c;
+  --gold:#a97d2f;
+  --gold-bright:#c99a44;
+  --forest:#3f5a44;
+  --blood:#7a2e2e;
+  --magic:#5b4a8a;
+  --shadow: rgba(0,0,0,.55);
+  --display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body: 'Crimson Text', Georgia, 'Times New Roman', serif;
+}
+:root:not([data-theme="light"]){ --bg:#0d0a08; }
+:root[data-theme="light"]{ --bg:#1a140f; }
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){ --bg:#1a140f; }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(ellipse at 50% -10%, #241a12 0%, var(--bg) 60%),
+    var(--bg);
+  color:var(--parchment);
+  font-family:var(--body);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+}
+#app{
+  max-width:520px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+.screen{
+  display:none;
+  flex-direction:column;
+  min-height:100vh;
+  padding:28px 20px 20px;
+  animation:fadein .5s ease;
+}
+.screen.active{display:flex;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0 0 6px;color:var(--parchment);}
+.rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  margin:14px 0;
+  opacity:.55;
+}
+p{line-height:1.5;color:var(--parchment-dim);}
+
+/* ---------- Title screen ---------- */
+#screen-title{
+  align-items:center; justify-content:center; text-align:center; gap:6px;
+  background:
+    linear-gradient(180deg, rgba(13,10,8,.25) 0%, rgba(13,10,8,.65) 42%, rgba(13,10,8,.97) 75%),
+    url('./assets/panel_moon.png') top center / cover no-repeat;
+}
+.title-mark{
+  font-family:var(--display);
+  font-size:20px;
+  letter-spacing:.35em;
+  color:var(--gold-bright);
+  margin-bottom:2px;
+  text-shadow:0 2px 10px rgba(0,0,0,.9);
+}
+.title-main{font-size:52px; line-height:1.02; margin-bottom:2px; text-shadow:0 4px 18px rgba(0,0,0,.95);}
+.title-sub{
+  font-family:var(--body); font-style:italic; color:var(--parchment-dim);
+  font-size:17px; margin-bottom:34px; text-shadow:0 2px 10px rgba(0,0,0,.95);
+}
+.menu-btn{
+  display:block; width:100%; max-width:300px;
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--parchment);
+  font-family:var(--display);
+  font-size:20px;
+  padding:13px 10px;
+  margin:7px 0;
+  cursor:pointer;
+  letter-spacing:.04em;
+  transition:background .2s, color .2s;
+}
+.menu-btn:hover{background:var(--gold); color:var(--ink);}
+.menu-btn:disabled{opacity:.35; cursor:default;}
+.menu-btn:disabled:hover{background:transparent;color:var(--parchment);}
+
+/* ---------- Character creation ---------- */
+#screen-creation{
+  background:
+    linear-gradient(180deg, rgba(13,10,8,.15) 0%, rgba(13,10,8,.6) 45%, rgba(13,10,8,.97) 75%),
+    url('./assets/panel_stars.png') top center / cover no-repeat;
+}
+.cc-section{margin-bottom:22px;}
+.cc-label{
+  font-family:var(--display); font-size:15px; letter-spacing:.18em;
+  color:var(--gold-bright); margin-bottom:10px; text-transform:uppercase;
+}
+.cc-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.cc-card{
+  border:1px solid var(--parchment-dim); opacity:.6;
+  padding:12px 10px; cursor:pointer; transition:opacity .2s, border-color .2s, background .2s;
+}
+.cc-card:hover{opacity:.85;}
+.cc-card.selected{
+  opacity:1; border-color:var(--gold-bright); background:rgba(169,125,47,.13);
+}
+.cc-card h4{font-family:var(--display); font-size:19px; margin:0 0 3px; color:var(--parchment);}
+.cc-card small{font-size:13.5px; color:var(--parchment-dim); font-style:italic;}
+input#name-input{
+  width:100%; background:transparent; border:none; border-bottom:1px solid var(--gold);
+  color:var(--parchment); font-family:var(--display); font-size:24px; padding:8px 2px;
+  outline:none;
+}
+input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
+.cc-overview{
+  border:1px solid var(--gold); padding:14px 16px; margin-top:4px; font-family:var(--body);
+  font-style:italic; color:var(--parchment-dim); font-size:15.5px; line-height:1.55; min-height:20px;
+}
+
+/* ---------- Main game ---------- */
+#screen-game{
+  padding:14px 16px 20px; gap:0;
+  background:
+    linear-gradient(180deg,
+      rgba(13,10,8,.97) 0px, rgba(13,10,8,.97) 140px,
+      rgba(13,10,8,.2) 225px, rgba(13,10,8,.32) 55%,
+      rgba(13,10,8,.92) 100%),
+    url('./assets/panel_forest_fullphone.png') top center / cover no-repeat;
+}
+.topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2px;}
+.location-tag{font-family:var(--display); font-style:italic; font-size:15px; color:var(--gold-bright); text-shadow:0 2px 6px rgba(0,0,0,.9);}
+.iconbtn{
+  background:none; border:1px solid var(--parchment-dim); color:var(--parchment-dim);
+  font-family:var(--display); font-size:13px; letter-spacing:.06em; padding:5px 10px; cursor:pointer;
+}
+.iconbtn:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+.charline{margin-bottom:12px;}
+.char-name{font-family:var(--display); font-weight:700; font-size:19px; color:var(--parchment); text-shadow:0 2px 6px rgba(0,0,0,.9);}
+.char-sub{font-family:var(--body); font-style:italic; font-size:12.5px; color:var(--gold-bright); text-shadow:0 2px 6px rgba(0,0,0,.9);}
+
+.gauges{display:flex; justify-content:space-between; gap:8px; margin:0 0 14px;}
+.gauge{flex:1; text-align:center;}
+.gauge-icon{font-family:Arial, Helvetica, sans-serif; font-size:19px; line-height:1; margin-bottom:6px; text-shadow:0 2px 4px rgba(0,0,0,.9);}
+.gauge-icon.money{color:var(--gold-bright);}
+.gauge-icon.status{color:#8fa6b0;}
+.gauge-icon.magic{color:#9482c9;}
+.gauge-icon.health{color:#e05b5b;}
+.gauge-pips{display:flex; gap:3px; justify-content:center;}
+.pip{width:9px; height:9px; border:1px solid rgba(233,221,192,.4); background:rgba(20,16,12,.5);}
+.pip.on.money{background:var(--gold-bright); border-color:var(--gold-bright);}
+.pip.on.status{background:#8fa6b0; border-color:#8fa6b0;}
+.pip.on.magic{background:#9482c9; border-color:#9482c9;}
+.pip.on.health{background:#e05b5b; border-color:#e05b5b;}
+
+.scene{
+  position:relative; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; min-height:360px; margin:4px 0 10px; padding:4px 0;
+}
+.card-text{
+  font-size:16.5px; line-height:1.5; color:var(--parchment); text-align:center; max-width:340px;
+  text-shadow:0 2px 8px rgba(0,0,0,.95), 0 0 18px rgba(0,0,0,.6);
+}
+.resp-label{
+  font-family:var(--body); font-style:italic; font-size:14px; text-align:center; color:var(--parchment);
+  text-shadow:0 2px 8px rgba(0,0,0,.95); cursor:pointer; line-height:1.3; padding:2px 6px;
+  transition:opacity .15s, color .15s;
+}
+.resp-label:hover{color:var(--gold-bright);}
+.resp-label.locked{opacity:.4; cursor:not-allowed;}
+.resp-label.locked:hover{color:var(--parchment);}
+.resp-up{max-width:220px;}
+.resp-down{max-width:220px;}
+.card-row{display:flex; align-items:center; justify-content:center; gap:6px; width:100%;}
+.resp-left,.resp-right{flex:0 0 94px;}
+
+.card-img-wrap{
+  position:relative; width:215px; height:215px; flex-shrink:0; touch-action:none; cursor:grab;
+}
+.card-img-wrap:active{cursor:grabbing;}
+.card-img{width:100%; height:100%; object-fit:contain; display:block; filter:drop-shadow(0 16px 26px rgba(0,0,0,.7));}
+.card-flash{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:24px; letter-spacing:.08em; text-transform:uppercase;
+  opacity:0; pointer-events:none; z-index:2; background:rgba(24,19,16,.5);
+}
+.card-flash.show{opacity:1; transition:opacity .15s;}
+.flash-left{color:#e05b5b;} .flash-right{color:#7fc98f;} .flash-up{color:var(--gold-bright);} .flash-down{color:#8fa6b0;}
+
+.speaker-name{
+  font-family:var(--display); font-weight:600; font-size:21px; color:var(--gold-bright);
+  text-shadow:0 2px 8px rgba(0,0,0,.95); text-align:center;
+}
+
+.fail-msg{
+  min-height:20px; text-align:center; font-family:var(--body); font-style:italic;
+  color:#ecb37e; font-size:14px; margin-bottom:4px; padding:0 10px; text-shadow:0 2px 6px rgba(0,0,0,.9);
+}
+
+.beltbar{
+  display:flex; gap:8px; margin-top:6px; align-items:center; justify-content:center; min-height:52px;
+}
+.belt-item{
+  width:46px; height:46px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center;
+  font-size:22px; cursor:pointer; position:relative; background:rgba(169,125,47,.08);
+}
+.belt-item.usable{box-shadow:0 0 8px rgba(169,125,47,.5);}
+.belt-item .tip{
+  position:absolute; bottom:54px; left:50%; transform:translateX(-50%);
+  background:var(--ink-2); border:1px solid var(--gold); padding:8px 10px; width:170px;
+  font-size:12.5px; color:var(--parchment-dim); display:none; z-index:5; line-height:1.4;
+}
+.belt-item:hover .tip{display:block;}
+.belt-empty{width:46px; height:46px; border:1px dashed rgba(233,221,192,.2);}
+
+/* ---------- Modal panel ---------- */
+.modal-back{
+  position:fixed; inset:0; background:rgba(13,10,8,.75); display:none; align-items:flex-end; justify-content:center; z-index:50;
+}
+.modal-back.show{display:flex;}
+.modal{
+  width:100%; max-width:520px; background:var(--ink-2); border-top:1px solid var(--gold);
+  max-height:78vh; overflow-y:auto; padding:22px 20px 26px;
+}
+.modal h3{font-size:24px; margin-bottom:2px;}
+.modal-close{
+  float:right; background:none; border:none; color:var(--parchment-dim); font-size:22px; cursor:pointer;
+}
+.qp-block{margin-top:16px;}
+.qp-label{font-family:var(--display); font-size:13px; letter-spacing:.14em; color:var(--gold-bright); margin-bottom:6px; text-transform:uppercase;}
+.qp-item{font-size:14.5px; color:var(--parchment-dim); margin-bottom:5px; line-height:1.4;}
+.qp-item.done{color:var(--forest); text-decoration:line-through; opacity:.7;}
+.rel-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:14.5px;}
+.rel-dots span{display:inline-block; width:9px; height:9px; border:1px solid var(--gold); margin-left:3px;}
+.rel-dots span.on{background:var(--gold-bright);}
+
+/* ---------- Ending screen ---------- */
+#screen-ending{align-items:center; text-align:center; justify-content:center; gap:4px;}
+.ending-title{font-size:44px; margin-bottom:4px;}
+.ending-kind{font-family:var(--display); font-style:italic; color:var(--gold-bright); font-size:16px; margin-bottom:18px;}
+.ending-desc{max-width:400px; margin:0 auto 20px; font-size:16.5px;}
+.stat-block{display:flex; gap:22px; justify-content:center; margin:10px 0 22px; flex-wrap:wrap;}
+.stat-block div{text-align:center;}
+.stat-block .n{font-family:var(--display); font-size:30px; color:var(--gold-bright); display:block;}
+.stat-block .l{font-size:12px; letter-spacing:.1em; color:var(--parchment-dim); text-transform:uppercase;}
+.unlock-note{font-size:14px; color:var(--forest); font-style:italic; margin-bottom:18px;}
+
+/* ---------- Leaderboard ---------- */
+.lb-row{
+  display:flex; justify-content:space-between; border-bottom:1px solid rgba(233,221,192,.15);
+  padding:9px 2px; font-size:14.5px; gap:8px;
+}
+.lb-row .lb-name{color:var(--parchment); font-family:var(--display); font-size:17px;}
+.lb-row .lb-meta{color:var(--parchment-dim); font-style:italic; font-size:13px;}
+.lb-row .lb-score{color:var(--gold-bright); font-family:var(--display); font-size:18px;}
+.tabs{display:flex; gap:6px; margin-bottom:14px;}
+.tab{flex:1; text-align:center; padding:8px; border:1px solid var(--parchment-dim); cursor:pointer; font-family:var(--display); font-size:14px; color:var(--parchment-dim);}
+.tab.active{border-color:var(--gold-bright); color:var(--gold-bright);}
+.empty-note{color:var(--parchment-dim); font-style:italic; text-align:center; margin:30px 0;}
+
+.back-row{margin-top:auto; padding-top:16px;}
+.scroll-list{flex:1; overflow-y:auto;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TITLE -->
+  <div class="screen active" id="screen-title">
+    <div class="title-mark">A PROTOTYPE</div>
+    <h1 class="title-main">The Long Road</h1>
+    <div class="title-sub">the curse remembers what you chose</div>
+    <button class="menu-btn" onclick="goTo('screen-creation')">New Game</button>
+    <button class="menu-btn" id="btn-continue" onclick="continueGame()">Continue</button>
+    <button class="menu-btn" onclick="openLeaderboard()">Leaderboard</button>
+    <button class="menu-btn" onclick="openUnlocks()">Unlocks</button>
+  </div>
+
+  <!-- CHARACTER CREATION -->
+  <div class="screen" id="screen-creation">
+    <h2>Who walks the road?</h2>
+    <div class="rule"></div>
+
+    <div class="cc-section">
+      <div class="cc-label">Class</div>
+      <div class="cc-grid" id="class-grid"></div>
+    </div>
+
+    <div class="cc-section">
+      <div class="cc-label">Race</div>
+      <div class="cc-grid" id="race-grid"></div>
+    </div>
+
+    <div class="cc-section">
+      <div class="cc-label">Name</div>
+      <input id="name-input" type="text" placeholder="Enter a name..." maxlength="18">
+    </div>
+
+    <div class="cc-overview" id="cc-overview">Choose a class and a race to see who you'll become.</div>
+
+    <div class="back-row">
+      <button class="menu-btn" id="btn-confirm" onclick="createCharacter()" disabled>Begin the Road</button>
+      <button class="menu-btn" style="border-color:var(--parchment-dim); font-size:15px; padding:8px;" onclick="goTo('screen-title')">Back</button>
+    </div>
+  </div>
+
+  <!-- MAIN GAME -->
+  <div class="screen" id="screen-game">
+    <div class="topbar">
+      <div class="location-tag" id="loc-tag">—</div>
+      <button class="iconbtn" onclick="openQuestPanel()">Journal</button>
+    </div>
+    <div class="charline">
+      <div class="char-name" id="char-name">—</div>
+      <div class="char-sub" id="char-sub">0 decisions survived</div>
+    </div>
+
+    <div class="gauges">
+      <div class="gauge"><div class="gauge-icon money">&#9670;</div><div class="gauge-pips" id="pips-money"></div></div>
+      <div class="gauge"><div class="gauge-icon magic">&#11039;</div><div class="gauge-pips" id="pips-magic"></div></div>
+      <div class="gauge"><div class="gauge-icon status">&#9733;</div><div class="gauge-pips" id="pips-status"></div></div>
+      <div class="gauge"><div class="gauge-icon health">&#9829;</div><div class="gauge-pips" id="pips-health"></div></div>
+    </div>
+
+    <div class="scene">
+      <div class="card-text" id="card-text">—</div>
+
+      <div class="resp-label resp-up" id="resp-up" onclick="handleSwipe('up')">—</div>
+
+      <div class="card-row">
+        <div class="resp-label resp-left" id="resp-left" onclick="handleSwipe('left')">—</div>
+        <div class="card-img-wrap" id="the-card">
+          <img class="card-img" src="./assets/goblin_card.png" alt="Card illustration">
+          <div class="card-flash" id="card-flash"></div>
+        </div>
+        <div class="resp-label resp-right" id="resp-right" onclick="handleSwipe('right')">—</div>
+      </div>
+
+      <div class="resp-label resp-down" id="resp-down" onclick="handleSwipe('down')">—</div>
+
+      <div class="speaker-name" id="card-speaker">—</div>
+    </div>
+
+    <div class="fail-msg" id="fail-msg"></div>
+
+    <div class="beltbar" id="beltbar"></div>
+  </div>
+
+  <!-- ENDING -->
+  <div class="screen" id="screen-ending">
+    <div class="title-mark" id="ending-kind-top">THE ROAD ENDS</div>
+    <h1 class="ending-title" id="ending-title">—</h1>
+    <div class="ending-kind" id="ending-kind">—</div>
+    <p class="ending-desc" id="ending-desc">—</p>
+    <div class="stat-block">
+      <div><span class="n" id="es-decisions">0</span><span class="l">Decisions</span></div>
+      <div><span class="n" id="es-score">0</span><span class="l">Score</span></div>
+      <div><span class="n" id="es-chapter">0</span><span class="l">Chapters</span></div>
+    </div>
+    <div class="unlock-note" id="unlock-note"></div>
+    <button class="menu-btn" onclick="goTo('screen-title')">Return to the Road</button>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="screen" id="screen-leaderboard">
+    <h2>Leaderboard</h2>
+    <div class="rule"></div>
+    <div class="tabs">
+      <div class="tab active" data-sort="score" onclick="setLbSort('score')">Score</div>
+      <div class="tab" data-sort="decisions" onclick="setLbSort('decisions')">Survival</div>
+      <div class="tab" data-sort="endings" onclick="setLbSort('endings')">Endings</div>
+    </div>
+    <div class="scroll-list" id="lb-list"></div>
+    <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
+  </div>
+
+  <!-- UNLOCKS -->
+  <div class="screen" id="screen-unlocks">
+    <h2>Discoveries</h2>
+    <div class="rule"></div>
+    <div class="scroll-list" id="unlocks-list"></div>
+    <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
+  </div>
+
+</div>
+
+<!-- Quest / relationship modal -->
+<div class="modal-back" id="quest-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuestPanel()">&times;</button>
+    <h3>Journal</h3>
+    <div class="qp-block">
+      <div class="qp-label">Active Quests</div>
+      <div id="qp-active"></div>
+    </div>
+    <div class="qp-block">
+      <div class="qp-label">Completed</div>
+      <div id="qp-done"></div>
+    </div>
+    <div class="qp-block">
+      <div class="qp-label">Relationships</div>
+      <div id="qp-relationships"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   THE LONG ROAD — prototype game engine
+   Data-driven card/quest/ending system, four-gauge state machine.
+   ============================================================ */
+
+/* ---------------- Reference data ---------------- */
+
+const CLASSES = {
+  wizard: { name:'Wizard', blurb:'Bends the world through study and will.', mods:{magic:15, health:-10}, adv:'Better with magic and curses', weak:'Frail, poor' },
+  rogue:  { name:'Rogue',  blurb:'Lives by quick hands and quicker exits.', mods:{money:10, status:-15}, adv:'Stealth, theft, traps', weak:'Distrusted' },
+  knight: { name:'Knight', blurb:'Sworn steel, sworn honor, sworn debt.', mods:{health:15, money:-15}, adv:'More health, military favor', weak:'High upkeep' },
+  ranger: { name:'Ranger', blurb:'More at home under leaves than under roofs.', mods:{magic:5, status:-10}, adv:'Forest, animals, travel', weak:'Poor at court' },
+};
+const RACES = {
+  human: { name:'Human', blurb:'Adaptable, well-liked, unremarkable.', mods:{status:10}, trait:'Better social outcomes' },
+  elf:   { name:'Elf',   blurb:'Old eyes, long memory, thin patience.', mods:{magic:10}, trait:'Improved magic & perception' },
+  dwarf: { name:'Dwarf', blurb:'Built to endure what breaks others.', mods:{health:10}, trait:'Improved health & crafting' },
+  orc:   { name:'Orc',   blurb:'Feared before spoken to.', mods:{status:-10}, trait:'Improved intimidation & combat' },
+};
+
+const ITEMS = {
+  healing_herb:    { name:'Healing Herb', icon:'🌿', desc:'A bundle of bitter root. Use to mend wounds (+20 Health).' },
+  enchanted_flower:{ name:'Enchanted Flower', icon:'🌸', desc:"Never wilts. A gift with weight — some hearts open for it." },
+  ancient_key:     { name:'Ancient Key', icon:'🗝️', desc:'Cold iron, older than the kingdom. Opens what should stay shut.' },
+  cursed_ring:     { name:'Cursed Ring', icon:'💍', desc:'Warm to the touch. You have stopped trying to remove it.' },
+};
+
+const LOCATIONS = {
+  castle: { name:'The Castle', color:'#3a3226' },
+  tavern: { name:'The Wandering Boar Tavern', color:'#4a2f22' },
+  forest: { name:'The Greywood', color:'#233b28' },
+  cave:   { name:'The Hollow Below', color:'#1e1c2c' },
+};
+
+const ENDINGS = {
+  money_zero:  { title:'Debtor\'s Grave', kind:'Death', desc:'Your coin ran out before your enemies did. Unpaid protection is no protection at all.' },
+  money_full:  { title:'Too Rich to Live', kind:'Death', desc:'Word of your fortune outran your guards. You were found relieved of both purse and pulse.' },
+  status_zero: { title:'Cast Out', kind:'Ruin', desc:'Exiled, imprisoned, or simply forgotten — your name means nothing here now.' },
+  status_full: { title:'A Throne, A Target', kind:'Death', desc:'Crowned or feared beyond measure, you became a threat too large to let stand.' },
+  magic_zero:  { title:'Snuffed Out', kind:'Death', desc:'Whatever kept you tethered to the world let go. You simply stopped.' },
+  magic_full:  { title:'Arcane Overload', kind:'Death', desc:'You held more power than a body was built to hold. It found its way out all at once.' },
+  health_zero: { title:'The Long Rest', kind:'Death', desc:'Wound, poison, or exhaustion — in the end the body always collects its debts.' },
+  health_full: { title:"A Legend's Body", kind:'Curious', desc:'Impossibly hale, impossibly strange — the village now whispers you were never quite human at all.' },
+  curse_destroyed: { title:'The Curse Undone', kind:'Victory', desc:'You found the source in the Hollow Below and unmade it. The kingdom will sleep easier — you may not.' },
+  curse_joined: { title:'One With the Curse', kind:'Dark Victory', desc:'You did not break the curse. You became its newest voice.' },
+  escaped: { title:'Vanished Into the Wild', kind:'Escape', desc:'You walked past every debt and every duty and simply did not stop walking.' },
+};
+
+/* ---------------- Cards ---------------- */
+/* requires: fn(state)->bool for the card to appear at all
+   response.req: {desc, check:fn(state)->bool}
+   response.effects: fn(state) -> applies changes, may push flash text, may set nextCardId
+*/
+function has(item){ return s => s.inventory.includes(item); }
+function flag(f){ return s => s.flags.includes(f); }
+function notFlag(f){ return s => !s.flags.includes(f); }
+function minStat(stat,v){ return s => s[stat] >= v; }
+function maxStat(stat,v){ return s => s[stat] <= v; }
+function isClass(c){ return s => s.charClass === c; }
+
+const CARDS = [
+  // ---- CASTLE ----
+  { id:'castle_tax', location:'castle', speaker:'The Tax Collector', repeatable:false,
+    text:'"The crown\'s levy is due. Pay in full, argue the sum, or find another way."',
+    responses:[
+      { dir:'left', label:'Pay in full', effects:s=>{ changeStat(s,'money',-15); changeStat(s,'status',3);} },
+      { dir:'right', label:'Refuse loudly', effects:s=>{ changeStat(s,'status',-10); scheduleEvent('tax_revenge',3);} },
+      { dir:'up', label:'Bribe him quietly', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10); changeStat(s,'status',2);} },
+      { dir:'down', label:'Plead poverty', effects:s=>{ changeStat(s,'status',-3); addFlag('pleaded_poverty'); } },
+    ]},
+  { id:'castle_noble_request', location:'castle', speaker:'Lady Averil', repeatable:false,
+    text:'"My husband suspects I dine with another. Silence him, discredit him, or tell my husband yourself."',
+    responses:[
+      { dir:'left', label:'Threaten him into silence', req:{desc:'Rogue or Knight only', check:s=>['rogue','knight'].includes(s.charClass)}, effects:s=>{ changeStat(s,'status',-5); addItem('nothing'); changeRelationship('rival',-1);} },
+      { dir:'right', label:'Spread a rumor about him', effects:s=>{ changeStat(s,'status',5); addFlag('spread_rumor');} },
+      { dir:'up', label:'Tell her husband the truth', effects:s=>{ changeStat(s,'status',8); changeStat(s,'money',-5); } },
+      { dir:'down', label:'Decline to get involved', effects:s=>{ changeStat(s,'status',-2);} },
+    ]},
+  { id:'castle_clergy', location:'castle', speaker:'Brother Oswin', repeatable:false,
+    text:'"Strange symbols were found scratched beneath the chapel floor. Will you look, or leave holy ground undisturbed?"',
+    responses:[
+      { dir:'left', label:'Examine the symbols', effects:s=>{ changeStat(s,'magic',5); addFlag('learned_symbol'); startQuest('main'); setChapter(3);} },
+      { dir:'right', label:'Tell him to seal it up', effects:s=>{ changeStat(s,'status',3);} },
+      { dir:'up', label:'Ask what he already knows', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',3); addFlag('cleric_confided');} },
+      { dir:'down', label:'Steal a rubbing of the symbol', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ addFlag('stole_from_temple'); changeStat(s,'magic',4);} },
+    ]},
+  { id:'castle_duke', location:'castle', speaker:'Duke Halveth', repeatable:false,
+    text:'"The Duke wants the Greywood cleared of bandits before autumn. Accept, negotiate terms, or refuse him outright."',
+    responses:[
+      { dir:'left', label:'Accept the commission', effects:s=>{ changeStat(s,'status',6); startQuest('bandits');} },
+      { dir:'right', label:'Refuse him outright', effects:s=>{ changeStat(s,'status',-12); addFlag('angered_duke');} },
+      { dir:'up', label:'Demand payment up front', req:{desc:'Needs at least 20 Status', check:minStat('status',20)}, effects:s=>{ changeStat(s,'money',15); changeStat(s,'status',-3); startQuest('bandits');} },
+      { dir:'down', label:'Suggest the guard handle it', effects:s=>{ changeStat(s,'status',-4);} },
+    ]},
+  { id:'castle_guard_gate', location:'castle', speaker:'Gate Guard', repeatable:true,
+    text:'"Can\'t let you through without the toll. Pay, argue, sneak, or turn back."',
+    responses:[
+      { dir:'left', label:'Pay the toll', effects:s=>{ changeStat(s,'money',-5);} },
+      { dir:'right', label:'Threaten the guard', effects:s=>{ changeStat(s,'status',-3); changeStat(s,'health',-2);} },
+      { dir:'up', label:'Sneak past', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{} },
+      { dir:'down', label:'Ask for mercy', effects:s=>{ changeStat(s,'status',-1);} },
+    ]},
+
+  // ---- TAVERN ----
+  { id:'tavern_rumor', location:'tavern', speaker:'A Hooded Drunk', repeatable:false,
+    text:'"Monsters near the old mine, aye. Started right after the miners broke into somethin\' they shouldn\'t have. Buy me a drink and I\'ll say more."',
+    responses:[
+      { dir:'left', label:'Buy him a drink', effects:s=>{ changeStat(s,'money',-3); addFlag('heard_rumor'); startQuest('main'); setChapter(1);} },
+      { dir:'right', label:'Demand he talk for free', effects:s=>{ changeStat(s,'status',-2);} },
+      { dir:'up', label:'Recognize the mine\'s old name', req:{desc:'Requires Dwarf race', check:s=>s.charRace==='dwarf'}, effects:s=>{ addFlag('heard_rumor'); changeStat(s,'magic',2); startQuest('main'); setChapter(1);} },
+      { dir:'down', label:'Walk away', effects:s=>{} },
+    ]},
+  { id:'tavern_mercenary', location:'tavern', speaker:'A Scarred Mercenary', repeatable:false,
+    text:'"Looking for someone to watch my back in the Hollow. Pays well, if you live. Yes, no, or ask what\'s down there first."',
+    responses:[
+      { dir:'left', label:'Accept', effects:s=>{ changeStat(s,'money',10); changeStat(s,'health',-5); addFlag('mercenary_ally');} },
+      { dir:'right', label:'Refuse', effects:s=>{} },
+      { dir:'up', label:'Ask what waits below', effects:s=>{ addFlag('learned_symbol');} },
+      { dir:'down', label:'Try to rob him instead', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ changeStat(s,'money',12); changeStat(s,'status',-8); changeRelationship('rival',-1);} },
+    ]},
+  { id:'tavern_romance', location:'tavern', speaker:'Selin, the Innkeeper\'s Daughter', repeatable:false,
+    text:'"You keep coming back here. I\'ve noticed. Flirt, buy her a drink, give her a gift, or keep to yourself."',
+    responses:[
+      { dir:'left', label:'Flirt openly', effects:s=>{ changeStat(s,'status',2); changeRelationship('partner',1);} },
+      { dir:'right', label:'Buy her a drink', effects:s=>{ changeStat(s,'money',-4); changeRelationship('partner',1);} },
+      { dir:'up', label:'Give her the enchanted flower', req:{desc:'Needs the Enchanted Flower', check:has('enchanted_flower')}, effects:s=>{ removeItem('enchanted_flower'); changeRelationship('partner',2); changeStat(s,'status',3);} },
+      { dir:'down', label:'Keep your distance', effects:s=>{} },
+    ]},
+  { id:'tavern_gamble', location:'tavern', speaker:'A Dice Game', repeatable:true,
+    text:'"Care to play? Wager small, wager big, watch the table for cheats, or skip it."',
+    responses:[
+      { dir:'left', label:'Wager small', effects:s=>{ if(Math.random()>0.45){ changeStat(s,'money',6);} else { changeStat(s,'money',-6);} } },
+      { dir:'right', label:'Wager big', req:{desc:'Needs at least 15 Money', check:minStat('money',15)}, effects:s=>{ if(Math.random()>0.5){ changeStat(s,'money',20);} else { changeStat(s,'money',-20);} } },
+      { dir:'up', label:'Watch for cheats', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ changeStat(s,'money',10); changeRelationship('rival',-1);} },
+      { dir:'down', label:'Skip the game', effects:s=>{} },
+    ]},
+  { id:'tavern_rival', location:'tavern', speaker:'Corin, a Rival Adventurer', repeatable:false,
+    text:'"Still alive? Pity. Buy me a round and call it truce, mock my last failed job, challenge me, or ignore him."',
+    responses:[
+      { dir:'left', label:'Offer a truce', effects:s=>{ changeStat(s,'money',-3); changeRelationship('rival',1);} },
+      { dir:'right', label:'Mock him', effects:s=>{ changeStat(s,'status',2); changeRelationship('rival',-1);} },
+      { dir:'up', label:'Challenge him openly', effects:s=>{ changeStat(s,'health',-6); changeStat(s,'status',4); changeRelationship('rival',-2);} },
+      { dir:'down', label:'Ignore him', effects:s=>{} },
+    ]},
+
+  // ---- FOREST ----
+  { id:'forest_wolf', location:'forest', speaker:'A Wounded Wolf', repeatable:false,
+    text:'A wolf lies tangled in a poacher\'s snare, watching you. Free it, leave it, use it for parts, or heal it with your herb.',
+    responses:[
+      { dir:'left', label:'Free it and step back', effects:s=>{ addFlag('freed_wolf'); changeRelationship('rival',0);} },
+      { dir:'right', label:'Leave it be', effects:s=>{} },
+      { dir:'up', label:'Heal it with the herb', req:{desc:'Needs the Healing Herb', check:has('healing_herb')}, effects:s=>{ removeItem('healing_herb'); addFlag('befriended_wolf'); changeStat(s,'status',3);} },
+      { dir:'down', label:'Take it as a trophy', effects:s=>{ changeStat(s,'money',5); changeStat(s,'status',-4);} },
+    ]},
+  { id:'forest_herbalist', location:'forest', speaker:'An Old Herbalist', repeatable:false,
+    text:'"Lost, are you? I can trade you a healing herb for coin, or teach you to find your own — that takes longer."',
+    responses:[
+      { dir:'left', label:'Buy the herb', req:{desc:'Needs at least 8 Money', check:minStat('money',8)}, effects:s=>{ changeStat(s,'money',-8); addItem('healing_herb');} },
+      { dir:'right', label:'Learn to forage', req:{desc:'Requires Ranger or Elf', check:s=>s.charClass==='ranger'||s.charRace==='elf'}, effects:s=>{ addItem('healing_herb'); changeStat(s,'magic',2);} },
+      { dir:'up', label:'Ask about the curse', effects:s=>{ addFlag('learned_symbol');} },
+      { dir:'down', label:'Move on', effects:s=>{} },
+    ]},
+  { id:'forest_bandits', location:'forest', speaker:'Bandits on the Road', repeatable:false, requires: flag('quest_bandits_active'),
+    text:'Three bandits step out from the treeline. Fight, pay a toll, talk your way past, or flee into the brush.',
+    responses:[
+      { dir:'left', label:'Fight', effects:s=>{ if(s.charClass==='knight'||s.charRace==='orc'){ changeStat(s,'health',-8); changeStat(s,'money',8);} else { changeStat(s,'health',-18);} completeQuest('bandits');} },
+      { dir:'right', label:'Pay the toll', req:{desc:'Needs at least 12 Money', check:minStat('money',12)}, effects:s=>{ changeStat(s,'money',-12);} },
+      { dir:'up', label:'Talk them down', req:{desc:'Needs at least 40 Status', check:minStat('status',40)}, effects:s=>{ changeStat(s,'status',4); completeQuest('bandits');} },
+      { dir:'down', label:'Flee', effects:s=>{ changeStat(s,'health',-3); changeStat(s,'status',-3);} },
+    ]},
+  { id:'forest_flower', location:'forest', speaker:'A Patch of Pale Blooms', repeatable:false,
+    text:'Flowers that never wilt grow only here, and only in moonlight. Pick one, pick a handful, leave them, or study them.',
+    responses:[
+      { dir:'left', label:'Pick one', effects:s=>{ addItem('enchanted_flower');} },
+      { dir:'right', label:'Pick a handful to sell', effects:s=>{ changeStat(s,'money',6);} },
+      { dir:'up', label:'Study them', req:{desc:'Requires Wizard or Elf', check:s=>s.charClass==='wizard'||s.charRace==='elf'}, effects:s=>{ changeStat(s,'magic',6); addItem('enchanted_flower');} },
+      { dir:'down', label:'Leave them growing', effects:s=>{ changeStat(s,'magic',1);} },
+    ]},
+  { id:'forest_shrine', location:'forest', speaker:'A Ruined Shrine', repeatable:false,
+    text:'A shrine older than the kingdom, half-swallowed by roots. Pray, deface it, search it for treasure, or pass by.',
+    responses:[
+      { dir:'left', label:'Pray', effects:s=>{ changeStat(s,'magic',5); changeStat(s,'status',1);} },
+      { dir:'right', label:'Deface it', effects:s=>{ changeStat(s,'status',-6); addFlag('angered_something'); scheduleEvent('shrine_revenge',4);} },
+      { dir:'up', label:'Search for treasure', effects:s=>{ changeStat(s,'money',10); changeStat(s,'magic',-3);} },
+      { dir:'down', label:'Pass by respectfully', effects:s=>{} },
+    ]},
+
+  // ---- CAVE ----
+  { id:'cave_goblin', location:'cave', speaker:'A Goblin at the Threshold', repeatable:false,
+    text:'A goblin blocks the cave entrance, spear raised. Fight, negotiate, sneak past, or offer food.',
+    responses:[
+      { dir:'left', label:'Fight', effects:s=>{ if(s.charClass==='knight'){ changeStat(s,'health',-6);} else { changeStat(s,'health',-14);} } },
+      { dir:'right', label:'Negotiate', req:{desc:'Needs at least 25 Status', check:minStat('status',25)}, effects:s=>{ changeStat(s,'money',-5);} },
+      { dir:'up', label:'Sneak past', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{} },
+      { dir:'down', label:'Offer food', req:{desc:'Needs at least 5 Money', check:minStat('money',5)}, effects:s=>{ changeStat(s,'money',-5); changeRelationship('rival',0); addFlag('goblin_spared');} },
+    ]},
+  { id:'cave_locked_door', location:'cave', speaker:'A Sealed Door', repeatable:false, requires: flag('learned_symbol'),
+    text:'A door bound in iron and old warnings. Use the ancient key, force it open, search for another way, or turn back.',
+    responses:[
+      { dir:'left', label:'Use the ancient key', req:{desc:'Needs the Ancient Key', check:has('ancient_key')}, effects:s=>{ setChapter(4); addFlag('opened_door'); changeStat(s,'magic',3);} },
+      { dir:'right', label:'Force it open', effects:s=>{ changeStat(s,'health',-10); setChapter(4); addFlag('opened_door');} },
+      { dir:'up', label:'Search for another way', req:{desc:'Requires Ranger or Dwarf', check:s=>s.charClass==='ranger'||s.charRace==='dwarf'}, effects:s=>{ setChapter(4); addFlag('opened_door'); addItem('ancient_key');} },
+      { dir:'down', label:'Turn back', effects:s=>{ changeStat(s,'status',-2);} },
+    ]},
+  { id:'cave_ring', location:'cave', speaker:'A Ring on a Dead Hand', repeatable:false,
+    text:'A corpse, long dried, still wears a ring that catches no light. Take it, leave it, destroy it, or bury the body first.',
+    responses:[
+      { dir:'left', label:'Take the ring', effects:s=>{ addItem('cursed_ring'); addFlag('accepted_cursed_ring'); scheduleEvent('ring_curse',2);} },
+      { dir:'right', label:'Leave it', effects:s=>{} },
+      { dir:'up', label:'Destroy it', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',-8); changeStat(s,'status',4);} },
+      { dir:'down', label:'Bury the body first', effects:s=>{ changeStat(s,'status',2);} },
+    ]},
+  { id:'cave_cleric_recognizes', location:'cave', speaker:'A Familiar Cleric', repeatable:false, requires: flag('stole_from_temple'),
+    text:'Brother Oswin, deep in the Hollow, recognizes the rubbing in your hand. Confess, lie, bribe him, or threaten him.',
+    responses:[
+      { dir:'left', label:'Confess', effects:s=>{ changeStat(s,'status',-8);} },
+      { dir:'right', label:'Lie convincingly', req:{desc:'Needs Rogue class or 40+ Status', check:s=>s.charClass==='rogue'||s.status>=40}, effects:s=>{} },
+      { dir:'up', label:'Bribe him', req:{desc:'Needs at least 15 Money', check:minStat('money',15)}, effects:s=>{ changeStat(s,'money',-15);} },
+      { dir:'down', label:'Threaten him', effects:s=>{ changeStat(s,'status',-6); changeStat(s,'health',-2);} },
+    ]},
+  { id:'cave_curse_source', location:'cave', speaker:'The Source of the Curse', repeatable:false, requires: flag('opened_door'),
+    text:'At the heart of the Hollow, the curse itself takes notice of you. Destroy it, try to control it, join it, or flee while you still can.',
+    responses:[
+      { dir:'left', label:'Destroy it', req:{desc:'Needs at least 20 Magic', check:minStat('magic',20)}, effects:s=>{ setEnding('curse_destroyed');} },
+      { dir:'right', label:'Try to control it', req:{desc:'Requires Wizard class and 30+ Magic', check:s=>s.charClass==='wizard'&&s.magic>=30}, effects:s=>{ changeStat(s,'magic',20); changeStat(s,'health',-15);} },
+      { dir:'up', label:'Join it', effects:s=>{ setEnding('curse_joined');} },
+      { dir:'down', label:'Flee the Hollow entirely', effects:s=>{ setEnding('escaped');} },
+    ]},
+
+  // ---- GENERAL / TRAVEL ----
+  { id:'gen_travel', location:'any', speaker:'The Crossroads', repeatable:true,
+    text:'The road splits. Where do you go next — the castle, the tavern, the forest, or the cave?',
+    responses:[
+      { dir:'left', label:'The Castle', effects:s=>{ moveToLocation('castle');} },
+      { dir:'right', label:'The Tavern', effects:s=>{ moveToLocation('tavern');} },
+      { dir:'up', label:'The Forest', effects:s=>{ moveToLocation('forest');} },
+      { dir:'down', label:'The Hollow Below', req:{desc:'Needs at least 1 clue about the curse', check:flag('learned_symbol')}, effects:s=>{ moveToLocation('cave');} },
+    ]},
+  { id:'gen_stranger', location:'any', speaker:'A Wounded Stranger', repeatable:false,
+    text:'A traveler lies bleeding by the roadside. Help them, rob them, ignore them, or use your herb on them.',
+    responses:[
+      { dir:'left', label:'Help them (costs time)', effects:s=>{ changeStat(s,'status',5); addFlag('helped_stranger'); scheduleEvent('stranger_returns',5);} },
+      { dir:'right', label:'Rob them', effects:s=>{ changeStat(s,'money',8); changeStat(s,'status',-6);} },
+      { dir:'up', label:'Ignore them', effects:s=>{} },
+      { dir:'down', label:'Use the healing herb', req:{desc:'Needs the Healing Herb', check:has('healing_herb')}, effects:s=>{ removeItem('healing_herb'); changeStat(s,'status',8); addFlag('helped_stranger'); scheduleEvent('stranger_returns',5);} },
+    ]},
+  { id:'gen_village_problem', location:'any', speaker:'A Frightened Villager', repeatable:false,
+    text:'"Something\'s been taking our livestock at night. Please — help us, or at least tell us what to do."',
+    responses:[
+      { dir:'left', label:'Investigate personally', effects:s=>{ changeStat(s,'status',6); addFlag('helped_village');} },
+      { dir:'right', label:'Tell them to arm themselves', effects:s=>{ changeStat(s,'status',1);} },
+      { dir:'up', label:'Ignore the village', effects:s=>{ addFlag('ignored_village'); scheduleEvent('village_attacked',4);} },
+      { dir:'down', label:'Charge them for your help', effects:s=>{ changeStat(s,'money',10); changeStat(s,'status',-3); addFlag('helped_village');} },
+    ]},
+  { id:'gen_rebels', location:'any', speaker:'A Rebel Courier', repeatable:false,
+    text:'"The crown taxes us to starvation. Join us, inform on us to the Duke, take our coin and say nothing, or walk away."',
+    responses:[
+      { dir:'left', label:'Join the rebels', effects:s=>{ addFlag('joined_rebels'); changeStat(s,'status',-5);} },
+      { dir:'right', label:'Inform the Duke', req:{desc:'Needs a relationship with the Duke\'s favor', check:minStat('status',20)}, effects:s=>{ changeStat(s,'status',10); changeStat(s,'money',10);} },
+      { dir:'up', label:'Take the coin, say nothing', effects:s=>{ changeStat(s,'money',10);} },
+      { dir:'down', label:'Walk away', effects:s=>{} },
+    ]},
+
+  // ---- DELAYED CONSEQUENCE CARDS ----
+  { id:'delayed_tax_revenge', location:'any', speaker:'The Watch', repeatable:false, hidden:true,
+    text:'Guards recognize you from the tax dispute. Pay the fine now, resist, plead your case, or run.',
+    responses:[
+      { dir:'left', label:'Pay the fine', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10);} },
+      { dir:'right', label:'Resist', effects:s=>{ changeStat(s,'health',-10); changeStat(s,'status',-5);} },
+      { dir:'up', label:'Plead your case', effects:s=>{ changeStat(s,'status',-3);} },
+      { dir:'down', label:'Run', effects:s=>{ changeStat(s,'status',-6);} },
+    ]},
+  { id:'delayed_shrine_revenge', location:'any', speaker:'Something From the Shrine', repeatable:false, hidden:true,
+    text:'You feel watched for days. Something finally catches up to you in the dark. Fight it, flee, offer tribute, or pray for forgiveness.',
+    responses:[
+      { dir:'left', label:'Fight it', effects:s=>{ changeStat(s,'health',-12); changeStat(s,'magic',-5);} },
+      { dir:'right', label:'Flee', effects:s=>{ changeStat(s,'health',-4);} },
+      { dir:'up', label:'Offer tribute', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10);} },
+      { dir:'down', label:'Pray for forgiveness', effects:s=>{ changeStat(s,'magic',5);} },
+    ]},
+  { id:'delayed_stranger_returns', location:'any', speaker:'The Stranger You Helped', repeatable:false, hidden:true,
+    text:'"I never forgot your kindness. Take this, it\'s the least I owe you." They press something into your hand.',
+    responses:[
+      { dir:'left', label:'Accept graciously', effects:s=>{ addItem('healing_herb'); changeStat(s,'status',2);} },
+      { dir:'right', label:'Refuse politely', effects:s=>{ changeStat(s,'status',3);} },
+      { dir:'up', label:'Ask them to travel with you', effects:s=>{ changeRelationship('partner',1);} },
+      { dir:'down', label:'Say nothing, just nod', effects:s=>{} },
+    ]},
+  { id:'delayed_village_attacked', location:'any', speaker:'A Messenger', repeatable:false, hidden:true,
+    text:'"The village you ignored — monsters got in. Some didn\'t make it." Go help now, send money, mourn quietly, or feel nothing.',
+    responses:[
+      { dir:'left', label:'Go help now', effects:s=>{ changeStat(s,'health',-8); changeStat(s,'status',4);} },
+      { dir:'right', label:'Send money', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10); changeStat(s,'status',2);} },
+      { dir:'up', label:'Mourn quietly', effects:s=>{ changeStat(s,'status',-2);} },
+      { dir:'down', label:'Feel nothing', effects:s=>{ changeStat(s,'status',-5);} },
+    ]},
+  { id:'delayed_ring_curse', location:'any', speaker:'The Ring on Your Hand', repeatable:false, hidden:true,
+    text:'The cursed ring will not come off. It hums against your skin, feeding on something. You can only decide how to bear it.',
+    responses:[
+      { dir:'left', label:'Let it feed', effects:s=>{ changeStat(s,'magic',12); changeStat(s,'health',-12);} },
+      { dir:'right', label:'Fight its pull', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',4); changeStat(s,'health',-4);} },
+      { dir:'up', label:'Hide the hand, ignore it', effects:s=>{ changeStat(s,'status',-3); changeStat(s,'health',-6);} },
+      { dir:'down', label:'Seek a cleric\'s blessing', req:{desc:'Needs at least 8 Money', check:minStat('money',8)}, effects:s=>{ changeStat(s,'money',-8); changeStat(s,'health',4);} },
+    ]},
+];
+
+const PENDING_TEMPLATES = {
+  tax_revenge:      { card:'delayed_tax_revenge' },
+  shrine_revenge:    { card:'delayed_shrine_revenge' },
+  stranger_returns:  { card:'delayed_stranger_returns' },
+  village_attacked:  { card:'delayed_village_attacked' },
+  ring_curse:        { card:'delayed_ring_curse' },
+};
+
+const QUESTS = {
+  main: { name:'The Curse in the Hollow', desc:'Discover why monsters are appearing near the kingdom.' },
+  bandits: { name:"The Duke's Bandits", desc:'Clear the Greywood of bandits for Duke Halveth.' },
+};
+
+/* ---------------- State ---------------- */
+let state = null;
+let currentCardId = null;
+let dragging = false, dragStartX = 0, dragStartY = 0, dragDX = 0, dragDY = 0;
+let lbSort = 'score';
+
+const SAVE_KEY = 'tlr_save_v1';
+const META_KEY = 'tlr_meta_v1';
+const LB_KEY = 'tlr_leaderboard_v1';
+
+function freshState(){
+  return {
+    name:'', charClass:'', charRace:'',
+    location:'tavern',
+    money:50, status:50, magic:50, health:50,
+    inventory:[],
+    relationships:{ partner:0, rival:0 },
+    quests:{}, // id -> {active,complete}
+    flags:[],
+    playedCards:[],
+    pending:[], // {id,cardsRemaining,resultCardId}
+    decisions:0,
+    chapter:0,
+    endingId:null,
+  };
+}
+function loadMeta(){
+  try{ return JSON.parse(localStorage.getItem(META_KEY)) || {discoveredCards:[],discoveredEndings:[],unlockedItems:[],bestDecisions:0}; }
+  catch(e){ return {discoveredCards:[],discoveredEndings:[],unlockedItems:[],bestDecisions:0}; }
+}
+function saveMeta(m){ try{ localStorage.setItem(META_KEY, JSON.stringify(m)); }catch(e){} }
+function loadLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)) || []; }catch(e){ return []; } }
+function saveLB(a){ try{ localStorage.setItem(LB_KEY, JSON.stringify(a)); }catch(e){} }
+
+function saveGame(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function loadGame(){ try{ return JSON.parse(localStorage.getItem(SAVE_KEY)); }catch(e){ return null; } }
+
+/* ---------------- Screen management ---------------- */
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id==='screen-title'){
+    document.getElementById('btn-continue').disabled = !loadGame();
+  }
+}
+
+/* ---------------- Character creation ---------------- */
+let ccClass = null, ccRace = null;
+function buildCCGrids(){
+  const cg = document.getElementById('class-grid');
+  cg.innerHTML = Object.entries(CLASSES).map(([k,c])=>`
+    <div class="cc-card" data-k="${k}" onclick="pickClass('${k}')">
+      <h4>${c.name}</h4><small>${c.blurb}</small>
+    </div>`).join('');
+  const rg = document.getElementById('race-grid');
+  rg.innerHTML = Object.entries(RACES).map(([k,r])=>`
+    <div class="cc-card" data-k="${k}" onclick="pickRace('${k}')">
+      <h4>${r.name}</h4><small>${r.blurb}</small>
+    </div>`).join('');
+}
+function pickClass(k){ ccClass = k; document.querySelectorAll('#class-grid .cc-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k)); updateOverview(); }
+function pickRace(k){ ccRace = k; document.querySelectorAll('#race-grid .cc-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k)); updateOverview(); }
+function updateOverview(){
+  const name = document.getElementById('name-input').value.trim();
+  const ov = document.getElementById('cc-overview');
+  const btn = document.getElementById('btn-confirm');
+  if(ccClass && ccRace){
+    ov.textContent = `${name||'A nameless traveler'}, ${RACES[ccRace].name} ${CLASSES[ccClass].name}. ${CLASSES[ccClass].adv} — but ${CLASSES[ccClass].weak.toLowerCase()}. ${RACES[ccRace].trait}.`;
+  } else {
+    ov.textContent = 'Choose a class and a race to see who you\'ll become.';
+  }
+  btn.disabled = !(ccClass && ccRace && name.length>0);
+}
+document.addEventListener('input', e=>{ if(e.target.id==='name-input') updateOverview(); });
+
+function createCharacter(){
+  state = freshState();
+  state.name = document.getElementById('name-input').value.trim() || 'Traveler';
+  state.charClass = ccClass;
+  state.charRace = ccRace;
+  const cm = CLASSES[ccClass].mods, rm = RACES[ccRace].mods;
+  for(const k of ['money','status','magic','health']){
+    state[k] = 50 + (cm[k]||0) + (rm[k]||0);
+    state[k] = Math.max(5, Math.min(95, state[k]));
+  }
+  startNewGame();
+}
+function startNewGame(){
+  state.location = 'tavern';
+  saveGame();
+  goTo('screen-game');
+  renderLocation();
+  drawCurrentCard();
+}
+function continueGame(){
+  const loaded = loadGame();
+  if(!loaded) return;
+  state = loaded;
+  goTo('screen-game');
+  renderLocation();
+  renderStats();
+  renderInventory();
+  drawCurrentCard(true);
+}
+
+/* ---------------- Core engine ---------------- */
+function changeStat(s, stat, amount){
+  s[stat] = Math.max(0, Math.min(100, s[stat]+amount));
+}
+function addItem(id){
+  if(id==='nothing') return;
+  if(!state.inventory.includes(id) && state.inventory.length<4) state.inventory.push(id);
+  const meta = loadMeta();
+  if(!meta.unlockedItems.includes(id)){ meta.unlockedItems.push(id); saveMeta(meta); }
+}
+function removeItem(id){ state.inventory = state.inventory.filter(i=>i!==id); }
+function useItem(id){
+  if(id==='healing_herb' && state.inventory.includes(id)){
+    changeStat(state,'health',20); removeItem(id); flashCard('up','+20 Health');
+    checkEndingConditions();
+    saveGame();
+    renderStats();
+    renderInventory();
+    if(state.endingId){ finishRun(); }
+  }
+}
+function addFlag(f){ if(!state.flags.includes(f)) state.flags.push(f); }
+function changeRelationship(id, amount){
+  state.relationships[id] = Math.max(-2, Math.min(2, (state.relationships[id]||0)+amount));
+}
+function startQuest(id){ if(!state.quests[id]) state.quests[id] = {active:true, complete:false}; if(id==='bandits') addFlag('quest_bandits_active'); }
+function completeQuest(id){ if(state.quests[id]){ state.quests[id].active=false; state.quests[id].complete=true; } if(id==='bandits') state.flags = state.flags.filter(f=>f!=='quest_bandits_active'); }
+function setChapter(n){ if(n>state.chapter) state.chapter = n; }
+function moveToLocation(loc){ state.location = loc; renderLocation(); }
+function scheduleEvent(templateId, delay){
+  const t = PENDING_TEMPLATES[templateId];
+  if(!t) return;
+  state.pending.push({ id:templateId, cardsRemaining:delay, resultCardId:t.card });
+}
+function updatePendingEvents(){
+  let triggered = null;
+  state.pending.forEach(p=>{ p.cardsRemaining--; });
+  const ready = state.pending.find(p=>p.cardsRemaining<=0);
+  if(ready){
+    triggered = ready.resultCardId;
+    state.pending = state.pending.filter(p=>p!==ready);
+  }
+  return triggered;
+}
+function setEnding(id){ state.endingId = id; }
+
+/* ---------------- Card selection ---------------- */
+function checkCardConditions(card){
+  if(card.requires && !card.requires(state)) return false;
+  if(!card.repeatable && state.playedCards.includes(card.id)) return false;
+  if(card.location!=='any' && card.location!==state.location) return false;
+  if(card.hidden) return false; // hidden cards only fire via pending events
+  return true;
+}
+function getAvailableCards(){
+  return CARDS.filter(checkCardConditions);
+}
+function getAvailableResponses(card){
+  return card.responses.map(r=>({ ...r, locked: r.req ? !r.req.check(state) : false }));
+}
+function drawCurrentCard(skipTrigger){
+  let forced = skipTrigger ? null : updatePendingEvents();
+  let card;
+  if(forced){
+    card = CARDS.find(c=>c.id===forced);
+  } else {
+    const pool = getAvailableCards();
+    if(pool.length===0){
+      card = { id:'fallback', location:state.location, speaker:'A Quiet Moment', text:'Nothing stirs here for now. The crossroads wait, if you\'d rather move on.',
+        responses:[
+          {dir:'left', label:'Head to the Castle', effects:s=>{ moveToLocation('castle'); }},
+          {dir:'right', label:'Head to the Tavern', effects:s=>{ moveToLocation('tavern'); }},
+          {dir:'up', label:'Head to the Forest', effects:s=>{ moveToLocation('forest'); }},
+          {dir:'down', label:'Rest a moment', effects:s=>{ changeStat(s,'health',3);} },
+        ]};
+    } else {
+      card = pool[Math.floor(Math.random()*pool.length)];
+    }
+  }
+  currentCardId = card.id;
+  const meta = loadMeta();
+  if(!meta.discoveredCards.includes(card.id)){ meta.discoveredCards.push(card.id); saveMeta(meta); }
+  renderCard(card);
+  renderStats();
+  renderInventory();
+  document.getElementById('fail-msg').textContent='';
+}
+
+function handleSwipe(direction){
+  const card = CARDS.find(c=>c.id===currentCardId) || fallbackCardRef;
+  if(!card) return;
+  const idx = {left:0,right:1,up:2,down:3}[direction];
+  const resp = card.responses[idx];
+  if(!resp) return;
+  if(resp.req && !resp.req.check(state)){
+    document.getElementById('fail-msg').textContent = resp.req.desc + '.';
+    snapCardBack();
+    return;
+  }
+  handleResponse(card, resp, direction);
+}
+let fallbackCardRef = null;
+
+function handleResponse(card, resp, direction){
+  flashCard(direction, resp.label);
+  applyEffects(resp.effects);
+  state.decisions++;
+  if(card.id!=='fallback' && card.id!=='gen_travel'){
+    if(!state.playedCards.includes(card.id)) state.playedCards.push(card.id);
+  }
+  setTimeout(()=>{ postResponseUpdate(); }, 260);
+}
+function applyEffects(effectFn){
+  effectFn(state);
+  checkEndingConditions();
+}
+function postResponseUpdate(){
+  saveGame();
+  if(state.endingId){
+    finishRun();
+    return;
+  }
+  const check2 = checkEndingConditions();
+  if(state.endingId){ finishRun(); return; }
+  renderLocation();
+  drawCurrentCard();
+}
+
+function checkEndingConditions(){
+  if(state.endingId) return true;
+  if(state.money<=0) state.endingId='money_zero';
+  else if(state.money>=100) state.endingId='money_full';
+  else if(state.status<=0) state.endingId='status_zero';
+  else if(state.status>=100) state.endingId='status_full';
+  else if(state.magic<=0) state.endingId='magic_zero';
+  else if(state.magic>=100) state.endingId='magic_full';
+  else if(state.health<=0) state.endingId='health_zero';
+  else if(state.health>=100) state.endingId='health_full';
+  return !!state.endingId;
+}
+
+/* ---------------- Rendering ---------------- */
+function renderStats(){
+  ['money','status','magic','health'].forEach(k=>{
+    const v = state[k];
+    const filled = Math.round(v/20);
+    const track = document.getElementById('pips-'+k);
+    let html = '';
+    for(let i=0;i<5;i++){
+      html += `<div class="pip ${i<filled?('on '+k):''}"></div>`;
+    }
+    track.innerHTML = html;
+  });
+  document.getElementById('char-name').textContent = `${state.name} the ${CLASSES[state.charClass].name}`;
+  document.getElementById('char-sub').textContent = `${state.decisions} decision${state.decisions===1?'':'s'} survived`;
+}
+function renderInventory(){
+  const bar = document.getElementById('beltbar');
+  const slots = [];
+  for(let i=0;i<4;i++){
+    const id = state.inventory[i];
+    if(id){
+      const it = ITEMS[id];
+      const usable = id==='healing_herb';
+      slots.push(`<div class="belt-item ${usable?'usable':''}" onclick="${usable?`useItem('${id}')`:''}">
+        ${it.icon}<div class="tip"><strong>${it.name}</strong><br>${it.desc}${usable?'<br><em>Tap to use.</em>':''}</div>
+      </div>`);
+    } else {
+      slots.push('<div class="belt-empty"></div>');
+    }
+  }
+  bar.innerHTML = slots.join('');
+}
+function renderLocation(){
+  document.getElementById('loc-tag').textContent = LOCATIONS[state.location]?.name || state.location;
+}
+function renderCard(card){
+  fallbackCardRef = card.id==='fallback' ? card : null;
+  document.getElementById('card-speaker').textContent = card.speaker;
+  document.getElementById('card-text').textContent = card.text;
+  const responses = getAvailableResponses(card);
+  const slotId = {left:'resp-left', right:'resp-right', up:'resp-up', down:'resp-down'};
+  responses.forEach(r=>{
+    const el = document.getElementById(slotId[r.dir]);
+    if(!el) return;
+    el.textContent = r.label;
+    el.classList.toggle('locked', !!r.locked);
+  });
+  const cardEl = document.getElementById('the-card');
+  cardEl.style.transform = 'translate(0,0) rotate(0deg)';
+  cardEl.style.opacity = 1;
+}
+function flashCard(direction, label){
+  const el = document.getElementById('card-flash');
+  const cls = {left:'flash-left',right:'flash-right',up:'flash-up',down:'flash-down'}[direction];
+  el.className = 'card-flash show '+cls;
+  el.textContent = label;
+  setTimeout(()=>{ el.classList.remove('show'); }, 240);
+}
+function snapCardBack(){
+  const cardEl = document.getElementById('the-card');
+  cardEl.style.transition='transform .25s ease';
+  cardEl.style.transform='translate(0,0) rotate(0deg)';
+  setTimeout(()=>{ cardEl.style.transition=''; }, 260);
+}
+
+/* ---------------- Drag / swipe input ---------------- */
+const cardStage = () => document.getElementById('the-card');
+function initDrag(){
+  const el = document.getElementById('the-card');
+  el.addEventListener('pointerdown', e=>{
+    dragging = true; dragStartX = e.clientX; dragStartY = e.clientY; dragDX=0; dragDY=0;
+    el.setPointerCapture(e.pointerId);
+    el.style.transition='none';
+  });
+  el.addEventListener('pointermove', e=>{
+    if(!dragging) return;
+    dragDX = e.clientX - dragStartX; dragDY = e.clientY - dragStartY;
+    el.style.transform = `translate(${dragDX}px, ${dragDY}px) rotate(${dragDX/22}deg)`;
+  });
+  el.addEventListener('pointerup', e=>{
+    if(!dragging) return;
+    dragging = false;
+    el.style.transition='transform .25s ease';
+    const threshold = 70;
+    if(Math.abs(dragDX) > Math.abs(dragDY) && Math.abs(dragDX) > threshold){
+      handleSwipe(dragDX>0?'right':'left');
+    } else if(Math.abs(dragDY) > threshold){
+      handleSwipe(dragDY>0?'down':'up');
+    } else {
+      el.style.transform='translate(0,0) rotate(0deg)';
+    }
+    setTimeout(()=>{ el.style.transition=''; }, 260);
+  });
+  el.addEventListener('pointercancel', ()=>{ dragging=false; el.style.transform='translate(0,0) rotate(0deg)'; });
+}
+
+/* ---------------- Quest panel ---------------- */
+function openQuestPanel(){
+  const active = Object.entries(state.quests).filter(([k,v])=>v.active);
+  const done = Object.entries(state.quests).filter(([k,v])=>v.complete);
+  document.getElementById('qp-active').innerHTML = active.length ? active.map(([k])=>`<div class="qp-item">${QUESTS[k].name} — ${QUESTS[k].desc}</div>`).join('') : '<div class="qp-item">No active quests yet. Explore to find leads.</div>';
+  document.getElementById('qp-done').innerHTML = done.length ? done.map(([k])=>`<div class="qp-item done">${QUESTS[k].name}</div>`).join('') : '<div class="qp-item">None completed yet.</div>';
+  const relNames = {partner:'Romantic Partner', rival:'Rival Adventurer'};
+  const relLabel = {'-2':'Hostile','-1':'Distrustful','0':'Neutral','1':'Friendly','2':'Devoted'};
+  document.getElementById('qp-relationships').innerHTML = Object.entries(state.relationships).map(([k,v])=>{
+    let dots='';
+    for(let i=-2;i<=2;i++){
+      const filled = v>=0 ? (i>=0 && i<=v) : (i<=0 && i>=v);
+      dots += `<span class="${filled?'on':''}"></span>`;
+    }
+    return `<div class="rel-row"><span>${relNames[k]} <em style="opacity:.6;font-size:12px;">(${relLabel[v]})</em></span><span class="rel-dots">${dots}</span></div>`;
+  }).join('');
+  document.getElementById('quest-modal').classList.add('show');
+}
+function closeQuestPanel(){ document.getElementById('quest-modal').classList.remove('show'); }
+
+/* ---------------- Endings / scoring ---------------- */
+function calculateScore(){
+  const objectives = Object.values(state.quests).filter(q=>q.complete).length;
+  return state.decisions + 5*objectives + 10*state.chapter;
+}
+function unlockContent(){
+  const meta = loadMeta();
+  if(!meta.discoveredEndings.includes(state.endingId)){ meta.discoveredEndings.push(state.endingId); }
+  if(state.decisions > meta.bestDecisions) meta.bestDecisions = state.decisions;
+  saveMeta(meta);
+}
+function recordRun(){
+  const lb = loadLB();
+  const ending = ENDINGS[state.endingId];
+  lb.push({
+    name: state.name, cls: state.charClass, race: state.charRace,
+    score: calculateScore(), decisions: state.decisions,
+    ending: ending ? ending.title : state.endingId,
+    date: new Date().toISOString().slice(0,10),
+  });
+  saveLB(lb);
+}
+function finishRun(){
+  unlockContent();
+  recordRun();
+  showEnding(state.endingId);
+  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+}
+function showEnding(id){
+  const e = ENDINGS[id] || {title:'The Road Ends', kind:'Unknown', desc:'Your story trails off here.'};
+  document.getElementById('ending-title').textContent = e.title;
+  document.getElementById('ending-kind').textContent = e.kind;
+  document.getElementById('ending-desc').textContent = e.desc;
+  document.getElementById('es-decisions').textContent = state.decisions;
+  document.getElementById('es-score').textContent = calculateScore();
+  document.getElementById('es-chapter').textContent = state.chapter;
+  const meta = loadMeta();
+  const newCards = meta.discoveredCards.length;
+  document.getElementById('unlock-note').textContent = `${state.name} the ${RACES[state.charRace].name} ${CLASSES[state.charClass].name} — ${newCards} cards discovered across all runs.`;
+  goTo('screen-ending');
+}
+
+/* ---------------- Leaderboard / Unlocks screens ---------------- */
+function openLeaderboard(){ goTo('screen-leaderboard'); renderLeaderboard(); }
+function setLbSort(s){ lbSort = s; document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.sort===s)); renderLeaderboard(); }
+function renderLeaderboard(){
+  let lb = loadLB();
+  const uniqueEndings = new Set(lb.map(r=>r.ending)).size;
+  if(lbSort==='score') lb = [...lb].sort((a,b)=>b.score-a.score);
+  else if(lbSort==='decisions') lb = [...lb].sort((a,b)=>b.decisions-a.decisions);
+  else lb = [...lb].sort((a,b)=>b.score-a.score);
+  const list = document.getElementById('lb-list');
+  if(lb.length===0){ list.innerHTML = '<div class="empty-note">No runs recorded yet. The road awaits.</div>'; return; }
+  list.innerHTML = lb.slice(0,20).map(r=>`
+    <div class="lb-row">
+      <div><div class="lb-name">${r.name}</div><div class="lb-meta">${RACES[r.race]?.name||r.race} ${CLASSES[r.cls]?.name||r.cls} · ${r.ending}</div></div>
+      <div class="lb-score">${r.score}</div>
+    </div>`).join('') + (lbSort==='endings' ? `<div class="empty-note">${uniqueEndings} unique ending${uniqueEndings===1?'':'s'} discovered.</div>` : '');
+}
+function openUnlocks(){
+  goTo('screen-unlocks');
+  const meta = loadMeta();
+  const list = document.getElementById('unlocks-list');
+  const totalCards = CARDS.filter(c=>!c.hidden).length + Object.keys(PENDING_TEMPLATES).length;
+  list.innerHTML = `
+    <div class="qp-block"><div class="qp-label">Cards Discovered</div><div class="qp-item">${meta.discoveredCards.length} / ${totalCards}</div></div>
+    <div class="qp-block"><div class="qp-label">Endings Discovered</div><div class="qp-item">${meta.discoveredEndings.length} / ${Object.keys(ENDINGS).length}</div>
+      ${meta.discoveredEndings.map(id=>`<div class="qp-item done">${ENDINGS[id]?.title||id}</div>`).join('')}
+    </div>
+    <div class="qp-block"><div class="qp-label">Items Found</div><div class="qp-item">${meta.unlockedItems.map(id=>ITEMS[id]?.name||id).join(', ')||'None yet'}</div></div>
+    <div class="qp-block"><div class="qp-label">Best Survival</div><div class="qp-item">${meta.bestDecisions} decisions</div></div>
+  `;
+}
+
+/* ---------------- Init ---------------- */
+window.addEventListener('DOMContentLoaded', ()=>{
+  buildCCGrids();
+  initDrag();
+  document.getElementById('btn-continue').disabled = !loadGame();
+  document.getElementById('quest-modal').addEventListener('click', e=>{ if(e.target.id==='quest-modal') closeQuestPanel(); });
+});
+</script>
+</body>
+</html>
