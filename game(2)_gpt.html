@@ -1,0 +1,1260 @@
+<html lang="en" data-theme="light" style="color-scheme: light;"><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"cred":"cookie","capabilities":{"artifact":"artifact.O-h4mzdy.js","assets":"assets.DOAjpBS9.js","comments":"comments.DrhK3r8W.js","db":"db.DV02l9iB.js","downloads":"downloads.axDW2QAi.js","embed":"embed.DcZf-TSv.js","endpoints":"endpoints.BPfoKaE1.js","mcp":"mcp.C8qKIFvQ.js","network":"network.B5UA9Su4.js","permissions":"permissions.DWFFeHI0.js","room":"room.BF1j0KPr.js","sample":"sample.C7KQQdQj.js","self":"artifact.O-h4mzdy.js","user":"user.CCh6oTS_.js"},"transforms":"_transforms.DeQ5QuJ7.js","comments":"_comments.DUaNQZcg.js","translate":"_translate.DqxC5ek1.js","ldx":"_ldx.CqNtBrkk.js"}                                                                           </script><script>(function(){"use strict";var In=3e5;function rr(t,e){try{const n=t("navigation")[0],o=[n.responseStart,n.redirectEnd-n.redirectStart,n.domContentLoadedEventStart,e()];for(let a=0;a<o.length;a++){if(!(o[a]>=0&&o[a]<=3e5))return;o[a]=o[a]|0}return o}catch{return}}var nr=["light","dark","system"],or=/^[A-Za-z0-9_-]{1,64}$/,wt=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ar=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function sr(t){const e=t.toLowerCase();return e.startsWith("data-")||e.startsWith("aria-")||ar.has(e)}var bt="data-ldx-props";function ir(t,e){if(e.toLowerCase()===bt)return!0;const n=t.getAttribute(bt);if(n===null)return!1;try{const o=JSON.parse(n);if(o===null||typeof o!="object"||Array.isArray(o))return!0;const a=e.toLowerCase();return Object.keys(o).some(s=>s.toLowerCase()===a)}catch{return!0}}var Fn="http://www.w3.org/1999/xhtml",lr="http://www.w3.org/2000/svg",cr=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ur=new Set(["script","style"]);function fr(t){const e=t.localName.toLowerCase();return t.namespaceURI==="http://www.w3.org/1999/xhtml"?!cr.has(e):t.namespaceURI===lr?!ur.has(e):!1}function We(t,e){return t===e||(t===160||t===32)&&(e===160||e===32)}function dr(t,e){const n=t.length,o=e.length;let a=0;for(;a<n&&a<o&&We(t.charCodeAt(a),e.charCodeAt(a));)a++;let s=0;for(;s<n-a&&s<o-a&&We(t.charCodeAt(n-1-s),e.charCodeAt(o-1-s));)s++;return{p:a,s}}function hr(t,e){const n=t.firstChild;if(t.childNodes.length!==1||n===null||n.nodeType!==Node.TEXT_NODE){t.textContent=e;return}const o=n.data,a=o.length,s=e.length,{p:c,s:d}=dr(o,e);c===a&&d===0&&a===s||n.replaceData(c,a-c-d,e.slice(c,s-d));const L=n.data,g=t.ownerDocument.getSelection?.()??null,b=g!==null&&g.rangeCount>0&&(g.anchorNode===n||g.focusNode===n)?{anchor:g.anchorNode,anchorOffset:g.anchorOffset,focus:g.focusNode,focusOffset:g.focusOffset}:null;let m=-1,O=-1;for(let h=0;h<L.length&&h<e.length;h++){const k=L.charCodeAt(h),B=e.charCodeAt(h);k!==B&&We(k,B)&&(m<0&&(m=h),O=h)}const v=m>=0;if(v&&n.replaceData(m,O-m+1,e.slice(m,O+1)),v&&b!==null&&b.anchor!==null&&b.focus!==null)try{g.setBaseAndExtent(b.anchor,b.anchorOffset,b.focus,b.focusOffset)}catch{}}var pr=new Set(["html","head","body","frameset"]);function mr(t){return t.namespaceURI==="http://www.w3.org/1999/xhtml"&&pr.has(t.localName)}function vr(t){if(t===null||typeof t!="object")return!1;const e=t;if(typeof e.target!="string"||!or.test(e.target)||e.text!==void 0&&typeof e.text!="string")return!1;if(e.attrsSet!==void 0){if(e.attrsSet===null||typeof e.attrsSet!="object")return!1;for(const[n,o]of Object.entries(e.attrsSet))if(!wt.test(n)||typeof o!="string")return!1}if(e.attrsRemoved!==void 0){if(!Array.isArray(e.attrsRemoved))return!1;for(const n of e.attrsRemoved)if(typeof n!="string"||!wt.test(n))return!1}return!0}function _r(t,e){if(t===null||typeof t!="object")return!1;const{seq:n,elements:o}=t;if(typeof n!="number"||!Number.isSafeInteger(n)||!Array.isArray(o)||o.length===0||o.length>64)return!1;for(let a=0;a<o.length;a++)if(!e(o[a]))return!1;return!0}function yr(t){return t===null||typeof t!="object"?!1:_r(t.__frame_patch,vr)}function gr(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_init;return e!==null&&typeof e=="object"}function wr(t){return t!==null&&typeof t=="object"&&t.__frame_size_poke===!0}function br(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_host_visible;return e!==null&&typeof e=="object"&&typeof e.visible=="boolean"}function Er(t){if(t===null||typeof t!="object")return!1;const e=t.__frame_theme;if(e===null||typeof e!="object")return!1;const n=e.theme;return typeof n=="string"&&nr.includes(n)}var Sr=["ok","empty","snapshot_error","snapshot_timeout","unclonable","oversize","unavailable","restore_error","withheld"],Ar=["TypeError","RangeError","ReferenceError","SyntaxError","DataCloneError","QuotaExceededError","AbortError","TimeoutError","SecurityError","Error","other"];function Rr(t){return typeof t=="string"&&Ar.includes(t)?t:"other"}var kr=Object.freeze({until:null,now:!1}),Tr="__claude_hot",Lr="__claude_hot_in",Or=/^__claude_hot(?:_in)?(?::|$)/,Et=/^[0-9a-z]{1,32}$/,Ve=t=>t===void 0?Tr:"__claude_hot:"+t,ye=t=>t===void 0?Lr:"__claude_hot_in:"+t;function Mr(t,e){const n=[];for(let o=0;o<t.length;o++){const a=t.key(o);a!==null&&a!==e&&Or.test(a)&&n.push(a)}for(const o of n)t.removeItem(o)}function Pr(t){let e=null;try{e=U(JSON.parse(t)?.hot)}catch{return null}return e===null||typeof e.k!="string"||!Et.test(e.k)?null:ae(e.g)?{k:e.k,g:e.g}:{k:e.k}}var Dn=262144,Nr=3e3,Cr=5e3,St=/^[a-z0-9._:-]{1,64}$/,jr=["none","hot-restart","hard-reload"],Ir=["asset","doc","added","removed"],Fr=1500,Dr=/^[0-9a-f]{64}$/;function U(t){return t!==null&&typeof t=="object"?t:null}function ae(t){return typeof t=="number"&&Number.isInteger(t)&&t>=0&&t<2**31}function At(t){return t===void 0||typeof t=="number"&&Number.isFinite(t)}function xr(t){return t===void 0||typeof t=="string"&&St.test(t)}function Rt(t){const e=U(t);return e!==null&&(e.until===null||typeof e.until=="number"&&Number.isFinite(e.until))&&typeof e.now=="boolean"}function Xe(t){const e=U(t);return e!==null&&typeof e.ver=="string"&&e.ver.length<=128&&At(e.seq)&&typeof e.handoff=="string"&&Sr.includes(e.handoff)&&xr(e.note)}function Hr(t){const e=U(t);return e!==null&&ae(e.gen)&&(e.phase==="final"||e.phase==="pending")&&(e.from===null||Xe(e.from))}function Br(t){const e=U(t);return e!==null&&e.kv===1&&ae(e.gen)&&Xe(e.from)&&Object.hasOwn(e,"data")}function qr(t){const e=U(t);return e!==null&&e.__frame_hot_snapshot===!0&&ae(e.gen)&&typeof e.timeoutMs=="number"&&e.timeoutMs>=0&&e.timeoutMs<=6e4&&(e.handoff===void 0||typeof e.handoff=="boolean")&&(e.deadline===void 0||Rt(e.deadline))&&At(e.seq)&&(e.note===void 0||typeof e.note=="string")&&(e.key===void 0||typeof e.key=="string")}function Ur(t){const e=U(t);return e!==null&&e.__frame_hot_start===!0&&ae(e.gen)&&Xe(e.from)}function Gr(t){return typeof t=="string"&&t.length>=1&&t.length<=128}function kt(t){return U(t)!==null&&!Array.isArray(t)}function zr(t){const e=U(t);return e!==null&&e.__frame_cap_grant===!0&&typeof e.cap=="string"&&Gr(e.ver)&&(e.grant===void 0||kt(e.grant))&&(e.budgets===void 0||kt(e.budgets)&&Object.values(e.budgets).every(Number.isFinite))&&(e.brokerGen===void 0||ae(e.brokerGen))}function Kr(t){const e=U(t);return e!==null&&e.__frame_cap_rewired===!0&&(e.caps===void 0||Array.isArray(e.caps)&&e.caps.every(n=>typeof n=="string"))&&(e.brokerGen===void 0||ae(e.brokerGen))}function Tt(t){const e=U(t);return e!==null&&typeof e.ver=="string"&&e.ver.length<=128&&Number.isFinite(e.seq)}function Lt(t){if(t==null||typeof t=="string")return!0;const e=U(t);return e!==null&&typeof e.doc=="string"&&typeof e.profile=="string"}function $r(t){const e=U(t);return e!==null&&typeof e.path=="string"&&Ir.includes(e.kind)&&Lt(e.from)&&Lt(e.to)}function Wr(t){return t===null?null:Object.freeze(t.filter($r))}function Vr(t){const e=U(t);return e!==null&&e.__frame_hot_update===!0&&Number.isFinite(e.id)&&Tt(e.from)&&Tt(e.to)&&(e.changed===null||Array.isArray(e.changed))&&jr.includes(e.required)&&Rt(e.deadline)&&typeof e.verdictTimeoutMs=="number"&&e.verdictTimeoutMs>=0&&e.verdictTimeoutMs<=6e4&&(e.preflight===void 0||typeof e.preflight=="string"&&Dr.test(e.preflight))}var se=/^[\w.-]+\.js$/;function Xr(t,e,n){return n?"inert":typeof e=="string"&&se.test(e)?t?[e]:"inert":t?"inert":"framed"}var Ot=Object.freeze({[Symbol("claude.hot.restart")]:!0});function Mt(t,e){let n;try{n=t??sessionStorage}catch{return null}const o=Ve(e?.k),a=ye(e?.k);let s=null;try{s=n.getItem(o)}catch{}try{n.removeItem(o)}catch{}try{Mr(n,a)}catch{}let c=null;if(s!==null&&!(e!==null&&e.g===void 0))try{const d=JSON.parse(s);Br(d)&&(e===null||d.gen===e.g)&&(c=d)}catch{}if(c===null)try{n.removeItem(a)}catch{}return c}function Pt(){const t=/^\/_f\/([^/]{1,128})\//.exec(location.pathname);return t?t[1]:""}var Yr=/^[^/\\?#]{1,128}$/,Nt=t=>Yr.test(t)&&t!=="."&&t!=="..";function Ct(t,e,n){const o=new URL(t),a="/_f/"+e+"/";if(!e||!o.pathname.startsWith(a)||!Nt(n))return null;const s=o.search.slice(1).split("&").filter(c=>!/^__frame_t(?:=|$)/.test(c)).join("&");return o.origin+"/_f/"+n+"/"+o.pathname.slice(a.length)+(s?"?"+s:"")+o.hash}var Ce="{}";function ge(t){if(!t)return null;const e={ver:t.ver,handoff:t.handoff};return t.seq!==void 0&&(e.seq=t.seq),t.note!==void 0&&(e.note=t.note),e}function jt(t,e){return t!==null&&t.note===void 0&&e?.note!==void 0?{...t,note:e.note}:t}function It(t){const e=t?.k;return e!==null&&typeof e=="object"?e:void 0}function Jr(t,e,n,o=null){const a=setTimeout,s=clearTimeout,c=queueMicrotask,d=performance.now.bind(performance),L=new TextEncoder;let g=null,b=null;try{g=history,b=g.replaceState.bind(g)}catch{}const m=(...r)=>{try{console.warn(...r)}catch{}};let O=Pt(),v=null;try{v=sessionStorage}catch{}const h={storage:v,fetch:typeof fetch=="function"?fetch.bind(globalThis):null,entry:location.origin+location.pathname+location.search,ver:O,key:o?.k};let k=o?.k;const B=typeof requestAnimationFrame=="function"?requestAnimationFrame:r=>a(()=>r(d()),16);let _=e?.data??{},C=ge(e?.from),T=e?.gen??0,F=e!==null,W=!1,Q=!1,V=null,Se=!1;const Ae=new AbortController;let Re=null,q=null,ke=null,Te=!1,l=()=>{};const p=new Promise(r=>{l=r});let w=!1,D=!1,j=!1,x,P=null,ce=!1,xe=!1,re=!1,Le=!1,ne=!1,de=!1;const oe=r=>{for(const u of[Ve(r),ye(r)])try{v?.removeItem(u)}catch{}},H=(r,u)=>{try{u!==null&&n.post(r,u)}catch{}},he=()=>ne||=re&&(q===null||Le),X=()=>{const r={__frame_hot:!0,ready:q!==null,accept:ke!==null,demand:!0};de=!ne,de&&(r.booting=!0),w&&(r.readData=!0),j&&(r.threw=!0),P?.assess&&(r.preflight=!0),H(r,V)};let Oe=!1,Me=!1,i=!1,E=!1;const y=()=>{Oe||!Se||i||(Oe=!0,H({__frame_reveal_hold:!0},"*"))},N=()=>new Promise(r=>{let u,f=0;const S=I=>{if(u===void 0)u=I;else if(I!==u||++f>=8){r();return}try{B(S)}catch{r()}};try{B(S)}catch{r()}}),Y=()=>{i=!0,H({__frame_reveal_ready:!0},"*")},$=r=>{Me||(Me=!0,r.then(u=>{if(u===!1)return;let f=null;try{f=P?.settle?.()??null}catch{}return(f===null?N():new Promise(S=>{a(S,50),Promise.resolve(f).then(S,S)}).then(N)).then(Y)}))},Pe=()=>{if(E||!i)return;E=!0;const r=()=>{try{P?.afterReveal?.()}catch{}};r(),N().then(()=>{r(),Y()})},He=(r=!1)=>{if(Te||q===null||!F||!Q)return;Te=!0;const u=q,f=_;c(()=>{let S;try{S=u(f)}catch(G){throw l(!1),G}let I=!1;try{I=typeof S?.then=="function"}catch{}if(!I){l(!0);return}Promise.resolve(S).then(()=>l(!0),G=>{l(!1),c(()=>{throw G})})}),$(r?p:n.dcl.then(()=>p))},Be=r=>typeof r=="string"&&St.test(r)?r:void 0,ct=r=>{const u={__frame_hot_restart:!0},f=Be(r?.note);f!==void 0&&(u.note=f),r?.required==="hard-reload"&&(u.required="hard-reload"),H(u,V)},Vt=Object.freeze({get data(){return Q||(D=!0),!F&&!w&&(w=!0,Q&&X()),_},get from(){return C},get gen(){return T},signal:Ae.signal,snapshot(r){typeof r=="function"&&(Re=r)},ready(r){typeof r!="function"||q!==null||(q=r,y(),X(),W&&H({__frame_hot_ready:!0,gen:T},V),He())},accept(r){typeof r=="function"&&(ke=r,X())},restart(r){const u={note:r?.note,required:r?.required};if(Q){ct(u);return}const f=x;x={note:Be(f?.note)??u.note,required:f?.required==="hard-reload"||u.required==="hard-reload"?"hard-reload":void 0}}});let qe=null,Xt=()=>{};const Tn=new Promise(r=>{Xt=r});let Ln=null;const Yt=()=>Ln??=n.dcl.then(()=>{let r=!1;try{r=qe!==null&&qe.expect()}catch{}if(!r)return;const u=qe.maxMs;return new Promise(f=>{Tn.then(f),a(f,u)})}),Jt=()=>{if(!ce||xe||P===null)return;xe=!0;const r=P;Yt().then(()=>{try{i||r.afterStart(It(e),!1)}catch{}})},Zt=r=>{e!==null&&D&&(w=!0),_={},C=null,T=0;try{v?.removeItem(ye(o?.k))}catch{}e!==null&&!r&&$(n.dcl.then(()=>q!==null?p:void 0))},On=()=>{ce=!0,$(Yt().then(()=>q!==null?p:void 0)),Jt()};try{addEventListener("error",()=>{j||q!==null||(j=!0,X())})}catch{}const Qt=()=>{a(()=>{!ne&&he()&&de&&X()},0)};try{re=document.readyState==="complete",re||addEventListener("load",()=>{re=!0,Qt()},{once:!0})}catch{re=!0}he(),p.then(()=>{Le=!0,Qt()});let ue=-1,ut,ft,Ne=!0,dt=!1,ht,Ue=null;const pt=r=>{const u=Ue===null;Ue=Ne&&r[0]!=="withheld"?r:["withheld",r[1],Ce];let f=r[0];if(Ne&&f!=="withheld"){const I={ver:O,handoff:f};ut!==void 0&&(I.seq=ut),ft!==void 0&&(I.note=ft);try{if(v===null)throw new Error("no storage");v.setItem(Ve(k),'{"kv":1,"gen":'+ue+',"from":'+JSON.stringify(I)+(ht!==void 0?',"k":'+JSON.stringify(ht):"")+',"data":'+(f==="ok"?r[2]:Ce)+"}")}catch{f="unavailable"}}else{f="withheld",oe(k);try{P?.release?.()}catch{}}const S={__frame_hot_snapshotted:!0,gen:ue,handoff:f,bytes:r[1]};r[3]!==void 0&&(S.errName=r[3]),H(S,V),u&&(f==="snapshot_error"||f==="unclonable"||f==="oversize")&&m("claude.hot: snapshot",f,r[3])},pe=r=>{try{return Rr(r?.name)}catch{return"other"}},me=(r,u,f=0)=>pt(u===void 0?[r,f,Ce]:[r,f,Ce,pe(u)]),Mn=r=>{if(r.gen<=ue)return;const u=ue>=0;if(ue=r.gen,ut=r.seq,ft=Be(r.note),typeof r.key=="string"&&Et.test(r.key)&&r.key!==k&&(oe(k),k=r.key),Ne&&=r.handoff!==!1,u){Ue!==null?pt(Ue):dt&&H({__frame_hot_held:!0,gen:ue},V);return}Ae.abort();const f=Object.freeze({handoff:Ne,timeoutMs:r.timeoutMs,deadline:r.deadline??kr}),S=Re,I=()=>{if(Ne)try{ht=P?.capture()}catch{}if(S===null){me("empty");return}let R=!1;const z=a(()=>{R||(R=!0,me("snapshot_timeout"))},Math.max(0,f.timeoutMs));Promise.resolve().then(()=>S(f)).then(ve=>{if(R)return;R=!0,s(z);let ee;try{ee=JSON.stringify(ve)}catch(mt){me("unclonable",mt);return}if(typeof ee!="string"){me("unclonable");return}let te=ee.length;try{te=L.encode(ee).length}catch{}if(te>262144){me("oversize",void 0,te);return}pt(["ok",te,ee])},ve=>{R||(R=!0,s(z),me("snapshot_error",ve))})};let G=null;try{G=P?.holdForIme()??null}catch{}if(G===null)I();else{dt=!0,H({__frame_hot_held:!0,gen:ue},V);const R=()=>{dt=!1,I()};G.then(R,R)}},Pn=r=>{if(!W||F||q===null||r.gen!==T)return;let u=null;try{u=Mt(v,o&&{k:o.k,g:r.gen})}catch{}if(u!==null&&u.gen!==r.gen){u=null;try{v?.removeItem(ye(o?.k))}catch{}}_=u?.data??{},C=jt(ge(u?.from??r.from),ge(r.from)),u!==null&&(T=u.gen),F=!0,W=!1;const f=It(u);p.then(S=>{try{S&&P?.afterStart(f,!0)}catch{}}),He(!0)};let Ge=0;const Nn=r=>{const u=ke;if(u===null||r.id<=Ge)return;Ge=r.id;const f=P?.assess;if(r.preflight===void 0||f===void 0){er(r,u);return}let S=!1;const I=z=>{S||(S=!0,s(R),r.id===Ge&&er(r,u,z))},G=()=>I(f.timeout(r)),R=a(G,Fr+100);f.run(r,window).then(I,G)},er=(r,u,f)=>{let S,I=!1,G=!1,R,z,ve=null;const ee=A=>{if(G)return!1;if(R!==void 0&&R!==A)return m(`claude.hot: u.${A}() ignored - u.${R}() was called first`),!1;const Z=R===void 0;return R=A,Z},te=A=>{R="restart",m(`claude.hot: ${A} - restarting`)},mt=()=>{if(!ee("adopt")||r.id!==Ge)return;const A=r.to.ver;if(ze.required!=="none"){te(`u.adopt() needs required 'none', it is '${ze.required}'`);return}if(!Nt(A)){te("u.adopt() cannot address this version");return}if(!O||A===O)return;const Z=O,J=h.entry;let Ke="",_t,_e=null,$e;try{Ke=location.href,_t=g.state,_e=Ct(Ke,Z,A),_e!==null&&(b(_t,"",_e),location.pathname.startsWith("/_f/"+A+"/")?_e=location.href:$e="navigate event canceled")}catch(gt){$e=pe(gt)}if($e!==void 0){z="adopt_failed",te(`adopt_failed ${$e}; URL not changed`);return}_e===null?(z="adopt_skipped",m(`claude.hot: adopt_skipped - page already left /_f/${Z}/; URL not changed, update still applied`)):z="adopted",O=h.ver=A;try{h.entry=Ct(J,Z,A)??J}catch{}const yt=_e;ve=()=>{if(O===A){if(yt!==null)try{if(location.href!==yt)m("claude.hot: adopt_revert_skipped - update not applied; URL left where the page navigated");else{if(b(_t,"",Ke),location.href!==Ke){m("claude.hot: adopt_revert_failed navigate event canceled - URL still at the new version");return}z="adopt_reverted",m("claude.hot: adopt_reverted - adopt() was called but the handler threw; URL restored")}}catch(gt){m(`claude.hot: adopt_revert_failed ${pe(gt)} - URL still at the new version`);return}O=h.ver=Z,h.entry=J,yt===null&&(z=void 0)}}},ze=Object.freeze({from:{ver:r.from.ver,seq:r.from.seq},to:{ver:r.to.ver,seq:r.to.seq},changed:Wr(r.changed),required:r.required,deadline:r.deadline,adopt:mt,defer(){return ee("defer")&&ze.deadline.now&&te("u.defer() past the deadline"),Ot},restart(A){return ee("restart"),R==="restart"&&!G&&(S??=Be(A?.note),I||=A?.required==="hard-reload"),Ot},...f?.update}),Cn=(A,Z)=>{G=!0,A==="threw"?(ve?.(),S??=pe(Z).toLowerCase()):R===void 0&&m(A==="timeout"?"claude.hot: accept handler did not answer in time - restarting":"claude.hot: accept handler settled without defer/restart/adopt - restarting");const J={__frame_hot_verdict:!0,id:r.id};J.verdict=A==="threw"||R===void 0||R==="restart"?"restart":R==="adopt"?"applied":"deferred",J.verdict==="restart"&&(I&&(J.required="hard-reload"),S!==void 0&&(J.note=S)),z!==void 0&&(J.verdict==="applied"||z!=="adopted")&&(J.adopt=z),H(Object.assign(J,f?.verdict),V)};let tr=!1;const vt=(A,Z)=>tr?!1:(tr=!0,s(jn),Cn(A,Z),!0),jn=a(()=>vt("timeout"),r.verdictTimeoutMs);Promise.resolve().then(()=>u(ze)).then(()=>vt("settled"),A=>{!vt("threw",A)&&R==="adopt"&&ct({note:pe(A).toLowerCase()}),m("claude.hot: accept",pe(A))})};try{t.hot===void 0&&Object.defineProperty(t,"hot",{value:Vt,writable:!1,configurable:!1,enumerable:!1})}catch{}return{hot:Vt,boot:h,afterConnect(){Se=!0,(e!==null||q!==null)&&y()},onInit(r,u){V=u,Q=!0;const f=Hr(r)?r:null;f?.phase==="final"&&e!==null&&e.gen===f.gen?(F=!0,C=jt(C,ge(f.from)),On()):(W=f?.phase==="pending",Zt(W),F=!W,T=f?.gen??0,C=ge(f?.from)),X(),de&&a(()=>{ne||(ne=!0,X())},Cr),W&&q!==null&&H({__frame_hot_ready:!0,gen:T},u),x!==void 0&&(ct(x),x=void 0),He()},onNoInit(){Q=!0,Zt(!1),F=!0,He()},onShell(r){return r?.__frame_revealed===!0?(Pe(),!1):qr(r)?(Mn(r),!0):Ur(r)?(Pn(r),!0):Vr(r)?(Nn(r),!0):!1},attachExtras(r){P=r,Jt(),r.assess&&X()},inSlot:()=>ye(k),hydration(r,u){qe??={expect:r,maxMs:u}},hydrated(){Xt()},carried(){return F?_:{}},presented:()=>i}}var xn="frame_ldx_runtime",Zr="frame_ldx_build",Hn="script#an-form",Qr=256;function Ft(t,e,n){for(const o of t)n(o)&&t.delete(o);t.size>=Qr&&!t.has(e)&&t.delete(t.values().next().value),t.add(e)}function Ye(t,e,n){try{const o=t[e];if(typeof o!="function")return;t[e]=function(...a){const s=o.apply(this,a);try{n(this)}catch{}return s}}catch{}}var Je;function en(){if(Je)return Je;const t={media:new Set,contexts:new Set,onStart:null,onPause:null};Je=t;const e=window.HTMLMediaElement?.prototype;e&&(Ye(e,"play",a=>{Ft(t.media,a,s=>s.paused),t.onStart?.(a)}),Ye(e,"pause",a=>t.onPause?.(a)));const n=window.AudioContext,o=window.AudioNode?.prototype;return n&&o&&Ye(o,"connect",a=>{const s=a.context;s instanceof n&&(Ft(t.contexts,s,c=>c.state==="closed"),t.onStart?.(s))}),t}function tn(t){let e=window;for(let n=0;e.parent&&e.parent!==e&&n<8;n++)if(e=e.parent,t(e))return!0;return!1}function rn(){let t=null;const e=()=>t??parent,n=o=>t?o===t:tn(a=>a===o);return{post(o,a){if(t){e().postMessage(o,a);return}let s=parent;for(let c=0;c<8&&(s.postMessage(o,a),!(!s.parent||s.parent===s));c++)s=s.parent},on(o){const a=s=>{const c=s.source;n(c)&&o(s.data,s.origin,s.isTrusted,()=>{t??=c})};return addEventListener("message",a),()=>removeEventListener("message",a)},port:o=>({post(a,s){if(s?.activation){e().postMessage(a,{targetOrigin:o,includeUserActivation:!0});return}if(s?.transfer){e().postMessage(a,o,s.transfer);return}e().postMessage(a,o)},on(a,s){const c=d=>{n(d.source)&&d.origin===o&&a(d.data,d)};return addEventListener("message",c,s),()=>removeEventListener("message",c,s)}})}}function nn(){const t={post:()=>{},on:()=>()=>{}};return{...t,port:()=>t}}var on=500,an=2e4,sn="data-token-reads",ln="data-frame-refused-watch",cn="data-frame-unsupported",un=/(?:^|\s)stylesheet(?:\s|$)/i;function fn(t,e){let n="";if(t instanceof HTMLScriptElement?n=t.src:t instanceof HTMLLinkElement&&un.test(t.rel)&&(n=t.href),!n)return null;try{const o=new URL(n);return o.origin===location.origin&&o.pathname.startsWith(e)?o.origin+o.pathname:null}catch{return null}}function dn(t,e,n){if(!t||e!=="query")return;const o="/_f/"+t+"/";document.documentElement.setAttribute(ln,"");const a=location.href,s=fetch,c=setTimeout,d={method:"HEAD",cache:"no-store",credentials:"same-origin"},L=h=>h.ok||h.status===304;let g=!1,b=!1;const m=()=>removeEventListener("error",v,!0),O=async h=>{const k=await s(h,d);if(L(k))b=!0;else if(k.status===403){const B=await s(a,d);if(L(B)){const _=(await s(h,d)).status;_===403?(b=!0,document.documentElement.setAttribute(cn,""),n()):_<500&&(b=!0)}else B.status>=400&&B.status<500&&(b=!0)}},v=h=>{if(b||g)return;if(document.documentElement.hasAttribute(sn)){b=!0,m();return}const k=fn(h.target,o);k&&(g=!0,c(()=>{O(k).catch(()=>{}).finally(()=>{g=!1,b&&m()})},on))};addEventListener("error",v,!0),addEventListener("load",m,{once:!0}),c(m,an)}var Ze="__frame_scroll",hn=150,pn=310,mn=160,vn=3e4;function _n(){let t=0,e=!1,n=!1,o=!1,a=0,s=null;const c=_=>{try{sessionStorage.setItem(Ze,JSON.stringify({y:_}))}catch{}},d=()=>{if(clearTimeout(t),s===null)return;const _=s;s=null,c(_)},L=()=>{if(e){e=!1;return}n=!0,s=scrollY,clearTimeout(t),t=setTimeout(d,hn)};try{addEventListener("scroll",L,{passive:!0}),addEventListener("pagehide",d)}catch{}const g=()=>{let _;try{_=sessionStorage.getItem(Ze)}catch{return null}if(_===null)return null;let C;try{C=JSON.parse(_)}catch{C=null}const T=C?.y;if(!(typeof T=="number"&&Number.isFinite(T)&&T>=0)){try{sessionStorage.removeItem(Ze)}catch{}return null}return T};let b=!1;const m=_=>{try{const C=scrollY;scrollTo({top:_,left:0,behavior:"instant"}),a=_,o=!0,clearTimeout(t),s=null,c(_);const T=scrollY;T!==C&&(e=!0),T!==_&&!b&&(b=!0,addEventListener("load",()=>{try{if(scrollY===T){const F=g();m(F!==null?F:a)}}catch{}},{once:!0}))}catch{}},O=()=>{try{return!!location.hash}catch{return!0}};let v=!1;const h=()=>{try{if(v||innerWidth>pn||innerHeight>mn)return;v=!0;const _=Date.now(),C=()=>{try{removeEventListener("resize",C)}catch{}if(Date.now()-_>vn||n||O())return;const T=g();m(T!==null?T:a)};addEventListener("resize",C)}catch{}};let k=!1,B=!1;return{restore(){if(k||(k=!0,O()))return;const _=g();_!==null&&(m(_),h())},promoted(){if(B||(B=!0,O()))return;const _=g();_!==null?(m(_),h()):o&&m(a)}}}function yn(t,e,n,o){let a=null;try{a=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:L=>L})??null}catch{}const s=window.Worker,c=s?.prototype,d=Object.freeze({Worker:s,workerOn:c?.addEventListener,workerPost:c?.postMessage,workerTerminate:c?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,now:Date.now,policy:a,origins:e});n(t).then(L=>L?.bootTopLevel?L.bootTopLevel(d,o):o.settle()).catch(()=>o.settle())}var Bn="modulepreload",qn=function(t){return"/"+t},Un={},gn=function(e,n,o){let a=Promise.resolve();function s(c){const d=new Event("vite:preloadError",{cancelable:!0});if(d.payload=c,window.dispatchEvent(d),!d.defaultPrevented)throw c}return a.then(c=>{for(const d of c||[])d.status==="rejected"&&s(d.reason);return e().catch(s)})},wn=window===top,Dt=Object.getOwnPropertyDescriptor(window,"claude"),je=Xr(wn,window.__FRAME_PREAMBLE?.topLevel,Dt?.writable===!1),Qe=typeof je=="object"&&je[0],M=Qe?nn():rn();(function(){const t=Object.defineProperty,e=globalThis,n=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let o=0;for(let a=0;a<n.length;a++){const s=n[a];try{t(e,s,{value:void 0,writable:!1,configurable:!1})}catch{try{delete e[s]}catch{}try{t(e,s,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof e[s]=="function"&&o++}if(o&&je==="framed")try{M.post({__frame_rtc_lockdown_failed:o},"*")}catch{}})();var xt=1e4,bn=2e3,et=2e3,Ht=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function Bt(t){for(const e of Ht)if(e.endsWith(":*"))try{const n=new URL(t);if(`${n.protocol}//${n.hostname}:*`===e)return!0}catch{}else if(t===e)return!0;return!1}var we=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),Ie=window.__FRAME_PREAMBLE?.transforms,tt=window.__FRAME_PREAMBLE?.comments,rt=window.__FRAME_PREAMBLE?.translate,be=window.__FRAME_PREAMBLE?.ldx,En=window.__FRAME_PREAMBLE?.cred;function qt(t){return gn(()=>import("/_runtime/"+t),void 0)}var Ee=new Set,Sn=setTimeout,An=800+800*Math.random();function ie(t){return qt(t).catch(()=>new Promise(e=>Sn(e,An)).then(()=>qt(t+"?r=1")).then(e=>(e!==void 0&&Ee.add(t),e)))}function Ut(t,e,n){return{contract:t.contract,changes:new Set(t.changes??[]),flags:new Set(t.flags??[]),capabilities:t.capabilities??{},capBudgets:t.capBudgets??{},brokerGen:t.brokerGen,transforms:new Map,shellOrigin:e,shell:n,mount:lt,hooks:Fe,pipe:()=>({wrap:(o,a)=>(...s)=>{try{return a(...s)}catch(c){return Promise.reject(c)}}})}}var fe=null,K=null;function Gt(t,e,n){try{Object.defineProperty(t,e,{value:n,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(t,e,{value:n,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var nt=!1,Fe={editBefore:null,edit:null};function Rn(t,e,n=!1){const o=[];let a;if(n)try{Fe.editBefore?.(t)}catch{}for(const s of t.elements){const c=document.querySelector(`[data-id="${s.target}"]`);if(!c){a=s.target;break}if([...Object.keys(s.attrsSet??{}),...s.attrsRemoved??[]].some(d=>!sr(d)||ir(c,d))){a=s.target;break}if(s.text!==void 0&&(!fr(c)||mr(c))){a=s.target;break}for(const[d,L]of Object.entries(s.attrsSet??{}))if(!Kt(c,d)){try{c.setAttribute(d,L)}catch{}zt(c,d,L)}for(const d of s.attrsRemoved??[])Kt(c,d)||(c.removeAttribute(d),zt(c,d,null));typeof s.text=="string"&&hr(c,s.text),o.push(s.target)}if(n)try{Fe.edit?.(t.seq,o,a)}catch{}if(a!==void 0){M.post({__frame_patch_miss:{seq:t.seq}},e);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:t.seq,targets:o}}))}catch{}}function zt(t,e,n){if(!(t instanceof HTMLInputElement))return;const o=e.toLowerCase();o==="checked"?t.checked=n!==null:o==="value"&&t.type!=="file"&&(t.value=n??"")}function Kt(t,e){const n=e.toLowerCase(),o=t;return n==="data-id"||(n==="value"||n==="checked")&&(o.__artifactSecret===!0||/^(password|hidden|file)$/.test(o.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${t.getAttribute("autocomplete")??""} ${o.autocomplete??""}`))}function $t(t){const e=document.documentElement;t==="light"||t==="dark"?(e.dataset.theme=t,e.style.colorScheme=t,nt=!0):nt&&(delete e.dataset.theme,e.style.colorScheme="",nt=!1)}var le=new Map,ot=null;function at(){let t;const e={u:new Promise(n=>{t=n}),r:n=>{e.done=!0,t(n)},done:!1,nulled:!1};return e}function De(t,e){t.nulled=!0,t.ver=e,t.r(null)}function st(t,e){for(const[n,o]of le)o.done||(e&&o.asked?e(n,o):De(o,t))}var kn=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),it=!1,lt=(t,e)=>{let n=le.get(t);if(n?.nulled&&it)n=at(),le.set(t,n);else if(!n||n.done){n?.nulled&&K&&M.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:t,phase:"install"}},K);return}const o=typeof e=="function"?Object.setPrototypeOf(e,kn):Object.assign(Object.create(null),e);typeof o.then=="function"&&delete o.then,n.want=void 0,n.r(Object.freeze(o))};function Wt(){const t=Dt?.value??{};Gt(window,"claude",t);for(const e of Object.keys(we)){if(t[e]!==void 0){Gt(t,e,t[e]);continue}le.set(e,at())}if(t.use===void 0){const e=n=>{if(typeof n!="string"||!Object.hasOwn(we,n))return Promise.resolve(null);let o=le.get(n);return o?(ot&&(o.nulled||o.want!==void 0)&&(o=ot(n,o)),o.asked=!0,o.u):Promise.resolve(t[n]??null)};try{Object.defineProperty(t,"use",{value:e,writable:!0,configurable:!0,enumerable:!1})}catch{}}return t}if(je==="framed"){const t=Ie&&se.test(Ie)?ie(Ie).catch(()=>{}):Promise.resolve(void 0),e=l=>{if(l.type==="auxclick"&&l.button!==1)return;const p=l.target,w=p&&p.closest?p.closest("a[href],area[href]"):null;if(!w)return;const D=w.getAttribute("href");if(!D)return;let j;try{j=new URL(D,document.baseURI)}catch{return}if((j.protocol==="http:"||j.protocol==="https:")&&j.origin!==location.origin){l.preventDefault();const x=(w.getAttribute("target")??"").toLowerCase(),P=l.type==="auxclick"||l.metaKey||l.ctrlKey||l.shiftKey||l.altKey||!["","_self","_top","_parent"].includes(x);M.post({__frame_nav:!0,url:j.href,newTab:P},"*")}};addEventListener("click",e,!0),addEventListener("auxclick",e,!0);const n={},o=l=>{l.isTrusted&&(n.pointer=!0)},a=l=>{l.isTrusted&&(n.click=!0)};addEventListener("pointermove",o,{capture:!0,passive:!0}),addEventListener("click",a,{capture:!0,passive:!0});const s={cb:null};addEventListener("keydown",l=>s.cb?.(l),!0);const c={cb:null};addEventListener("keydown",l=>c.cb?.(l));const d=en();t.then(l=>l?.installEscapeForward?.(s,p=>{K&&M.post(p,K)})),t.then(l=>{try{l?.installFocusKeep?.()}catch{}}),t.then(l=>{if(!l?.wireNav)return;const p=M.port("*");l.wireNav(p),removeEventListener("click",e,!0),removeEventListener("auxclick",e,!0),removeEventListener("pointermove",o,!0),removeEventListener("click",a,!0),l.wireEngagement?.(n,p,d)});let L=null;try{L=_n()}catch{}const g=document.readyState==="loading"?new Promise(l=>document.addEventListener("DOMContentLoaded",()=>l(),{once:!0})):Promise.resolve();let b=null,m=null;try{m=Pr(window.name),b=Mt(null,m)}catch{}const O=Wt();let v=null;try{v=Jr(O,b,{post:(l,p)=>M.post(l,p),dcl:g},m)}catch{}t.then(l=>{try{v&&l?.installHotExtras?.(v)}catch{}});let h=null;const k=()=>Array.isArray(h?.flags)&&h.flags.includes("frame_ldx_runtime")&&!!be&&se.test(be)&&document.querySelector("script#an-form")!==null;try{v?.hydration(k,Nr)}catch{}let B=null,_=0;const C=M.on((l,p,w,D)=>{Bt(p)&&gr(l)&&(D(),h=l.__frame_init,K=p,C(),clearTimeout(_),B?.())});M.post({__frame_connect:!0},"*");try{v?.afterConnect()}catch{}const T=setTimeout,F=clearTimeout;let W=()=>NaN,Q=()=>[];try{W=performance.now.bind(performance),Q=performance.getEntriesByType.bind(performance)}catch{}let V=0;const Se=()=>{try{M.post({__frame_alive:!0},"*")}catch{}V=T(Se,bn)},Ae=()=>F(V);Se(),addEventListener("load",Ae,{once:!0});const Re=new Promise(l=>{B=l,_=setTimeout(()=>{C(),l()},xt)}),q=new WeakSet;addEventListener("error",l=>{l.target&&q.add(l.target)},!0);try{dn(Pt(),En,()=>{t.then(l=>{try{l?.drawRefusedNotice?.()}catch{}})})}catch{}const ke=()=>{let l=[];try{l=[...document.querySelectorAll("link[rel~=stylesheet]:not([rel~=alternate])")].filter(w=>!w.sheet&&!w.disabled&&!q.has(w)&&w.getAttribute("href")&&URL.canParse(w.href)&&(!w.media||matchMedia(w.media).matches))}catch{}let p=l.length;return p===0?Promise.resolve():new Promise(w=>{try{const D=et-W(),j=T(w,D>0?D<et?D:et:0),x=()=>{--p===0&&(F(j),w())};for(const P of l)P.addEventListener("load",x,{once:!0}),P.addEventListener("error",x,{once:!0})}catch{w()}})};g.then(()=>{try{L?.restore()}catch{}}),Promise.all([Re,g,t]).then(([,,l])=>{if(h?.hostOverlays!==!0||!K)return;let p=!1;try{p=l?.declaresCover?.()===!0}catch{}M.post({__frame_layout:{cover:p}},K)});const Te={cb:null};M.on((l,p)=>{if(Bt(p)&&wr(l)){try{L?.promoted()}catch{}Te.cb?.()}}),Re.then(async()=>{if(!h||!K){st();try{v?.onNoInit()}catch{}return}if($t(h.theme),h.hostVisible===!1&&t.then(i=>i?.applyHostVisible?.(!1,d)),h.hostKeys!==void 0){const i=K,E=h.hostKeys;t.then(y=>y?.installHostKeyForward?.(c,E,N=>M.post(N,i)))}try{v?.onInit(h.hot,K)}catch{}const l=K,p=M.port(l),w=(i,E)=>M.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:i,phase:E}},l),D=i=>M.post({__frame_cap_recovered:{cap:i}},l);let j=h.brokerGen;const x=()=>v?.boot.ver??"",P=x(),ce=(i,E)=>{const y=x();F(E.t),E.want=y,E.t=T(()=>{E.done||De(E,y)},xt),M.post({__frame_cap_want:!0,cap:i,ver:y},l)},xe=(i,E)=>{const y=le.get(i.cap),N=we[i.cap];if(!E||!y||y.done||y.want!==i.ver||!se.test(N))return;if(F(y.t),y.want=void 0,j=i.brokerGen??j,i.ver!==x()){ce(i.cap,y);return}if(!i.grant||i.cap==="network"){De(y,i.ver);return}const Y=fe,$=fe={...Y,capabilities:{...Y.capabilities,[i.cap]:i.grant},capBudgets:{...Y.capBudgets,[i.cap]:{...Y.capBudgets[i.cap],...i.budgets}}};ie(N).then(Pe=>{Ee.has(N)&&D(i.cap),$.brokerGen=j,it=!0;try{Pe?.install?.($)}catch{w(i.cap,"install")}finally{it=!1}},()=>w(i.cap)).then(()=>{y.done||De(y,i.ver)})};let re=!1,Le=!1;M.on((i,E,y)=>{if(E!==l)return;try{if(v?.onShell(i))return}catch{}if(Er(i)&&$t(i.__frame_theme.theme),zr(i)&&xe(i,y),y&&Kr(i)&&(j=i.brokerGen??j),br(i)){const $=i.__frame_host_visible.visible;t.then(Pe=>Pe?.applyHostVisible?.($,d))}yr(i)&&Rn(i.__frame_patch,l,y);const N=i?.__fc_mode;N&&typeof N=="object"&&!re&&tt&&se.test(tt)&&(re=!0,ie(tt).then($=>$.install?.(l,N.on===!0,p)).catch(()=>{}));const Y=i?.__ft_cmd;Y&&typeof Y=="object"&&!Le&&rt&&se.test(rt)&&(Le=!0,ie(rt).then($=>$.install?.(l,Y,p)).catch(()=>{}))});const ne=Object.keys(h.capabilities??{}).filter(i=>Object.hasOwn(we,i)).map(i=>[i,we[i]]).filter(i=>typeof i[1]=="string"&&se.test(i[1])),de=await Promise.allSettled(ne.map(([,i])=>ie(i))),oe=await t,H=l;if(oe?.buildBoot||w("_transforms"),oe?.buildBoot)try{fe=oe.buildBoot(h,oe.TRANSFORMS??{},{shellOrigin:H,mount:lt,hooks:Fe,shell:p},i=>M.post({__frame_cap_telemetry:i},H))}catch{w("_transforms","install"),fe=Ut(h,H,p)}else fe=Ut(h,H,p);oe?.buildBoot&&Ee.has(Ie??"")&&D("_transforms");const he=fe;he.brokerGen=j,de.forEach((i,E)=>{const[y,N]=ne[E];if(i.status!=="fulfilled"){w(y);return}Ee.has(N)&&D(y);try{i.value?.install?.(he)}catch{w(y,"install")}});const X=h.capWants===!0;X&&(ot=(i,E)=>{const y=x();if(!y)return E;if(!E.nulled)return E.want!==y&&ce(i,E),E;if(y===E.ver)return E;const N=at();return le.set(i,N),ce(i,N),N}),st(P,X&&x()!==P?ce:void 0),await g,await ke(),Ae();const Oe=rr(Q,W);M.post(Oe?{__frame_ready:!0,nav:Oe}:{__frame_ready:!0},K),t.then(i=>{i?.installSizeReporter?.(H,Te,p),i?.installPaintReporter?.(p)});let Me=!1;try{Me=k()}catch{}be&&Me?ie(be).then(i=>i?.boot?.({shellOrigin:l,build:he.flags.has(Zr),hot:v?.hot??null,carried:v?.carried(),presented:()=>v?.presented()??!0})).catch(()=>!1).then(i=>{v?.hydrated(),i!==!0?w("_ldx"):Ee.has(be)&&D("_ldx")}):v?.hydrated()})}else Qe&&(Wt(),yn(Qe,Ht,ie,{settle:st,mount:lt}))})();</script><!-- /frame-runtime -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Long Road: A Curse Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#181310;
+  --ink-2:#231b14;
+  --parchment:#e9ddc0;
+  --parchment-dim:#cbb888;
+  --parchment-2:#d8c79c;
+  --gold:#a97d2f;
+  --gold-bright:#c99a44;
+  --forest:#3f5a44;
+  --blood:#7a2e2e;
+  --magic:#5b4a8a;
+  --shadow: rgba(0,0,0,.55);
+  --display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --body: 'Crimson Text', Georgia, 'Times New Roman', serif;
+}
+:root:not([data-theme="light"]){ --bg:#0d0a08; }
+:root[data-theme="light"]{ --bg:#1a140f; }
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){ --bg:#1a140f; }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(ellipse at 50% -10%, #241a12 0%, var(--bg) 60%),
+    var(--bg);
+  color:var(--parchment);
+  font-family:var(--body);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-user-select:none;
+  user-select:none;
+}
+#app{
+  max-width:520px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+.screen{
+  display:none;
+  flex-direction:column;
+  min-height:100vh;
+  padding:28px 20px 20px;
+  animation:fadein .5s ease;
+}
+.screen.active{display:flex;}
+@keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0 0 6px;color:var(--parchment);}
+.rule{
+  width:100%;height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+  margin:14px 0;
+  opacity:.55;
+}
+p{line-height:1.5;color:var(--parchment-dim);}
+
+/* ---------- Title screen ---------- */
+#screen-title{align-items:center; justify-content:center; text-align:center; gap:6px;}
+.title-mark{
+  font-family:var(--display);
+  font-size:20px;
+  letter-spacing:.35em;
+  color:var(--gold-bright);
+  margin-bottom:2px;
+}
+.title-main{font-size:52px; line-height:1.02; margin-bottom:2px;}
+.title-sub{
+  font-family:var(--body); font-style:italic; color:var(--parchment-dim);
+  font-size:17px; margin-bottom:34px;
+}
+.menu-btn{
+  display:block; width:100%; max-width:300px;
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--parchment);
+  font-family:var(--display);
+  font-size:20px;
+  padding:13px 10px;
+  margin:7px 0;
+  cursor:pointer;
+  letter-spacing:.04em;
+  transition:background .2s, color .2s;
+}
+.menu-btn:hover{background:var(--gold); color:var(--ink);}
+.menu-btn:disabled{opacity:.35; cursor:default;}
+.menu-btn:disabled:hover{background:transparent;color:var(--parchment);}
+
+/* ---------- Character creation ---------- */
+.cc-section{margin-bottom:22px;}
+.cc-label{
+  font-family:var(--display); font-size:15px; letter-spacing:.18em;
+  color:var(--gold-bright); margin-bottom:10px; text-transform:uppercase;
+}
+.cc-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.cc-card{
+  border:1px solid var(--parchment-dim); opacity:.6;
+  padding:12px 10px; cursor:pointer; transition:opacity .2s, border-color .2s, background .2s;
+}
+.cc-card:hover{opacity:.85;}
+.cc-card.selected{
+  opacity:1; border-color:var(--gold-bright); background:rgba(169,125,47,.13);
+}
+.cc-card h4{font-family:var(--display); font-size:19px; margin:0 0 3px; color:var(--parchment);}
+.cc-card small{font-size:13.5px; color:var(--parchment-dim); font-style:italic;}
+input#name-input{
+  width:100%; background:transparent; border:none; border-bottom:1px solid var(--gold);
+  color:var(--parchment); font-family:var(--display); font-size:24px; padding:8px 2px;
+  outline:none;
+}
+input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
+.cc-overview{
+  border:1px solid var(--gold); padding:14px 16px; margin-top:4px; font-family:var(--body);
+  font-style:italic; color:var(--parchment-dim); font-size:15.5px; line-height:1.55; min-height:20px;
+}
+
+/* ---------- Main game ---------- */
+#screen-game{padding:14px 16px 20px; gap:0;}
+.topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;}
+.location-tag{font-family:var(--display); font-style:italic; font-size:16px; color:var(--gold-bright);}
+.iconbtn{
+  background:none; border:1px solid var(--parchment-dim); color:var(--parchment-dim);
+  font-family:var(--display); font-size:13px; letter-spacing:.06em; padding:5px 10px; cursor:pointer;
+}
+.iconbtn:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+.gauges{display:flex; justify-content:space-between; gap:8px; margin:6px 0 16px;}
+.gauge{flex:1; text-align:center;}
+.gauge-label{font-family:var(--display); font-size:12px; letter-spacing:.14em; color:var(--parchment-dim); margin-bottom:5px;}
+.gauge-track{
+  position:relative; height:7px; background:rgba(233,221,192,.12);
+  border:1px solid rgba(233,221,192,.25);
+}
+.gauge-fill{height:100%; transition:width .4s ease, background .4s ease;}
+.gauge-fill.money{background:var(--gold-bright);}
+.gauge-fill.status{background:#8fa6b0;}
+.gauge-fill.magic{background:var(--magic);}
+.gauge-fill.health{background:var(--blood);}
+.gauge-fill.danger{background:#c94b4b !important; box-shadow:0 0 6px #c94b4b;}
+.gauge-val{font-size:11px; color:var(--parchment-dim); margin-top:3px; font-family:var(--body);}
+
+.stage{
+  position:relative; flex:1; display:flex; align-items:center; justify-content:center;
+  min-height:340px; margin:4px 0 12px;
+}
+.card{
+  width:100%; max-width:400px;
+  background:
+    linear-gradient(180deg, rgba(233,221,192,.05), rgba(233,221,192,0) 40%),
+    var(--ink-2);
+  border:1px solid var(--gold);
+  box-shadow:0 18px 40px var(--shadow), inset 0 0 0 1px rgba(233,221,192,.06);
+  padding:22px 22px 18px;
+  cursor:grab;
+  touch-action:none;
+  position:relative;
+}
+.card:active{cursor:grabbing;}
+.card-loc-bg{
+  position:absolute; inset:0; opacity:.14; pointer-events:none;
+  background-size:cover; background-position:center;
+}
+.card-inner{position:relative; z-index:1;}
+.card-speaker{font-family:var(--display); font-size:23px; color:var(--gold-bright); margin-bottom:8px;}
+.card-text{font-size:17px; line-height:1.55; color:var(--parchment); min-height:90px;}
+.card-flash{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--display); font-size:26px; letter-spacing:.1em; text-transform:uppercase;
+  opacity:0; pointer-events:none; z-index:2; background:rgba(24,19,16,.55);
+}
+.card-flash.show{opacity:1; transition:opacity .15s;}
+.flash-left{color:#c94b4b;} .flash-right{color:#5fae6f;} .flash-up{color:var(--gold-bright);} .flash-down{color:#8fa6b0;}
+
+.fail-msg{
+  min-height:20px; text-align:center; font-family:var(--body); font-style:italic;
+  color:#c98a5a; font-size:14px; margin-bottom:6px; padding:0 10px;
+}
+
+.responses{display:grid; grid-template-columns:1fr 1fr; gap:8px 10px; margin-bottom:4px;}
+.resp-btn{
+  border:1px solid var(--parchment-dim); background:transparent; color:var(--parchment);
+  font-family:var(--body); font-size:14.5px; padding:10px 8px; cursor:pointer; text-align:left;
+  position:relative; line-height:1.3; transition:border-color .15s, opacity .15s;
+}
+.resp-btn .dir{
+  font-family:var(--display); font-size:11px; letter-spacing:.1em; color:var(--gold-bright);
+  display:block; margin-bottom:2px; text-transform:uppercase;
+}
+.resp-btn:hover{border-color:var(--gold-bright);}
+.resp-btn.locked{opacity:.4; cursor:not-allowed;}
+.resp-btn.locked:hover{border-color:var(--parchment-dim);}
+
+.beltbar{
+  display:flex; gap:8px; margin-top:14px; align-items:center; justify-content:center; min-height:52px;
+}
+.belt-item{
+  width:46px; height:46px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center;
+  font-size:22px; cursor:pointer; position:relative; background:rgba(169,125,47,.08);
+}
+.belt-item.usable{box-shadow:0 0 8px rgba(169,125,47,.5);}
+.belt-item .tip{
+  position:absolute; bottom:54px; left:50%; transform:translateX(-50%);
+  background:var(--ink-2); border:1px solid var(--gold); padding:8px 10px; width:170px;
+  font-size:12.5px; color:var(--parchment-dim); display:none; z-index:5; line-height:1.4;
+}
+.belt-item:hover .tip{display:block;}
+.belt-empty{width:46px; height:46px; border:1px dashed rgba(233,221,192,.2);}
+
+/* ---------- Modal panel ---------- */
+.modal-back{
+  position:fixed; inset:0; background:rgba(13,10,8,.75); display:none; align-items:flex-end; justify-content:center; z-index:50;
+}
+.modal-back.show{display:flex;}
+.modal{
+  width:100%; max-width:520px; background:var(--ink-2); border-top:1px solid var(--gold);
+  max-height:78vh; overflow-y:auto; padding:22px 20px 26px;
+}
+.modal h3{font-size:24px; margin-bottom:2px;}
+.modal-close{
+  float:right; background:none; border:none; color:var(--parchment-dim); font-size:22px; cursor:pointer;
+}
+.qp-block{margin-top:16px;}
+.qp-label{font-family:var(--display); font-size:13px; letter-spacing:.14em; color:var(--gold-bright); margin-bottom:6px; text-transform:uppercase;}
+.qp-item{font-size:14.5px; color:var(--parchment-dim); margin-bottom:5px; line-height:1.4;}
+.qp-item.done{color:var(--forest); text-decoration:line-through; opacity:.7;}
+.rel-row{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-size:14.5px;}
+.rel-dots span{display:inline-block; width:9px; height:9px; border:1px solid var(--gold); margin-left:3px;}
+.rel-dots span.on{background:var(--gold-bright);}
+
+/* ---------- Ending screen ---------- */
+#screen-ending{align-items:center; text-align:center; justify-content:center; gap:4px;}
+.ending-title{font-size:44px; margin-bottom:4px;}
+.ending-kind{font-family:var(--display); font-style:italic; color:var(--gold-bright); font-size:16px; margin-bottom:18px;}
+.ending-desc{max-width:400px; margin:0 auto 20px; font-size:16.5px;}
+.stat-block{display:flex; gap:22px; justify-content:center; margin:10px 0 22px; flex-wrap:wrap;}
+.stat-block div{text-align:center;}
+.stat-block .n{font-family:var(--display); font-size:30px; color:var(--gold-bright); display:block;}
+.stat-block .l{font-size:12px; letter-spacing:.1em; color:var(--parchment-dim); text-transform:uppercase;}
+.unlock-note{font-size:14px; color:var(--forest); font-style:italic; margin-bottom:18px;}
+
+/* ---------- Leaderboard ---------- */
+.lb-row{
+  display:flex; justify-content:space-between; border-bottom:1px solid rgba(233,221,192,.15);
+  padding:9px 2px; font-size:14.5px; gap:8px;
+}
+.lb-row .lb-name{color:var(--parchment); font-family:var(--display); font-size:17px;}
+.lb-row .lb-meta{color:var(--parchment-dim); font-style:italic; font-size:13px;}
+.lb-row .lb-score{color:var(--gold-bright); font-family:var(--display); font-size:18px;}
+.tabs{display:flex; gap:6px; margin-bottom:14px;}
+.tab{flex:1; text-align:center; padding:8px; border:1px solid var(--parchment-dim); cursor:pointer; font-family:var(--display); font-size:14px; color:var(--parchment-dim);}
+.tab.active{border-color:var(--gold-bright); color:var(--gold-bright);}
+.empty-note{color:var(--parchment-dim); font-style:italic; text-align:center; margin:30px 0;}
+
+.back-row{margin-top:auto; padding-top:16px;}
+.scroll-list{flex:1; overflow-y:auto;}
+
+/* ---------- Design-panel backgrounds ---------- */
+#screen-title{
+  background: #090b13 url('./assets/panel_moon.png') center/cover no-repeat;
+}
+#screen-creation{
+  background: #050505 url('./assets/panel_stars.png') center/cover no-repeat;
+}
+#screen-game{
+  background: #173d28 url('./assets/panel_forest_fullphone.png') center/cover no-repeat;
+}
+
+/* The supplied NPC art is the visual placeholder for every encounter card. */
+.card-loc-bg{display:none;}
+.stage{
+  min-height:0;
+  flex:0 0 auto;
+  flex-direction:column;
+  gap:10px;
+  margin:6px 0 10px;
+}
+.encounter-text{
+  width:100%;
+  max-width:430px;
+  min-height:70px;
+  text-align:center;
+  font-family:var(--display);
+  font-size:clamp(22px, 4.8vw, 31px);
+  line-height:1.1;
+  color:var(--parchment);
+  text-shadow:0 2px 8px rgba(0,0,0,.45);
+}
+.card{
+  width:min(74vw, 300px);
+  max-width:300px;
+  padding:0;
+  border:none;
+  background:transparent;
+  box-shadow:none;
+}
+.npc-card-image{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:3px;
+  filter:drop-shadow(0 16px 20px rgba(0,0,0,.38));
+  pointer-events:none;
+}
+.card-inner{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  pointer-events:none;
+}
+.card-speaker{
+  margin:0 10px 10px;
+  padding:4px 8px;
+  border-radius:3px;
+  background:rgba(0,0,0,.48);
+  color:var(--parchment);
+  font-size:15px;
+  text-align:center;
+  text-shadow:0 1px 4px rgba(0,0,0,.7);
+}
+.card-text{display:none;}
+
+@media (max-width:600px){
+  #screen-title, #screen-creation, #screen-game{background-position:center top;}
+  .menu-btn{max-width:300px;}
+  .encounter-text{font-size:clamp(20px, 6vw, 28px);}
+  .card{width:min(70vw, 285px);}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- TITLE -->
+  <div class="screen active" id="screen-title">
+    <div class="title-mark">A PROTOTYPE</div>
+    <h1 class="title-main">The Long Road</h1>
+    <div class="title-sub">the curse remembers what you chose</div>
+    <button class="menu-btn" onclick="goTo('screen-creation')">New Game</button>
+    <button class="menu-btn" id="btn-continue" onclick="continueGame()" disabled="">Continue</button>
+    <button class="menu-btn" onclick="openLeaderboard()">Leaderboard</button>
+    <button class="menu-btn" onclick="openUnlocks()">Unlocks</button>
+  </div>
+
+  <!-- CHARACTER CREATION -->
+  <div class="screen" id="screen-creation">
+    <h2>Who walks the road?</h2>
+    <div class="rule"></div>
+
+    <div class="cc-section">
+      <div class="cc-label">Class</div>
+      <div class="cc-grid" id="class-grid">
+    <div class="cc-card" data-k="wizard" onclick="pickClass('wizard')">
+      <h4>Wizard</h4><small>Bends the world through study and will.</small>
+    </div>
+    <div class="cc-card" data-k="rogue" onclick="pickClass('rogue')">
+      <h4>Rogue</h4><small>Lives by quick hands and quicker exits.</small>
+    </div>
+    <div class="cc-card" data-k="knight" onclick="pickClass('knight')">
+      <h4>Knight</h4><small>Sworn steel, sworn honor, sworn debt.</small>
+    </div>
+    <div class="cc-card" data-k="ranger" onclick="pickClass('ranger')">
+      <h4>Ranger</h4><small>More at home under leaves than under roofs.</small>
+    </div></div>
+    </div>
+
+    <div class="cc-section">
+      <div class="cc-label">Race</div>
+      <div class="cc-grid" id="race-grid">
+    <div class="cc-card" data-k="human" onclick="pickRace('human')">
+      <h4>Human</h4><small>Adaptable, well-liked, unremarkable.</small>
+    </div>
+    <div class="cc-card" data-k="elf" onclick="pickRace('elf')">
+      <h4>Elf</h4><small>Old eyes, long memory, thin patience.</small>
+    </div>
+    <div class="cc-card" data-k="dwarf" onclick="pickRace('dwarf')">
+      <h4>Dwarf</h4><small>Built to endure what breaks others.</small>
+    </div>
+    <div class="cc-card" data-k="orc" onclick="pickRace('orc')">
+      <h4>Orc</h4><small>Feared before spoken to.</small>
+    </div></div>
+    </div>
+
+    <div class="cc-section">
+      <div class="cc-label">Name</div>
+      <input id="name-input" type="text" placeholder="Enter a name..." maxlength="18">
+    </div>
+
+    <div class="cc-overview" id="cc-overview">Choose a class and a race to see who you'll become.</div>
+
+    <div class="back-row">
+      <button class="menu-btn" id="btn-confirm" onclick="createCharacter()" disabled="">Begin the Road</button>
+      <button class="menu-btn" style="border-color:var(--parchment-dim); font-size:15px; padding:8px;" onclick="goTo('screen-title')">Back</button>
+    </div>
+  </div>
+
+  <!-- MAIN GAME -->
+  <div class="screen" id="screen-game">
+    <div class="topbar">
+      <div class="location-tag" id="loc-tag">—</div>
+      <button class="iconbtn" onclick="openQuestPanel()">Journal</button>
+    </div>
+
+    <div class="gauges">
+      <div class="gauge"><div class="gauge-label">Money</div><div class="gauge-track"><div class="gauge-fill money" id="fill-money"></div></div><div class="gauge-val" id="val-money">50</div></div>
+      <div class="gauge"><div class="gauge-label">Status</div><div class="gauge-track"><div class="gauge-fill status" id="fill-status"></div></div><div class="gauge-val" id="val-status">50</div></div>
+      <div class="gauge"><div class="gauge-label">Magic</div><div class="gauge-track"><div class="gauge-fill magic" id="fill-magic"></div></div><div class="gauge-val" id="val-magic">50</div></div>
+      <div class="gauge"><div class="gauge-label">Health</div><div class="gauge-track"><div class="gauge-fill health" id="fill-health"></div></div><div class="gauge-val" id="val-health">50</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="encounter-text" id="card-text">—</div>
+      <div class="card" id="the-card">
+        <img class="npc-card-image" id="npc-card-image" src="./assets/goblin card.png" alt="NPC card placeholder">
+        <div class="card-flash" id="card-flash"></div>
+        <div class="card-inner">
+          <div class="card-speaker" id="card-speaker">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fail-msg" id="fail-msg"></div>
+
+    <div class="responses" id="responses"></div>
+
+    <div class="beltbar" id="beltbar"></div>
+  </div>
+
+  <!-- ENDING -->
+  <div class="screen" id="screen-ending">
+    <div class="title-mark" id="ending-kind-top">THE ROAD ENDS</div>
+    <h1 class="ending-title" id="ending-title">—</h1>
+    <div class="ending-kind" id="ending-kind">—</div>
+    <p class="ending-desc" id="ending-desc">—</p>
+    <div class="stat-block">
+      <div><span class="n" id="es-decisions">0</span><span class="l">Decisions</span></div>
+      <div><span class="n" id="es-score">0</span><span class="l">Score</span></div>
+      <div><span class="n" id="es-chapter">0</span><span class="l">Chapters</span></div>
+    </div>
+    <div class="unlock-note" id="unlock-note"></div>
+    <button class="menu-btn" onclick="goTo('screen-title')">Return to the Road</button>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div class="screen" id="screen-leaderboard">
+    <h2>Leaderboard</h2>
+    <div class="rule"></div>
+    <div class="tabs">
+      <div class="tab active" data-sort="score" onclick="setLbSort('score')">Score</div>
+      <div class="tab" data-sort="decisions" onclick="setLbSort('decisions')">Survival</div>
+      <div class="tab" data-sort="endings" onclick="setLbSort('endings')">Endings</div>
+    </div>
+    <div class="scroll-list" id="lb-list"></div>
+    <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
+  </div>
+
+  <!-- UNLOCKS -->
+  <div class="screen" id="screen-unlocks">
+    <h2>Discoveries</h2>
+    <div class="rule"></div>
+    <div class="scroll-list" id="unlocks-list"></div>
+    <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
+  </div>
+
+</div>
+
+<!-- Quest / relationship modal -->
+<div class="modal-back" id="quest-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQuestPanel()">×</button>
+    <h3>Journal</h3>
+    <div class="qp-block">
+      <div class="qp-label">Active Quests</div>
+      <div id="qp-active"></div>
+    </div>
+    <div class="qp-block">
+      <div class="qp-label">Completed</div>
+      <div id="qp-done"></div>
+    </div>
+    <div class="qp-block">
+      <div class="qp-label">Relationships</div>
+      <div id="qp-relationships"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   THE LONG ROAD — prototype game engine
+   Data-driven card/quest/ending system, four-gauge state machine.
+   ============================================================ */
+
+/* ---------------- Reference data ---------------- */
+
+const CLASSES = {
+  wizard: { name:'Wizard', blurb:'Bends the world through study and will.', mods:{magic:15, health:-10}, adv:'Better with magic and curses', weak:'Frail, poor' },
+  rogue:  { name:'Rogue',  blurb:'Lives by quick hands and quicker exits.', mods:{money:10, status:-15}, adv:'Stealth, theft, traps', weak:'Distrusted' },
+  knight: { name:'Knight', blurb:'Sworn steel, sworn honor, sworn debt.', mods:{health:15, money:-15}, adv:'More health, military favor', weak:'High upkeep' },
+  ranger: { name:'Ranger', blurb:'More at home under leaves than under roofs.', mods:{magic:5, status:-10}, adv:'Forest, animals, travel', weak:'Poor at court' },
+};
+const RACES = {
+  human: { name:'Human', blurb:'Adaptable, well-liked, unremarkable.', mods:{status:10}, trait:'Better social outcomes' },
+  elf:   { name:'Elf',   blurb:'Old eyes, long memory, thin patience.', mods:{magic:10}, trait:'Improved magic & perception' },
+  dwarf: { name:'Dwarf', blurb:'Built to endure what breaks others.', mods:{health:10}, trait:'Improved health & crafting' },
+  orc:   { name:'Orc',   blurb:'Feared before spoken to.', mods:{status:-10}, trait:'Improved intimidation & combat' },
+};
+
+const ITEMS = {
+  healing_herb:    { name:'Healing Herb', icon:'🌿', desc:'A bundle of bitter root. Use to mend wounds (+20 Health).' },
+  enchanted_flower:{ name:'Enchanted Flower', icon:'🌸', desc:"Never wilts. A gift with weight — some hearts open for it." },
+  ancient_key:     { name:'Ancient Key', icon:'🗝️', desc:'Cold iron, older than the kingdom. Opens what should stay shut.' },
+  cursed_ring:     { name:'Cursed Ring', icon:'💍', desc:'Warm to the touch. You have stopped trying to remove it.' },
+};
+
+const LOCATIONS = {
+  castle: { name:'The Castle', color:'#3a3226' },
+  tavern: { name:'The Wandering Boar Tavern', color:'#4a2f22' },
+  forest: { name:'The Greywood', color:'#233b28' },
+  cave:   { name:'The Hollow Below', color:'#1e1c2c' },
+};
+
+const ENDINGS = {
+  money_zero:  { title:'Debtor\'s Grave', kind:'Death', desc:'Your coin ran out before your enemies did. Unpaid protection is no protection at all.' },
+  money_full:  { title:'Too Rich to Live', kind:'Death', desc:'Word of your fortune outran your guards. You were found relieved of both purse and pulse.' },
+  status_zero: { title:'Cast Out', kind:'Ruin', desc:'Exiled, imprisoned, or simply forgotten — your name means nothing here now.' },
+  status_full: { title:'A Throne, A Target', kind:'Death', desc:'Crowned or feared beyond measure, you became a threat too large to let stand.' },
+  magic_zero:  { title:'Snuffed Out', kind:'Death', desc:'Whatever kept you tethered to the world let go. You simply stopped.' },
+  magic_full:  { title:'Arcane Overload', kind:'Death', desc:'You held more power than a body was built to hold. It found its way out all at once.' },
+  health_zero: { title:'The Long Rest', kind:'Death', desc:'Wound, poison, or exhaustion — in the end the body always collects its debts.' },
+  health_full: { title:"A Legend's Body", kind:'Curious', desc:'Impossibly hale, impossibly strange — the village now whispers you were never quite human at all.' },
+  curse_destroyed: { title:'The Curse Undone', kind:'Victory', desc:'You found the source in the Hollow Below and unmade it. The kingdom will sleep easier — you may not.' },
+  curse_joined: { title:'One With the Curse', kind:'Dark Victory', desc:'You did not break the curse. You became its newest voice.' },
+  escaped: { title:'Vanished Into the Wild', kind:'Escape', desc:'You walked past every debt and every duty and simply did not stop walking.' },
+};
+
+/* ---------------- Cards ---------------- */
+/* requires: fn(state)->bool for the card to appear at all
+   response.req: {desc, check:fn(state)->bool}
+   response.effects: fn(state) -> applies changes, may push flash text, may set nextCardId
+*/
+function has(item){ return s => s.inventory.includes(item); }
+function flag(f){ return s => s.flags.includes(f); }
+function notFlag(f){ return s => !s.flags.includes(f); }
+function minStat(stat,v){ return s => s[stat] >= v; }
+function maxStat(stat,v){ return s => s[stat] <= v; }
+function isClass(c){ return s => s.charClass === c; }
+
+const CARDS = [
+  // ---- CASTLE ----
+  { id:'castle_tax', location:'castle', speaker:'The Tax Collector', repeatable:false,
+    text:'"The crown\'s levy is due. Pay in full, argue the sum, or find another way."',
+    responses:[
+      { dir:'left', label:'Pay in full', effects:s=>{ changeStat(s,'money',-15); changeStat(s,'status',3);} },
+      { dir:'right', label:'Refuse loudly', effects:s=>{ changeStat(s,'status',-10); scheduleEvent('tax_revenge',3);} },
+      { dir:'up', label:'Bribe him quietly', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10); changeStat(s,'status',2);} },
+      { dir:'down', label:'Plead poverty', effects:s=>{ changeStat(s,'status',-3); addFlag('pleaded_poverty'); } },
+    ]},
+  { id:'castle_noble_request', location:'castle', speaker:'Lady Averil', repeatable:false,
+    text:'"My husband suspects I dine with another. Silence him, discredit him, or tell my husband yourself."',
+    responses:[
+      { dir:'left', label:'Threaten him into silence', req:{desc:'Rogue or Knight only', check:s=>['rogue','knight'].includes(s.charClass)}, effects:s=>{ changeStat(s,'status',-5); addItem('nothing'); changeRelationship('rival',-1);} },
+      { dir:'right', label:'Spread a rumor about him', effects:s=>{ changeStat(s,'status',5); addFlag('spread_rumor');} },
+      { dir:'up', label:'Tell her husband the truth', effects:s=>{ changeStat(s,'status',8); changeStat(s,'money',-5); } },
+      { dir:'down', label:'Decline to get involved', effects:s=>{ changeStat(s,'status',-2);} },
+    ]},
+  { id:'castle_clergy', location:'castle', speaker:'Brother Oswin', repeatable:false,
+    text:'"Strange symbols were found scratched beneath the chapel floor. Will you look, or leave holy ground undisturbed?"',
+    responses:[
+      { dir:'left', label:'Examine the symbols', effects:s=>{ changeStat(s,'magic',5); addFlag('learned_symbol'); startQuest('main'); setChapter(3);} },
+      { dir:'right', label:'Tell him to seal it up', effects:s=>{ changeStat(s,'status',3);} },
+      { dir:'up', label:'Ask what he already knows', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',3); addFlag('cleric_confided');} },
+      { dir:'down', label:'Steal a rubbing of the symbol', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ addFlag('stole_from_temple'); changeStat(s,'magic',4);} },
+    ]},
+  { id:'castle_duke', location:'castle', speaker:'Duke Halveth', repeatable:false,
+    text:'"The Duke wants the Greywood cleared of bandits before autumn. Accept, negotiate terms, or refuse him outright."',
+    responses:[
+      { dir:'left', label:'Accept the commission', effects:s=>{ changeStat(s,'status',6); startQuest('bandits');} },
+      { dir:'right', label:'Refuse him outright', effects:s=>{ changeStat(s,'status',-12); addFlag('angered_duke');} },
+      { dir:'up', label:'Demand payment up front', req:{desc:'Needs at least 20 Status', check:minStat('status',20)}, effects:s=>{ changeStat(s,'money',15); changeStat(s,'status',-3); startQuest('bandits');} },
+      { dir:'down', label:'Suggest the guard handle it', effects:s=>{ changeStat(s,'status',-4);} },
+    ]},
+  { id:'castle_guard_gate', location:'castle', speaker:'Gate Guard', repeatable:true,
+    text:'"Can\'t let you through without the toll. Pay, argue, sneak, or turn back."',
+    responses:[
+      { dir:'left', label:'Pay the toll', effects:s=>{ changeStat(s,'money',-5);} },
+      { dir:'right', label:'Threaten the guard', effects:s=>{ changeStat(s,'status',-3); changeStat(s,'health',-2);} },
+      { dir:'up', label:'Sneak past', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{} },
+      { dir:'down', label:'Ask for mercy', effects:s=>{ changeStat(s,'status',-1);} },
+    ]},
+
+  // ---- TAVERN ----
+  { id:'tavern_rumor', location:'tavern', speaker:'A Hooded Drunk', repeatable:false,
+    text:'"Monsters near the old mine, aye. Started right after the miners broke into somethin\' they shouldn\'t have. Buy me a drink and I\'ll say more."',
+    responses:[
+      { dir:'left', label:'Buy him a drink', effects:s=>{ changeStat(s,'money',-3); addFlag('heard_rumor'); startQuest('main'); setChapter(1);} },
+      { dir:'right', label:'Demand he talk for free', effects:s=>{ changeStat(s,'status',-2);} },
+      { dir:'up', label:'Recognize the mine\'s old name', req:{desc:'Requires Dwarf race', check:s=>s.charRace==='dwarf'}, effects:s=>{ addFlag('heard_rumor'); changeStat(s,'magic',2); startQuest('main'); setChapter(1);} },
+      { dir:'down', label:'Walk away', effects:s=>{} },
+    ]},
+  { id:'tavern_mercenary', location:'tavern', speaker:'A Scarred Mercenary', repeatable:false,
+    text:'"Looking for someone to watch my back in the Hollow. Pays well, if you live. Yes, no, or ask what\'s down there first."',
+    responses:[
+      { dir:'left', label:'Accept', effects:s=>{ changeStat(s,'money',10); changeStat(s,'health',-5); addFlag('mercenary_ally');} },
+      { dir:'right', label:'Refuse', effects:s=>{} },
+      { dir:'up', label:'Ask what waits below', effects:s=>{ addFlag('learned_symbol');} },
+      { dir:'down', label:'Try to rob him instead', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ changeStat(s,'money',12); changeStat(s,'status',-8); changeRelationship('rival',-1);} },
+    ]},
+  { id:'tavern_romance', location:'tavern', speaker:'Selin, the Innkeeper\'s Daughter', repeatable:false,
+    text:'"You keep coming back here. I\'ve noticed. Flirt, buy her a drink, give her a gift, or keep to yourself."',
+    responses:[
+      { dir:'left', label:'Flirt openly', effects:s=>{ changeStat(s,'status',2); changeRelationship('partner',1);} },
+      { dir:'right', label:'Buy her a drink', effects:s=>{ changeStat(s,'money',-4); changeRelationship('partner',1);} },
+      { dir:'up', label:'Give her the enchanted flower', req:{desc:'Needs the Enchanted Flower', check:has('enchanted_flower')}, effects:s=>{ removeItem('enchanted_flower'); changeRelationship('partner',2); changeStat(s,'status',3);} },
+      { dir:'down', label:'Keep your distance', effects:s=>{} },
+    ]},
+  { id:'tavern_gamble', location:'tavern', speaker:'A Dice Game', repeatable:true,
+    text:'"Care to play? Wager small, wager big, watch the table for cheats, or skip it."',
+    responses:[
+      { dir:'left', label:'Wager small', effects:s=>{ if(Math.random()>0.45){ changeStat(s,'money',6);} else { changeStat(s,'money',-6);} } },
+      { dir:'right', label:'Wager big', req:{desc:'Needs at least 15 Money', check:minStat('money',15)}, effects:s=>{ if(Math.random()>0.5){ changeStat(s,'money',20);} else { changeStat(s,'money',-20);} } },
+      { dir:'up', label:'Watch for cheats', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{ changeStat(s,'money',10); changeRelationship('rival',-1);} },
+      { dir:'down', label:'Skip the game', effects:s=>{} },
+    ]},
+  { id:'tavern_rival', location:'tavern', speaker:'Corin, a Rival Adventurer', repeatable:false,
+    text:'"Still alive? Pity. Buy me a round and call it truce, mock my last failed job, challenge me, or ignore him."',
+    responses:[
+      { dir:'left', label:'Offer a truce', effects:s=>{ changeStat(s,'money',-3); changeRelationship('rival',1);} },
+      { dir:'right', label:'Mock him', effects:s=>{ changeStat(s,'status',2); changeRelationship('rival',-1);} },
+      { dir:'up', label:'Challenge him openly', effects:s=>{ changeStat(s,'health',-6); changeStat(s,'status',4); changeRelationship('rival',-2);} },
+      { dir:'down', label:'Ignore him', effects:s=>{} },
+    ]},
+
+  // ---- FOREST ----
+  { id:'forest_wolf', location:'forest', speaker:'A Wounded Wolf', repeatable:false,
+    text:'A wolf lies tangled in a poacher\'s snare, watching you. Free it, leave it, use it for parts, or heal it with your herb.',
+    responses:[
+      { dir:'left', label:'Free it and step back', effects:s=>{ addFlag('freed_wolf'); changeRelationship('rival',0);} },
+      { dir:'right', label:'Leave it be', effects:s=>{} },
+      { dir:'up', label:'Heal it with the herb', req:{desc:'Needs the Healing Herb', check:has('healing_herb')}, effects:s=>{ removeItem('healing_herb'); addFlag('befriended_wolf'); changeStat(s,'status',3);} },
+      { dir:'down', label:'Take it as a trophy', effects:s=>{ changeStat(s,'money',5); changeStat(s,'status',-4);} },
+    ]},
+  { id:'forest_herbalist', location:'forest', speaker:'An Old Herbalist', repeatable:false,
+    text:'"Lost, are you? I can trade you a healing herb for coin, or teach you to find your own — that takes longer."',
+    responses:[
+      { dir:'left', label:'Buy the herb', req:{desc:'Needs at least 8 Money', check:minStat('money',8)}, effects:s=>{ changeStat(s,'money',-8); addItem('healing_herb');} },
+      { dir:'right', label:'Learn to forage', req:{desc:'Requires Ranger or Elf', check:s=>s.charClass==='ranger'||s.charRace==='elf'}, effects:s=>{ addItem('healing_herb'); changeStat(s,'magic',2);} },
+      { dir:'up', label:'Ask about the curse', effects:s=>{ addFlag('learned_symbol');} },
+      { dir:'down', label:'Move on', effects:s=>{} },
+    ]},
+  { id:'forest_bandits', location:'forest', speaker:'Bandits on the Road', repeatable:false, requires: flag('quest_bandits_active'),
+    text:'Three bandits step out from the treeline. Fight, pay a toll, talk your way past, or flee into the brush.',
+    responses:[
+      { dir:'left', label:'Fight', effects:s=>{ if(s.charClass==='knight'||s.charRace==='orc'){ changeStat(s,'health',-8); changeStat(s,'money',8);} else { changeStat(s,'health',-18);} completeQuest('bandits');} },
+      { dir:'right', label:'Pay the toll', req:{desc:'Needs at least 12 Money', check:minStat('money',12)}, effects:s=>{ changeStat(s,'money',-12);} },
+      { dir:'up', label:'Talk them down', req:{desc:'Needs at least 40 Status', check:minStat('status',40)}, effects:s=>{ changeStat(s,'status',4); completeQuest('bandits');} },
+      { dir:'down', label:'Flee', effects:s=>{ changeStat(s,'health',-3); changeStat(s,'status',-3);} },
+    ]},
+  { id:'forest_flower', location:'forest', speaker:'A Patch of Pale Blooms', repeatable:false,
+    text:'Flowers that never wilt grow only here, and only in moonlight. Pick one, pick a handful, leave them, or study them.',
+    responses:[
+      { dir:'left', label:'Pick one', effects:s=>{ addItem('enchanted_flower');} },
+      { dir:'right', label:'Pick a handful to sell', effects:s=>{ changeStat(s,'money',6);} },
+      { dir:'up', label:'Study them', req:{desc:'Requires Wizard or Elf', check:s=>s.charClass==='wizard'||s.charRace==='elf'}, effects:s=>{ changeStat(s,'magic',6); addItem('enchanted_flower');} },
+      { dir:'down', label:'Leave them growing', effects:s=>{ changeStat(s,'magic',1);} },
+    ]},
+  { id:'forest_shrine', location:'forest', speaker:'A Ruined Shrine', repeatable:false,
+    text:'A shrine older than the kingdom, half-swallowed by roots. Pray, deface it, search it for treasure, or pass by.',
+    responses:[
+      { dir:'left', label:'Pray', effects:s=>{ changeStat(s,'magic',5); changeStat(s,'status',1);} },
+      { dir:'right', label:'Deface it', effects:s=>{ changeStat(s,'status',-6); addFlag('angered_something'); scheduleEvent('shrine_revenge',4);} },
+      { dir:'up', label:'Search for treasure', effects:s=>{ changeStat(s,'money',10); changeStat(s,'magic',-3);} },
+      { dir:'down', label:'Pass by respectfully', effects:s=>{} },
+    ]},
+
+  // ---- CAVE ----
+  { id:'cave_goblin', location:'cave', speaker:'A Goblin at the Threshold', repeatable:false,
+    text:'A goblin blocks the cave entrance, spear raised. Fight, negotiate, sneak past, or offer food.',
+    responses:[
+      { dir:'left', label:'Fight', effects:s=>{ if(s.charClass==='knight'){ changeStat(s,'health',-6);} else { changeStat(s,'health',-14);} } },
+      { dir:'right', label:'Negotiate', req:{desc:'Needs at least 25 Status', check:minStat('status',25)}, effects:s=>{ changeStat(s,'money',-5);} },
+      { dir:'up', label:'Sneak past', req:{desc:'Needs Rogue class', check:isClass('rogue')}, effects:s=>{} },
+      { dir:'down', label:'Offer food', req:{desc:'Needs at least 5 Money', check:minStat('money',5)}, effects:s=>{ changeStat(s,'money',-5); changeRelationship('rival',0); addFlag('goblin_spared');} },
+    ]},
+  { id:'cave_locked_door', location:'cave', speaker:'A Sealed Door', repeatable:false, requires: flag('learned_symbol'),
+    text:'A door bound in iron and old warnings. Use the ancient key, force it open, search for another way, or turn back.',
+    responses:[
+      { dir:'left', label:'Use the ancient key', req:{desc:'Needs the Ancient Key', check:has('ancient_key')}, effects:s=>{ setChapter(4); addFlag('opened_door'); changeStat(s,'magic',3);} },
+      { dir:'right', label:'Force it open', effects:s=>{ changeStat(s,'health',-10); setChapter(4); addFlag('opened_door');} },
+      { dir:'up', label:'Search for another way', req:{desc:'Requires Ranger or Dwarf', check:s=>s.charClass==='ranger'||s.charRace==='dwarf'}, effects:s=>{ setChapter(4); addFlag('opened_door'); addItem('ancient_key');} },
+      { dir:'down', label:'Turn back', effects:s=>{ changeStat(s,'status',-2);} },
+    ]},
+  { id:'cave_ring', location:'cave', speaker:'A Ring on a Dead Hand', repeatable:false,
+    text:'A corpse, long dried, still wears a ring that catches no light. Take it, leave it, destroy it, or bury the body first.',
+    responses:[
+      { dir:'left', label:'Take the ring', effects:s=>{ addItem('cursed_ring'); addFlag('accepted_cursed_ring'); scheduleEvent('ring_curse',2);} },
+      { dir:'right', label:'Leave it', effects:s=>{} },
+      { dir:'up', label:'Destroy it', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',-8); changeStat(s,'status',4);} },
+      { dir:'down', label:'Bury the body first', effects:s=>{ changeStat(s,'status',2);} },
+    ]},
+  { id:'cave_cleric_recognizes', location:'cave', speaker:'A Familiar Cleric', repeatable:false, requires: flag('stole_from_temple'),
+    text:'Brother Oswin, deep in the Hollow, recognizes the rubbing in your hand. Confess, lie, bribe him, or threaten him.',
+    responses:[
+      { dir:'left', label:'Confess', effects:s=>{ changeStat(s,'status',-8);} },
+      { dir:'right', label:'Lie convincingly', req:{desc:'Needs Rogue class or 40+ Status', check:s=>s.charClass==='rogue'||s.status>=40}, effects:s=>{} },
+      { dir:'up', label:'Bribe him', req:{desc:'Needs at least 15 Money', check:minStat('money',15)}, effects:s=>{ changeStat(s,'money',-15);} },
+      { dir:'down', label:'Threaten him', effects:s=>{ changeStat(s,'status',-6); changeStat(s,'health',-2);} },
+    ]},
+  { id:'cave_curse_source', location:'cave', speaker:'The Source of the Curse', repeatable:false, requires: flag('opened_door'),
+    text:'At the heart of the Hollow, the curse itself takes notice of you. Destroy it, try to control it, join it, or flee while you still can.',
+    responses:[
+      { dir:'left', label:'Destroy it', req:{desc:'Needs at least 20 Magic', check:minStat('magic',20)}, effects:s=>{ setEnding('curse_destroyed');} },
+      { dir:'right', label:'Try to control it', req:{desc:'Requires Wizard class and 30+ Magic', check:s=>s.charClass==='wizard'&&s.magic>=30}, effects:s=>{ changeStat(s,'magic',20); changeStat(s,'health',-15);} },
+      { dir:'up', label:'Join it', effects:s=>{ setEnding('curse_joined');} },
+      { dir:'down', label:'Flee the Hollow entirely', effects:s=>{ setEnding('escaped');} },
+    ]},
+
+  // ---- GENERAL / TRAVEL ----
+  { id:'gen_travel', location:'any', speaker:'The Crossroads', repeatable:true,
+    text:'The road splits. Where do you go next — the castle, the tavern, the forest, or the cave?',
+    responses:[
+      { dir:'left', label:'The Castle', effects:s=>{ moveToLocation('castle');} },
+      { dir:'right', label:'The Tavern', effects:s=>{ moveToLocation('tavern');} },
+      { dir:'up', label:'The Forest', effects:s=>{ moveToLocation('forest');} },
+      { dir:'down', label:'The Hollow Below', req:{desc:'Needs at least 1 clue about the curse', check:flag('learned_symbol')}, effects:s=>{ moveToLocation('cave');} },
+    ]},
+  { id:'gen_stranger', location:'any', speaker:'A Wounded Stranger', repeatable:false,
+    text:'A traveler lies bleeding by the roadside. Help them, rob them, ignore them, or use your herb on them.',
+    responses:[
+      { dir:'left', label:'Help them (costs time)', effects:s=>{ changeStat(s,'status',5); addFlag('helped_stranger'); scheduleEvent('stranger_returns',5);} },
+      { dir:'right', label:'Rob them', effects:s=>{ changeStat(s,'money',8); changeStat(s,'status',-6);} },
+      { dir:'up', label:'Ignore them', effects:s=>{} },
+      { dir:'down', label:'Use the healing herb', req:{desc:'Needs the Healing Herb', check:has('healing_herb')}, effects:s=>{ removeItem('healing_herb'); changeStat(s,'status',8); addFlag('helped_stranger'); scheduleEvent('stranger_returns',5);} },
+    ]},
+  { id:'gen_village_problem', location:'any', speaker:'A Frightened Villager', repeatable:false,
+    text:'"Something\'s been taking our livestock at night. Please — help us, or at least tell us what to do."',
+    responses:[
+      { dir:'left', label:'Investigate personally', effects:s=>{ changeStat(s,'status',6); addFlag('helped_village');} },
+      { dir:'right', label:'Tell them to arm themselves', effects:s=>{ changeStat(s,'status',1);} },
+      { dir:'up', label:'Ignore the village', effects:s=>{ addFlag('ignored_village'); scheduleEvent('village_attacked',4);} },
+      { dir:'down', label:'Charge them for your help', effects:s=>{ changeStat(s,'money',10); changeStat(s,'status',-3); addFlag('helped_village');} },
+    ]},
+  { id:'gen_rebels', location:'any', speaker:'A Rebel Courier', repeatable:false,
+    text:'"The crown taxes us to starvation. Join us, inform on us to the Duke, take our coin and say nothing, or walk away."',
+    responses:[
+      { dir:'left', label:'Join the rebels', effects:s=>{ addFlag('joined_rebels'); changeStat(s,'status',-5);} },
+      { dir:'right', label:'Inform the Duke', req:{desc:'Needs a relationship with the Duke\'s favor', check:minStat('status',20)}, effects:s=>{ changeStat(s,'status',10); changeStat(s,'money',10);} },
+      { dir:'up', label:'Take the coin, say nothing', effects:s=>{ changeStat(s,'money',10);} },
+      { dir:'down', label:'Walk away', effects:s=>{} },
+    ]},
+
+  // ---- DELAYED CONSEQUENCE CARDS ----
+  { id:'delayed_tax_revenge', location:'any', speaker:'The Watch', repeatable:false, hidden:true,
+    text:'Guards recognize you from the tax dispute. Pay the fine now, resist, plead your case, or run.',
+    responses:[
+      { dir:'left', label:'Pay the fine', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10);} },
+      { dir:'right', label:'Resist', effects:s=>{ changeStat(s,'health',-10); changeStat(s,'status',-5);} },
+      { dir:'up', label:'Plead your case', effects:s=>{ changeStat(s,'status',-3);} },
+      { dir:'down', label:'Run', effects:s=>{ changeStat(s,'status',-6);} },
+    ]},
+  { id:'delayed_shrine_revenge', location:'any', speaker:'Something From the Shrine', repeatable:false, hidden:true,
+    text:'You feel watched for days. Something finally catches up to you in the dark. Fight it, flee, offer tribute, or pray for forgiveness.',
+    responses:[
+      { dir:'left', label:'Fight it', effects:s=>{ changeStat(s,'health',-12); changeStat(s,'magic',-5);} },
+      { dir:'right', label:'Flee', effects:s=>{ changeStat(s,'health',-4);} },
+      { dir:'up', label:'Offer tribute', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10);} },
+      { dir:'down', label:'Pray for forgiveness', effects:s=>{ changeStat(s,'magic',5);} },
+    ]},
+  { id:'delayed_stranger_returns', location:'any', speaker:'The Stranger You Helped', repeatable:false, hidden:true,
+    text:'"I never forgot your kindness. Take this, it\'s the least I owe you." They press something into your hand.',
+    responses:[
+      { dir:'left', label:'Accept graciously', effects:s=>{ addItem('healing_herb'); changeStat(s,'status',2);} },
+      { dir:'right', label:'Refuse politely', effects:s=>{ changeStat(s,'status',3);} },
+      { dir:'up', label:'Ask them to travel with you', effects:s=>{ changeRelationship('partner',1);} },
+      { dir:'down', label:'Say nothing, just nod', effects:s=>{} },
+    ]},
+  { id:'delayed_village_attacked', location:'any', speaker:'A Messenger', repeatable:false, hidden:true,
+    text:'"The village you ignored — monsters got in. Some didn\'t make it." Go help now, send money, mourn quietly, or feel nothing.',
+    responses:[
+      { dir:'left', label:'Go help now', effects:s=>{ changeStat(s,'health',-8); changeStat(s,'status',4);} },
+      { dir:'right', label:'Send money', req:{desc:'Needs at least 10 Money', check:minStat('money',10)}, effects:s=>{ changeStat(s,'money',-10); changeStat(s,'status',2);} },
+      { dir:'up', label:'Mourn quietly', effects:s=>{ changeStat(s,'status',-2);} },
+      { dir:'down', label:'Feel nothing', effects:s=>{ changeStat(s,'status',-5);} },
+    ]},
+  { id:'delayed_ring_curse', location:'any', speaker:'The Ring on Your Hand', repeatable:false, hidden:true,
+    text:'The cursed ring will not come off. It hums against your skin, feeding on something. You can only decide how to bear it.',
+    responses:[
+      { dir:'left', label:'Let it feed', effects:s=>{ changeStat(s,'magic',12); changeStat(s,'health',-12);} },
+      { dir:'right', label:'Fight its pull', req:{desc:'Requires Wizard class', check:isClass('wizard')}, effects:s=>{ changeStat(s,'magic',4); changeStat(s,'health',-4);} },
+      { dir:'up', label:'Hide the hand, ignore it', effects:s=>{ changeStat(s,'status',-3); changeStat(s,'health',-6);} },
+      { dir:'down', label:'Seek a cleric\'s blessing', req:{desc:'Needs at least 8 Money', check:minStat('money',8)}, effects:s=>{ changeStat(s,'money',-8); changeStat(s,'health',4);} },
+    ]},
+];
+
+const PENDING_TEMPLATES = {
+  tax_revenge:      { card:'delayed_tax_revenge' },
+  shrine_revenge:    { card:'delayed_shrine_revenge' },
+  stranger_returns:  { card:'delayed_stranger_returns' },
+  village_attacked:  { card:'delayed_village_attacked' },
+  ring_curse:        { card:'delayed_ring_curse' },
+};
+
+const QUESTS = {
+  main: { name:'The Curse in the Hollow', desc:'Discover why monsters are appearing near the kingdom.' },
+  bandits: { name:"The Duke's Bandits", desc:'Clear the Greywood of bandits for Duke Halveth.' },
+};
+
+/* ---------------- State ---------------- */
+let state = null;
+let currentCardId = null;
+let dragging = false, dragStartX = 0, dragStartY = 0, dragDX = 0, dragDY = 0;
+let lbSort = 'score';
+
+const SAVE_KEY = 'tlr_save_v1';
+const META_KEY = 'tlr_meta_v1';
+const LB_KEY = 'tlr_leaderboard_v1';
+
+function freshState(){
+  return {
+    name:'', charClass:'', charRace:'',
+    location:'tavern',
+    money:50, status:50, magic:50, health:50,
+    inventory:[],
+    relationships:{ partner:0, rival:0 },
+    quests:{}, // id -> {active,complete}
+    flags:[],
+    playedCards:[],
+    pending:[], // {id,cardsRemaining,resultCardId}
+    decisions:0,
+    chapter:0,
+    endingId:null,
+  };
+}
+function loadMeta(){
+  try{ return JSON.parse(localStorage.getItem(META_KEY)) || {discoveredCards:[],discoveredEndings:[],unlockedItems:[],bestDecisions:0}; }
+  catch(e){ return {discoveredCards:[],discoveredEndings:[],unlockedItems:[],bestDecisions:0}; }
+}
+function saveMeta(m){ try{ localStorage.setItem(META_KEY, JSON.stringify(m)); }catch(e){} }
+function loadLB(){ try{ return JSON.parse(localStorage.getItem(LB_KEY)) || []; }catch(e){ return []; } }
+function saveLB(a){ try{ localStorage.setItem(LB_KEY, JSON.stringify(a)); }catch(e){} }
+
+function saveGame(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function loadGame(){ try{ return JSON.parse(localStorage.getItem(SAVE_KEY)); }catch(e){ return null; } }
+
+/* ---------------- Screen management ---------------- */
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id==='screen-title'){
+    document.getElementById('btn-continue').disabled = !loadGame();
+  }
+}
+
+/* ---------------- Character creation ---------------- */
+let ccClass = null, ccRace = null;
+function buildCCGrids(){
+  const cg = document.getElementById('class-grid');
+  cg.innerHTML = Object.entries(CLASSES).map(([k,c])=>`
+    <div class="cc-card" data-k="${k}" onclick="pickClass('${k}')">
+      <h4>${c.name}</h4><small>${c.blurb}</small>
+    </div>`).join('');
+  const rg = document.getElementById('race-grid');
+  rg.innerHTML = Object.entries(RACES).map(([k,r])=>`
+    <div class="cc-card" data-k="${k}" onclick="pickRace('${k}')">
+      <h4>${r.name}</h4><small>${r.blurb}</small>
+    </div>`).join('');
+}
+function pickClass(k){ ccClass = k; document.querySelectorAll('#class-grid .cc-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k)); updateOverview(); }
+function pickRace(k){ ccRace = k; document.querySelectorAll('#race-grid .cc-card').forEach(el=>el.classList.toggle('selected', el.dataset.k===k)); updateOverview(); }
+function updateOverview(){
+  const name = document.getElementById('name-input').value.trim();
+  const ov = document.getElementById('cc-overview');
+  const btn = document.getElementById('btn-confirm');
+  if(ccClass && ccRace){
+    ov.textContent = `${name||'A nameless traveler'}, ${RACES[ccRace].name} ${CLASSES[ccClass].name}. ${CLASSES[ccClass].adv} — but ${CLASSES[ccClass].weak.toLowerCase()}. ${RACES[ccRace].trait}.`;
+  } else {
+    ov.textContent = 'Choose a class and a race to see who you\'ll become.';
+  }
+  btn.disabled = !(ccClass && ccRace && name.length>0);
+}
+document.addEventListener('input', e=>{ if(e.target.id==='name-input') updateOverview(); });
+
+function createCharacter(){
+  state = freshState();
+  state.name = document.getElementById('name-input').value.trim() || 'Traveler';
+  state.charClass = ccClass;
+  state.charRace = ccRace;
+  const cm = CLASSES[ccClass].mods, rm = RACES[ccRace].mods;
+  for(const k of ['money','status','magic','health']){
+    state[k] = 50 + (cm[k]||0) + (rm[k]||0);
+    state[k] = Math.max(5, Math.min(95, state[k]));
+  }
+  startNewGame();
+}
+function startNewGame(){
+  state.location = 'tavern';
+  saveGame();
+  goTo('screen-game');
+  renderLocation();
+  drawCurrentCard();
+}
+function continueGame(){
+  const loaded = loadGame();
+  if(!loaded) return;
+  state = loaded;
+  goTo('screen-game');
+  renderLocation();
+  renderStats();
+  renderInventory();
+  drawCurrentCard(true);
+}
+
+/* ---------------- Core engine ---------------- */
+function changeStat(s, stat, amount){
+  s[stat] = Math.max(0, Math.min(100, s[stat]+amount));
+}
+function addItem(id){
+  if(id==='nothing') return;
+  if(!state.inventory.includes(id) && state.inventory.length<4) state.inventory.push(id);
+  const meta = loadMeta();
+  if(!meta.unlockedItems.includes(id)){ meta.unlockedItems.push(id); saveMeta(meta); }
+}
+function removeItem(id){ state.inventory = state.inventory.filter(i=>i!==id); }
+function useItem(id){
+  if(id==='healing_herb' && state.inventory.includes(id)){
+    changeStat(state,'health',20); removeItem(id); flashCard('up','+20 Health');
+    checkEndingConditions();
+    saveGame();
+    renderStats();
+    renderInventory();
+    if(state.endingId){ finishRun(); }
+  }
+}
+function addFlag(f){ if(!state.flags.includes(f)) state.flags.push(f); }
+function changeRelationship(id, amount){
+  state.relationships[id] = Math.max(-2, Math.min(2, (state.relationships[id]||0)+amount));
+}
+function startQuest(id){ if(!state.quests[id]) state.quests[id] = {active:true, complete:false}; if(id==='bandits') addFlag('quest_bandits_active'); }
+function completeQuest(id){ if(state.quests[id]){ state.quests[id].active=false; state.quests[id].complete=true; } if(id==='bandits') state.flags = state.flags.filter(f=>f!=='quest_bandits_active'); }
+function setChapter(n){ if(n>state.chapter) state.chapter = n; }
+function moveToLocation(loc){ state.location = loc; renderLocation(); }
+function scheduleEvent(templateId, delay){
+  const t = PENDING_TEMPLATES[templateId];
+  if(!t) return;
+  state.pending.push({ id:templateId, cardsRemaining:delay, resultCardId:t.card });
+}
+function updatePendingEvents(){
+  let triggered = null;
+  state.pending.forEach(p=>{ p.cardsRemaining--; });
+  const ready = state.pending.find(p=>p.cardsRemaining<=0);
+  if(ready){
+    triggered = ready.resultCardId;
+    state.pending = state.pending.filter(p=>p!==ready);
+  }
+  return triggered;
+}
+function setEnding(id){ state.endingId = id; }
+
+/* ---------------- Card selection ---------------- */
+function checkCardConditions(card){
+  if(card.requires && !card.requires(state)) return false;
+  if(!card.repeatable && state.playedCards.includes(card.id)) return false;
+  if(card.location!=='any' && card.location!==state.location) return false;
+  if(card.hidden) return false; // hidden cards only fire via pending events
+  return true;
+}
+function getAvailableCards(){
+  return CARDS.filter(checkCardConditions);
+}
+function getAvailableResponses(card){
+  return card.responses.map(r=>({ ...r, locked: r.req ? !r.req.check(state) : false }));
+}
+function drawCurrentCard(skipTrigger){
+  let forced = skipTrigger ? null : updatePendingEvents();
+  let card;
+  if(forced){
+    card = CARDS.find(c=>c.id===forced);
+  } else {
+    const pool = getAvailableCards();
+    if(pool.length===0){
+      card = { id:'fallback', location:state.location, speaker:'A Quiet Moment', text:'Nothing stirs here for now. The crossroads wait, if you\'d rather move on.',
+        responses:[
+          {dir:'left', label:'Head to the Castle', effects:s=>{ moveToLocation('castle'); }},
+          {dir:'right', label:'Head to the Tavern', effects:s=>{ moveToLocation('tavern'); }},
+          {dir:'up', label:'Head to the Forest', effects:s=>{ moveToLocation('forest'); }},
+          {dir:'down', label:'Rest a moment', effects:s=>{ changeStat(s,'health',3);} },
+        ]};
+    } else {
+      card = pool[Math.floor(Math.random()*pool.length)];
+    }
+  }
+  currentCardId = card.id;
+  const meta = loadMeta();
+  if(!meta.discoveredCards.includes(card.id)){ meta.discoveredCards.push(card.id); saveMeta(meta); }
+  renderCard(card);
+  renderStats();
+  renderInventory();
+  document.getElementById('fail-msg').textContent='';
+}
+
+function handleSwipe(direction){
+  const card = CARDS.find(c=>c.id===currentCardId) || fallbackCardRef;
+  if(!card) return;
+  const idx = {left:0,right:1,up:2,down:3}[direction];
+  const resp = card.responses[idx];
+  if(!resp) return;
+  if(resp.req && !resp.req.check(state)){
+    document.getElementById('fail-msg').textContent = resp.req.desc + '.';
+    snapCardBack();
+    return;
+  }
+  handleResponse(card, resp, direction);
+}
+let fallbackCardRef = null;
+
+function handleResponse(card, resp, direction){
+  flashCard(direction, resp.label);
+  applyEffects(resp.effects);
+  state.decisions++;
+  if(card.id!=='fallback' && card.id!=='gen_travel'){
+    if(!state.playedCards.includes(card.id)) state.playedCards.push(card.id);
+  }
+  setTimeout(()=>{ postResponseUpdate(); }, 260);
+}
+function applyEffects(effectFn){
+  effectFn(state);
+  checkEndingConditions();
+}
+function postResponseUpdate(){
+  saveGame();
+  if(state.endingId){
+    finishRun();
+    return;
+  }
+  const check2 = checkEndingConditions();
+  if(state.endingId){ finishRun(); return; }
+  renderLocation();
+  drawCurrentCard();
+}
+
+function checkEndingConditions(){
+  if(state.endingId) return true;
+  if(state.money<=0) state.endingId='money_zero';
+  else if(state.money>=100) state.endingId='money_full';
+  else if(state.status<=0) state.endingId='status_zero';
+  else if(state.status>=100) state.endingId='status_full';
+  else if(state.magic<=0) state.endingId='magic_zero';
+  else if(state.magic>=100) state.endingId='magic_full';
+  else if(state.health<=0) state.endingId='health_zero';
+  else if(state.health>=100) state.endingId='health_full';
+  return !!state.endingId;
+}
+
+/* ---------------- Rendering ---------------- */
+function renderStats(){
+  ['money','status','magic','health'].forEach(k=>{
+    const v = state[k];
+    const fill = document.getElementById('fill-'+k);
+    fill.style.width = v+'%';
+    fill.classList.toggle('danger', v<=15 || v>=90);
+    document.getElementById('val-'+k).textContent = v;
+  });
+}
+function renderInventory(){
+  const bar = document.getElementById('beltbar');
+  const slots = [];
+  for(let i=0;i<4;i++){
+    const id = state.inventory[i];
+    if(id){
+      const it = ITEMS[id];
+      const usable = id==='healing_herb';
+      slots.push(`<div class="belt-item ${usable?'usable':''}" onclick="${usable?`useItem('${id}')`:''}">
+        ${it.icon}<div class="tip"><strong>${it.name}</strong><br>${it.desc}${usable?'<br><em>Tap to use.</em>':''}</div>
+      </div>`);
+    } else {
+      slots.push('<div class="belt-empty"></div>');
+    }
+  }
+  bar.innerHTML = slots.join('');
+}
+function renderLocation(){
+  document.getElementById('loc-tag').textContent = LOCATIONS[state.location]?.name || state.location;
+}
+function renderCard(card){
+  fallbackCardRef = card.id==='fallback' ? card : null;
+  document.getElementById('card-speaker').textContent = card.speaker;
+  document.getElementById('card-text').textContent = card.text;
+  const responses = getAvailableResponses(card);
+  const wrap = document.getElementById('responses');
+  const dirLabel = {left:'◄ Left',right:'Right ►',up:'▲ Up',down:'▼ Down'};
+  wrap.innerHTML = responses.map(r=>`
+    <button class="resp-btn ${r.locked?'locked':''}" onclick="handleSwipe('${r.dir}')">
+      <span class="dir">${dirLabel[r.dir]}</span>${r.label}
+    </button>`).join('');
+  const cardEl = document.getElementById('the-card');
+  cardEl.style.transform = 'translate(0,0) rotate(0deg)';
+  cardEl.style.opacity = 1;
+}
+function flashCard(direction, label){
+  const el = document.getElementById('card-flash');
+  const cls = {left:'flash-left',right:'flash-right',up:'flash-up',down:'flash-down'}[direction];
+  el.className = 'card-flash show '+cls;
+  el.textContent = label;
+  setTimeout(()=>{ el.classList.remove('show'); }, 240);
+}
+function snapCardBack(){
+  const cardEl = document.getElementById('the-card');
+  cardEl.style.transition='transform .25s ease';
+  cardEl.style.transform='translate(0,0) rotate(0deg)';
+  setTimeout(()=>{ cardEl.style.transition=''; }, 260);
+}
+
+/* ---------------- Drag / swipe input ---------------- */
+const cardStage = () => document.getElementById('the-card');
+function initDrag(){
+  const el = document.getElementById('the-card');
+  el.addEventListener('pointerdown', e=>{
+    dragging = true; dragStartX = e.clientX; dragStartY = e.clientY; dragDX=0; dragDY=0;
+    el.setPointerCapture(e.pointerId);
+    el.style.transition='none';
+  });
+  el.addEventListener('pointermove', e=>{
+    if(!dragging) return;
+    dragDX = e.clientX - dragStartX; dragDY = e.clientY - dragStartY;
+    el.style.transform = `translate(${dragDX}px, ${dragDY}px) rotate(${dragDX/22}deg)`;
+  });
+  el.addEventListener('pointerup', e=>{
+    if(!dragging) return;
+    dragging = false;
+    el.style.transition='transform .25s ease';
+    const threshold = 70;
+    if(Math.abs(dragDX) > Math.abs(dragDY) && Math.abs(dragDX) > threshold){
+      handleSwipe(dragDX>0?'right':'left');
+    } else if(Math.abs(dragDY) > threshold){
+      handleSwipe(dragDY>0?'down':'up');
+    } else {
+      el.style.transform='translate(0,0) rotate(0deg)';
+    }
+    setTimeout(()=>{ el.style.transition=''; }, 260);
+  });
+  el.addEventListener('pointercancel', ()=>{ dragging=false; el.style.transform='translate(0,0) rotate(0deg)'; });
+}
+
+/* ---------------- Quest panel ---------------- */
+function openQuestPanel(){
+  const active = Object.entries(state.quests).filter(([k,v])=>v.active);
+  const done = Object.entries(state.quests).filter(([k,v])=>v.complete);
+  document.getElementById('qp-active').innerHTML = active.length ? active.map(([k])=>`<div class="qp-item">${QUESTS[k].name} — ${QUESTS[k].desc}</div>`).join('') : '<div class="qp-item">No active quests yet. Explore to find leads.</div>';
+  document.getElementById('qp-done').innerHTML = done.length ? done.map(([k])=>`<div class="qp-item done">${QUESTS[k].name}</div>`).join('') : '<div class="qp-item">None completed yet.</div>';
+  const relNames = {partner:'Romantic Partner', rival:'Rival Adventurer'};
+  const relLabel = {'-2':'Hostile','-1':'Distrustful','0':'Neutral','1':'Friendly','2':'Devoted'};
+  document.getElementById('qp-relationships').innerHTML = Object.entries(state.relationships).map(([k,v])=>{
+    let dots='';
+    for(let i=-2;i<=2;i++){
+      const filled = v>=0 ? (i>=0 && i<=v) : (i<=0 && i>=v);
+      dots += `<span class="${filled?'on':''}"></span>`;
+    }
+    return `<div class="rel-row"><span>${relNames[k]} <em style="opacity:.6;font-size:12px;">(${relLabel[v]})</em></span><span class="rel-dots">${dots}</span></div>`;
+  }).join('');
+  document.getElementById('quest-modal').classList.add('show');
+}
+function closeQuestPanel(){ document.getElementById('quest-modal').classList.remove('show'); }
+
+/* ---------------- Endings / scoring ---------------- */
+function calculateScore(){
+  const objectives = Object.values(state.quests).filter(q=>q.complete).length;
+  return state.decisions + 5*objectives + 10*state.chapter;
+}
+function unlockContent(){
+  const meta = loadMeta();
+  if(!meta.discoveredEndings.includes(state.endingId)){ meta.discoveredEndings.push(state.endingId); }
+  if(state.decisions > meta.bestDecisions) meta.bestDecisions = state.decisions;
+  saveMeta(meta);
+}
+function recordRun(){
+  const lb = loadLB();
+  const ending = ENDINGS[state.endingId];
+  lb.push({
+    name: state.name, cls: state.charClass, race: state.charRace,
+    score: calculateScore(), decisions: state.decisions,
+    ending: ending ? ending.title : state.endingId,
+    date: new Date().toISOString().slice(0,10),
+  });
+  saveLB(lb);
+}
+function finishRun(){
+  unlockContent();
+  recordRun();
+  showEnding(state.endingId);
+  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+}
+function showEnding(id){
+  const e = ENDINGS[id] || {title:'The Road Ends', kind:'Unknown', desc:'Your story trails off here.'};
+  document.getElementById('ending-title').textContent = e.title;
+  document.getElementById('ending-kind').textContent = e.kind;
+  document.getElementById('ending-desc').textContent = e.desc;
+  document.getElementById('es-decisions').textContent = state.decisions;
+  document.getElementById('es-score').textContent = calculateScore();
+  document.getElementById('es-chapter').textContent = state.chapter;
+  const meta = loadMeta();
+  const newCards = meta.discoveredCards.length;
+  document.getElementById('unlock-note').textContent = `${state.name} the ${RACES[state.charRace].name} ${CLASSES[state.charClass].name} — ${newCards} cards discovered across all runs.`;
+  goTo('screen-ending');
+}
+
+/* ---------------- Leaderboard / Unlocks screens ---------------- */
+function openLeaderboard(){ goTo('screen-leaderboard'); renderLeaderboard(); }
+function setLbSort(s){ lbSort = s; document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.sort===s)); renderLeaderboard(); }
+function renderLeaderboard(){
+  let lb = loadLB();
+  const uniqueEndings = new Set(lb.map(r=>r.ending)).size;
+  if(lbSort==='score') lb = [...lb].sort((a,b)=>b.score-a.score);
+  else if(lbSort==='decisions') lb = [...lb].sort((a,b)=>b.decisions-a.decisions);
+  else lb = [...lb].sort((a,b)=>b.score-a.score);
+  const list = document.getElementById('lb-list');
+  if(lb.length===0){ list.innerHTML = '<div class="empty-note">No runs recorded yet. The road awaits.</div>'; return; }
+  list.innerHTML = lb.slice(0,20).map(r=>`
+    <div class="lb-row">
+      <div><div class="lb-name">${r.name}</div><div class="lb-meta">${RACES[r.race]?.name||r.race} ${CLASSES[r.cls]?.name||r.cls} · ${r.ending}</div></div>
+      <div class="lb-score">${r.score}</div>
+    </div>`).join('') + (lbSort==='endings' ? `<div class="empty-note">${uniqueEndings} unique ending${uniqueEndings===1?'':'s'} discovered.</div>` : '');
+}
+function openUnlocks(){
+  goTo('screen-unlocks');
+  const meta = loadMeta();
+  const list = document.getElementById('unlocks-list');
+  const totalCards = CARDS.filter(c=>!c.hidden).length + Object.keys(PENDING_TEMPLATES).length;
+  list.innerHTML = `
+    <div class="qp-block"><div class="qp-label">Cards Discovered</div><div class="qp-item">${meta.discoveredCards.length} / ${totalCards}</div></div>
+    <div class="qp-block"><div class="qp-label">Endings Discovered</div><div class="qp-item">${meta.discoveredEndings.length} / ${Object.keys(ENDINGS).length}</div>
+      ${meta.discoveredEndings.map(id=>`<div class="qp-item done">${ENDINGS[id]?.title||id}</div>`).join('')}
+    </div>
+    <div class="qp-block"><div class="qp-label">Items Found</div><div class="qp-item">${meta.unlockedItems.map(id=>ITEMS[id]?.name||id).join(', ')||'None yet'}</div></div>
+    <div class="qp-block"><div class="qp-label">Best Survival</div><div class="qp-item">${meta.bestDecisions} decisions</div></div>
+  `;
+}
+
+/* ---------------- Init ---------------- */
+window.addEventListener('DOMContentLoaded', ()=>{
+  buildCCGrids();
+  initDrag();
+  document.getElementById('btn-continue').disabled = !loadGame();
+  document.getElementById('quest-modal').addEventListener('click', e=>{ if(e.target.id==='quest-modal') closeQuestPanel(); });
+});
+</script>
+
+
+</body></html>
