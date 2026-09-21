@@ -283,6 +283,20 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
 .tab.active{border-color:var(--gold-bright); color:var(--gold-bright);}
 .empty-note{color:var(--parchment-dim); font-style:italic; text-align:center; margin:30px 0;}
 
+/* ---------- Settings ---------- */
+.settings-row{margin-bottom:32px;}
+.settings-label{
+  font-family:var(--display); font-size:15px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold-bright); margin-bottom:12px;
+}
+.settings-slider{display:flex; gap:9px;}
+.pip-lg{
+  width:38px; height:38px; border:1px solid var(--parchment-dim); background:rgba(233,221,192,.06);
+  cursor:pointer; transition:background .15s, border-color .15s;
+}
+.pip-lg:hover{border-color:var(--gold-bright);}
+.pip-lg.on{background:var(--gold-bright); border-color:var(--gold-bright); box-shadow:0 0 8px rgba(169,125,47,.5);}
+
 .back-row{margin-top:auto; padding-top:16px;}
 .scroll-list{flex:1; overflow-y:auto;}
 </style>
@@ -299,6 +313,7 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
     <button class="menu-btn" id="btn-continue" onclick="continueGame()">Continue</button>
     <button class="menu-btn" onclick="openLeaderboard()">Leaderboard</button>
     <button class="menu-btn" onclick="openUnlocks()">Unlocks</button>
+    <button class="menu-btn" onclick="openSettings()">Settings</button>
   </div>
 
   <!-- CHARACTER CREATION -->
@@ -407,7 +422,27 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
     <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
   </div>
 
+  <!-- SETTINGS -->
+  <div class="screen" id="screen-settings">
+    <h2>Settings</h2>
+    <div class="rule"></div>
+
+    <div class="settings-row">
+      <div class="settings-label">Music</div>
+      <div class="settings-slider" id="slider-music"></div>
+    </div>
+
+    <div class="settings-row">
+      <div class="settings-label">Sounds</div>
+      <div class="settings-slider" id="slider-sounds"></div>
+    </div>
+
+    <div class="back-row"><button class="menu-btn" onclick="goTo('screen-title')">Back</button></div>
+  </div>
+
 </div>
+
+<audio id="bgm" loop preload="none"></audio>
 
 <!-- Quest / relationship modal -->
 <div class="modal-back" id="quest-modal">
@@ -758,6 +793,70 @@ let lbSort = 'score';
 const SAVE_KEY = 'tlr_save_v1';
 const META_KEY = 'tlr_meta_v1';
 const LB_KEY = 'tlr_leaderboard_v1';
+const AUDIO_KEY = 'tlr_audio_v1';
+
+/* ---------------- Audio ---------------- */
+const MUSIC_TRACKS = {
+  main:     './assets/music/main_music.mp3',
+  game:     './assets/music/game_music.mp3',
+  settings: './assets/music/settings_music.mp3',
+};
+const SCREEN_TRACK = {
+  'screen-title':       'main',
+  'screen-creation':    'main',
+  'screen-game':        'game',
+  'screen-ending':      'game',
+  'screen-leaderboard': 'settings',
+  'screen-unlocks':     'settings',
+  'screen-settings':    'settings',
+};
+let audioSettings = loadAudioSettings();
+let currentTrackKey = null;
+function loadAudioSettings(){
+  try{ const a = JSON.parse(localStorage.getItem(AUDIO_KEY)); return a || {music:3, sounds:3}; }
+  catch(e){ return {music:3, sounds:3}; }
+}
+function saveAudioSettings(){ try{ localStorage.setItem(AUDIO_KEY, JSON.stringify(audioSettings)); }catch(e){} }
+function applyMusicVolume(){
+  const bgm = document.getElementById('bgm');
+  if(bgm) bgm.volume = audioSettings.music/5;
+}
+function setMusicForScreen(screenId){
+  const key = SCREEN_TRACK[screenId] || 'main';
+  const bgm = document.getElementById('bgm');
+  if(!bgm) return;
+  if(key===currentTrackKey){ applyMusicVolume(); return; }
+  currentTrackKey = key;
+  bgm.src = MUSIC_TRACKS[key];
+  bgm.loop = true;
+  applyMusicVolume();
+  const p = bgm.play();
+  if(p && p.catch) p.catch(()=>{ /* blocked until a user gesture happens */ });
+}
+function setAudioLevel(kind, idx){
+  const current = audioSettings[kind];
+  let level = idx+1;
+  if(current===1 && idx===0) level = 0; // clicking the sole lit pip mutes
+  audioSettings[kind] = level;
+  saveAudioSettings();
+  renderAudioSettings();
+  if(kind==='music') applyMusicVolume();
+}
+function renderAudioSettings(){
+  ['music','sounds'].forEach(kind=>{
+    const wrap = document.getElementById('slider-'+kind);
+    if(!wrap) return;
+    const level = audioSettings[kind];
+    wrap.innerHTML = '';
+    for(let i=0;i<5;i++){
+      const d = document.createElement('div');
+      d.className = 'pip-lg' + (i<level ? ' on' : '');
+      d.onclick = ()=>setAudioLevel(kind,i);
+      wrap.appendChild(d);
+    }
+  });
+}
+function openSettings(){ goTo('screen-settings'); renderAudioSettings(); }
 
 function freshState(){
   return {
@@ -793,6 +892,7 @@ function goTo(id){
   if(id==='screen-title'){
     document.getElementById('btn-continue').disabled = !loadGame();
   }
+  setMusicForScreen(id);
 }
 
 /* ---------------- Character creation ---------------- */
@@ -1192,6 +1292,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
   initDrag();
   document.getElementById('btn-continue').disabled = !loadGame();
   document.getElementById('quest-modal').addEventListener('click', e=>{ if(e.target.id==='quest-modal') closeQuestPanel(); });
+  renderAudioSettings();
+  applyMusicVolume();
 });
 </script>
 </body>
