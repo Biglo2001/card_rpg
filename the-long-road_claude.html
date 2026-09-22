@@ -149,12 +149,65 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
     url('./assets/panel_forest_fullphone.png') top center / cover no-repeat;
 }
 .topbar{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2px;}
+.top-actions{display:flex; gap:6px; align-items:center;}
 .location-tag{font-family:var(--display); font-style:italic; font-size:15px; color:var(--gold-bright); text-shadow:0 2px 6px rgba(0,0,0,.9);}
 .iconbtn{
   background:none; border:1px solid var(--parchment-dim); color:var(--parchment-dim);
   font-family:var(--display); font-size:13px; letter-spacing:.06em; padding:5px 10px; cursor:pointer;
 }
 .iconbtn:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+
+/* ---------- World map ---------- */
+#screen-map{
+  position:relative;
+  padding:20px 18px 22px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(169,125,47,.08), transparent 42%),
+    linear-gradient(180deg, #15110e 0%, #0d0a08 100%);
+}
+.map-heading{
+  font-family:var(--display); font-size:34px; line-height:1; margin:6px 0 3px;
+  text-shadow:0 3px 14px rgba(0,0,0,.9);
+}
+.map-subtitle{
+  margin:0; color:var(--parchment-dim); font-style:italic; font-size:14.5px;
+}
+.map-viewport{
+  position:relative; flex:1; min-height:520px; margin:18px 0 12px;
+}
+.map-lines{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible;}
+.map-line{stroke:rgba(203,184,136,.62); stroke-width:1.5; vector-effect:non-scaling-stroke;}
+.map-node{
+  position:absolute; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:8px;
+  width:128px; cursor:default;
+}
+.map-dot{
+  width:26px; height:26px; border-radius:50%; border:1px solid rgba(233,221,192,.48);
+  box-shadow:0 0 0 5px rgba(13,10,8,.35), 0 6px 16px rgba(0,0,0,.5);
+}
+.map-node.current .map-dot{
+  border:2px solid var(--parchment);
+  box-shadow:0 0 0 5px rgba(13,10,8,.35), 0 0 0 2px var(--gold-bright), 0 6px 18px rgba(0,0,0,.7);
+}
+.map-label{
+  max-width:128px; color:var(--parchment); font-family:var(--display); font-size:18px; line-height:1.05;
+  text-shadow:0 2px 8px rgba(0,0,0,.95);
+}
+.map-current-label{
+  color:var(--gold-bright); font-family:var(--body); font-size:12.5px; font-style:italic;
+}
+.map-node.castle{left:19%; top:26%;}
+.map-node.tavern{left:50%; top:50%;}
+.map-node.forest{left:81%; top:30%;}
+.map-node.cave{left:70%; top:78%;}
+.map-back{margin-top:auto; width:100%; display:flex; justify-content:center;}
+.map-back .menu-btn{max-width:240px; margin:0;}
+@media (max-width:380px){
+  .map-viewport{min-height:470px;}
+  .map-node{width:112px;}
+  .map-label{max-width:112px; font-size:16px;}
+}
 
 .charline{margin-bottom:12px;}
 .char-name{font-family:var(--display); font-weight:700; font-size:19px; color:var(--parchment); text-shadow:0 2px 6px rgba(0,0,0,.9);}
@@ -348,7 +401,10 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
   <div class="screen" id="screen-game">
     <div class="topbar">
       <div class="location-tag" id="loc-tag">—</div>
-      <button class="iconbtn" onclick="openQuestPanel()">Journal</button>
+      <div class="top-actions">
+        <button class="iconbtn" onclick="openMap()">Map</button>
+        <button class="iconbtn" onclick="openQuestPanel()">Journal</button>
+      </div>
     </div>
     <div class="charline">
       <div class="char-name" id="char-name">—</div>
@@ -384,6 +440,41 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
     <div class="fail-msg" id="fail-msg"></div>
 
     <div class="beltbar" id="beltbar"></div>
+  </div>
+
+  <!-- MAP -->
+  <div class="screen" id="screen-map">
+    <div class="map-heading">The Road Ahead</div>
+    <p class="map-subtitle">Four paths, one crossroads.</p>
+
+    <div class="map-viewport" aria-label="World map">
+      <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line class="map-line" x1="19" y1="26" x2="50" y2="50"></line>
+        <line class="map-line" x1="50" y1="50" x2="81" y2="30"></line>
+        <line class="map-line" x1="50" y1="50" x2="70" y2="78"></line>
+      </svg>
+
+      <div class="map-node castle" data-location="castle">
+        <div class="map-dot" style="background:#3a3226"></div>
+        <div class="map-label">The Castle</div>
+      </div>
+      <div class="map-node tavern" data-location="tavern">
+        <div class="map-dot" style="background:#4a2f22"></div>
+        <div class="map-label">The Wandering Boar Tavern</div>
+      </div>
+      <div class="map-node forest" data-location="forest">
+        <div class="map-dot" style="background:#233b28"></div>
+        <div class="map-label">The Greywood</div>
+      </div>
+      <div class="map-node cave" data-location="cave">
+        <div class="map-dot" style="background:#1e1c2c"></div>
+        <div class="map-label">The Hollow Below</div>
+      </div>
+    </div>
+
+    <div class="map-back">
+      <button class="menu-btn" onclick="backToGameFromMap()">Back to Game</button>
+    </div>
   </div>
 
   <!-- ENDING -->
@@ -805,6 +896,7 @@ const SCREEN_TRACK = {
   'screen-title':       'main',
   'screen-creation':    'main',
   'screen-game':        'game',
+  'screen-map':         'game',
   'screen-ending':      'game',
   'screen-leaderboard': 'settings',
   'screen-unlocks':     'settings',
@@ -1205,6 +1297,28 @@ function initDrag(){
     setTimeout(()=>{ el.style.transition=''; }, 260);
   });
   el.addEventListener('pointercancel', ()=>{ dragging=false; el.style.transform='translate(0,0) rotate(0deg)'; });
+}
+
+/* ---------------- World map ---------------- */
+function openMap(){
+  renderMap();
+  goTo('screen-map');
+}
+function renderMap(){
+  document.querySelectorAll('#screen-map .map-node').forEach(node=>{
+    const loc = node.dataset.location;
+    node.classList.toggle('current', !!state && state.location===loc);
+    const label = node.querySelector('.map-label');
+    if(!label) return;
+    const baseName = LOCATIONS[loc]?.name || loc;
+    label.innerHTML = state && state.location===loc
+      ? `${baseName}<div class="map-current-label">You are here</div>`
+      : baseName;
+  });
+}
+function backToGameFromMap(){
+  goTo('screen-game');
+  renderLocation();
 }
 
 /* ---------------- Quest panel ---------------- */
