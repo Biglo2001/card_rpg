@@ -309,11 +309,11 @@ input#name-input::placeholder{color:var(--parchment-dim); opacity:.5;}
     <div class="title-mark">A PROTOTYPE</div>
     <h1 class="title-main">The Long Road</h1>
     <div class="title-sub">the curse remembers what you chose</div>
-    <button class="menu-btn" onclick="goTo('screen-creation')">New Game</button>
-    <button class="menu-btn" id="btn-continue" onclick="continueGame()">Continue</button>
-    <button class="menu-btn" onclick="openLeaderboard()">Leaderboard</button>
-    <button class="menu-btn" onclick="openUnlocks()">Unlocks</button>
-    <button class="menu-btn" onclick="openSettings()">Settings</button>
+    <button class="menu-btn" onclick="playSFX(SFX.click); goTo('screen-creation')">New Game</button>
+    <button class="menu-btn" id="btn-continue" onclick="playSFX(SFX.click); continueGame()">Continue</button>
+    <button class="menu-btn" onclick="playSFX(SFX.click); openLeaderboard()">Leaderboard</button>
+    <button class="menu-btn" onclick="playSFX(SFX.click); openUnlocks()">Unlocks</button>
+    <button class="menu-btn" onclick="playSFX(SFX.click); openSettings()">Settings</button>
   </div>
 
   <!-- CHARACTER CREATION -->
@@ -857,6 +857,21 @@ function renderAudioSettings(){
   });
 }
 function openSettings(){ goTo('screen-settings'); renderAudioSettings(); }
+
+const SFX = {
+  click: './assets/sounds/sectionsound-shield-block-shortsword-143940.mp3',
+  begin: './assets/sounds/dragon-studio-armor-impact-from-sword-393843.mp3',
+  swipe: './assets/sounds/coin_bag_cropped.mp3',
+};
+function playSFX(url){
+  if(!audioSettings.sounds || audioSettings.sounds<=0) return;
+  try{
+    const a = new Audio(url);
+    a.volume = audioSettings.sounds/5;
+    const p = a.play();
+    if(p && p.catch) p.catch(()=>{});
+  }catch(e){}
+}
 
 function freshState(){
   return {
