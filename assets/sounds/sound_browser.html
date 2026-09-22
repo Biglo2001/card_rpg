@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MP3 Player</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #fileList {
+      margin-top: 20px;
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .song-name {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    audio {
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MP3 Player</h1>
+
+  <input type="file" id="folderInput" webkitdirectory multiple accept=".mp3,audio/mpeg">
+
+  <div id="fileList"></div>
+
+  <script>
+    const folderInput = document.getElementById("folderInput");
+    const fileList = document.getElementById("fileList");
+
+    folderInput.addEventListener("change", function () {
+      fileList.innerHTML = "";
+
+      const mp3Files = Array.from(folderInput.files)
+        .filter(file => file.name.toLowerCase().endsWith(".mp3"))
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+      if (mp3Files.length === 0) {
+        fileList.textContent = "No MP3 files found.";
+        return;
+      }
+
+      mp3Files.forEach(file => {
+        const song = document.createElement("div");
+        song.className = "song";
+
+        const name = document.createElement("span");
+        name.className = "song-name";
+        name.textContent = file.name;
+
+        const audio = document.createElement("audio");
+        audio.controls = true;
+        audio.src = URL.createObjectURL(file);
+
+        song.appendChild(name);
+        song.appendChild(audio);
+        fileList.appendChild(song);
+      });
+    });
+  </script>
+
+</body>
+</html>
